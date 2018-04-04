@@ -1,0 +1,67 @@
+.container-content
+  .panel.panel-default.orders-pipeline-wrapper
+    #new_trade_line
+    #btn-click-modal
+    #user-change-status
+    .panel-heading.col-md-12
+      - if current_user.staff? && !params[:user_check_id]
+        #panel-search
+          .text-left.col-md-6
+            .panel-title
+              = "Orders Pipeline #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
+          .text-right.col-md-6#search-users.pull-right
+            %p.search-users-text Search Refunds
+        #search-box
+          = form_tag refunds_path, method: :get do
+            = text_field_tag :term, nil, placeholder: 'Search by Email',
+              value: params[:term]
+          %span.glyphicon.glyphicon-remove.search-box-remove.pull-right
+      - else
+        .text-left.col-md-6
+          .panel-title
+            = "Orders Pipeline #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
+    .panel-body#panel-body.refund-panel
+      %ul.nav.nav-tabs.nav-justified
+        - if params[:user_check_id].present? && current_user.staff?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id]), class: 'active-tab'
+          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id])
+        - elsif current_user.au?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path
+          %li= link_to 'Purchases', purchases_path
+          %li= link_to 'Deposits', deposits_path
+          %li= link_to 'Refunds', refunds_path, class: 'active-tab'
+          %li= link_to 'Withdrawals', withdraws_path
+        - else
+          %li= link_to 'Purchases', purchases_path
+          %li= link_to 'Refunds', refunds_path, class: 'active-tab'
+
+      - if @refunds.any?
+        %table.table.table-striped
+          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
+            = render @refunds
+      - else
+        .no-data-div
+          %div
+            = image_tag('no-data-img.png')
+            %p.dashb Nothing here 😔
+            %p.dashb There is nothing here, please come back later
+
+#infinite-scrolling
+  = will_paginate @refunds
+
+:javascript
+  $('#search-box').hide();
+  $('.search-users-text').on('click', function(){
+    $('#panel-search').hide();
+    $('#search-box').show();
+    $('#term').focus();
+    $('.panel-heading.col-md-12').css('padding', '0px');
+  });
+  $('.search-box-remove').on('click', function(){
+    $('#panel-search').show();
+    $('#search-box').hide();
+    $('.panel-heading.col-md-12').css('padding', '30px 30px 24px');
+  });

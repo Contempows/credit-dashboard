@@ -1,0 +1,84 @@
+#new_trade_line
+.panel.panel-default.stc-panel
+  .panel-heading.col-md-12
+    .text-left.col-md-6{style: 'display:flex;'}
+      .panel-title.cursor-pointer.search-tradelines-collapse-button{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", :type => "button"} Search Tradelines
+      %span.glyphicon.glyphicon-chevron-down
+    .text-right.col-md-6
+      = link_to 'Reset Filters', trade_lines_path, class: 'reset-filters'
+  .panel-body.collapse#collapseExample
+    &nbsp;
+    .col-md-12
+      = form_tag trade_lines_path, method: :get do
+        .col-md-12
+          .row
+            .col-md-12.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :bank, 'Bank', class: 'control-label', style: 'width: 10%'
+              = select_tag :bank, options_for_select(@all_trade_lines.uniq.pluck(:bank), params[:bank]), multiple: true, class: 'form-control search-form'
+          .row
+            .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :state, 'State', class: 'control-label', style: 'width: 50%'
+              = select_tag :state, options_for_select(@states, params[:state]),
+              include_blank: true
+            .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :special_add, 'Special Add Required?', class: 'control-label', style: 'width: 50%'
+              = select_tag :special_add, options_for_select([['Yes', true], ['No', false]], params[:special_add]),
+              include_blank: true
+          .row
+            .col-md-6.trade-line-search-column
+              = label_tag :min_credit_limit, 'Min Credit Limit', class: 'control-label', style: 'width: 50%'
+              = text_field_tag :min_credit_limit, params[:min_credit_limit],
+              onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
+              class: 'form-control search-form '
+            .col-md-6.trade-line-search-column
+              = label_tag :ssn_req, 'SSN Req?', class: 'control-label', style: 'width: 50%'
+              = select_tag :ssn_req, options_for_select([['Yes', true], ['No', false]], params[:ssn_req]),
+              include_blank: true
+          .row
+            .col-md-6.trade-line-search-column
+              = label_tag :max_price, 'Max Price', class: 'control-label', style: 'width: 50%'
+              = text_field_tag :max_price, params[:max_price],
+              onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
+              class: 'form-control search-form '
+            .col-md-6.trade-line-search-column
+              = label_tag :dl_req, 'DL Req?', class: 'control-label', style: 'width: 50%'
+              = select_tag :dl_req, options_for_select([['Yes', true], ['No', false]], params[:dl_req]),
+              include_blank: true
+        &nbsp;
+        &nbsp;
+        .col-md-12
+          .row
+            .col-md-4.col-md-offset-4
+              %button.btn.btn-primary.btn-block{type: 'submit'} Search
+              &nbsp;
+
+
+.panel.panel-default.stc-panel
+  .panel-heading.col-md-12
+    .text-left.col-md-6
+      .panel-title All Tradelines
+    - unless is_au? 
+      .text-right.col-md-6
+        = link_to '+ Add New Tradeline', new_trade_line_path, remote: true,
+          class: 'new-trade-line add-trade-line-and-user'
+  .panel-body.all-tradeline#panel-body.au-dashboard-apps
+    - if TradeLine.accessible_by(current_ability).count.zero?
+      = render 'shared/no_data'
+    - else
+      = render 'trade_lines/index'
+
+:javascript
+  $(function(){
+    $('select').select2({theme:'bootstrap'});
+  });
+  document.addEventListener("turbolinks:before-cache", function() {
+    $('select').select2('destroy');
+  });
+  $('#collapseExample').on('show.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-up'></span>")
+  });
+  $('#collapseExample').on('hide.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-down'></span>")
+  });

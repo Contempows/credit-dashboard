@@ -1,0 +1,19 @@
+%tr
+  %td
+    %p.dashb= link_to "Withdrawal Ref. ##{withdraw.ref}", edit_withdraw_path(withdraw), remote: true
+    %p.dashb-small-date
+      Reference #
+  %td
+    %p.dashb= month_date_and_year(withdraw.created_at)
+    %p.dashb-small-date Date
+  %td
+    %p.dashb= withdraw.payee
+    %p.dashb-small-date Payee
+  - unless current_user.au?
+    %td
+      %p.dashb= "#{withdraw.withdraw_by.first_name} #{withdraw.withdraw_by.last_name}"
+      %p.dashb-small-date Requested By
+  %td
+    %p.dashb{class: "status_#{withdraw.status}"}= withdraw.status.titleize
+    %p.dashb-small-date Status
+  %td.dashb-app-status=  number_to_currency(withdraw.amount, precision: 2)

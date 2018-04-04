@@ -1,0 +1,70 @@
+#user-render-partial
+.col-sm-12.user-wrapper
+  %h2.change-password My Profile.
+  %p.welcome You can change your details.
+  = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal' } do |f|
+    .profile-image-wrapper
+      %label.profile-image{for: 'user_profile'}
+        .form-group.user-profile-error
+          = f.file_field :profile
+        / %span.glyphicon.glyphicon-edit.cursor-pointer.edit-button-image
+        %img{src: "#{@user.profile? ? asset_url(@user.profile.url) : image_url('user-placeholder.png')}"}
+      .profile-image-form-group-wrapper
+        = f.input :email, readonly: true, label: 'Email'
+        - if current_user.au?
+          = f.input :social, label: false, label: 'SSN Number', maxlength: 9,
+            input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+    .form-group-wrapper
+      = f.input :first_name, label: 'First Name'
+      = f.input :last_name, label: 'Last Name'
+      = f.input :address, label: 'Address'
+      .dob_wrapper.form-group{style: 'width: 48%', class: "#{'has-error' if (@user.errors.keys & [:day, :month, :year]).any?}"}
+        %label.control-label.string.optional.dob-label Date of birth
+
+        = f.select :month, Date::MONTHNAMES.reject(&:nil?),
+          prompt: 'Month', include_blank: true, wrapper: :select,
+          selected: "#{Date::MONTHNAMES[@user.date_of_birth.try(:month)] if @user.date_of_birth.present?}"
+
+        %p.dob-slash /
+        = f.select :day, (01..31), label: false, as: :string, prompt: 'Date',
+          include_blank: true, selected:  "#{@user.date_of_birth.try(:day)}"
+
+        %p.dob-slash /
+        = f.select :year, (Time.current.year-60..Time.current.year), label: false,
+          include_blank: true, selected: "#{@user.date_of_birth.try(:year)}", prompt: 'Year'
+        %span.help-block{style: 'display: none'}Please enter all DOB fields
+      = f.input :city, label: 'City'
+      .form-group.string.optional.user_state
+        = f.label 'State', class: 'control-label text optional'
+        = f.select :state, get_states_list, label: 'false'
+      = f.input :mother_maiden_name, label: "Mother's Maiden Name", required: false
+      = f.input :zipcode, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+      = f.input :phone, label: 'Phone', maxlength: 10, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+      = hidden_field_tag :full_page, 'true'
+      = f.button :submit, "Update Details", class: 'btn btn-primary btn-lg btn-block'
+
+:javascript
+  $('select').select2({theme:'bootstrap'});
+  if($('.dob_wrapper').hasClass('has-error')) {
+    $($('.dob_wrapper span.help-block')).css('display', 'inherit');
+  }
+  var URL = window.URL || window.webkitURL;
+  $('#user_profile').bind('change', function(event){
+    if (event.target.files[0].type.startsWith('image/')){
+      var tmppath = URL.createObjectURL(event.target.files[0]);
+      $('.help-block').remove();
+      $('.user-profile').removeClass('has-error');
+      $('.profile-image img').attr('src', tmppath);
+    }
+    else{
+      $('.help-block').hide();
+      var str = event.target.files[0].type;
+      var type = str.substr(str.indexOf("/") + 1).toUpperCase();
+      if (type == '') { type = 'this'; }
+      var error = 'Cannot add ' + type + ' file';
+      $('.user-profile-error').addClass('has-error');
+      $('#user_profile').after("<span class=help-block>" + error + "</span>");
+    }
+  });
+
+

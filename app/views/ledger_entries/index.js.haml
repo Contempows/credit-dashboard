@@ -1,0 +1,6 @@
+$('#tbody').append("#{ j render @ledger_entries }");
+- if @ledger_entries.next_page
+  $('.pagination').replaceWith("#{j will_paginate @ledger_entries}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

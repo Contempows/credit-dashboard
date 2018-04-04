@@ -1,0 +1,88 @@
+.panel.panel-default.au-tradeline-panel
+  .panel-heading.col-md-12
+    .text-left.col-md-6
+      .panel-title Upcoming Tradelines
+    .text-right.col-md-6.view-all
+      - if @trade_lines.any?
+        = link_to 'View all', trade_lines_path, class: 'new-trade-line'
+      - else
+        = link_to '+ Add New Tradeline', new_trade_line_path, class: 'new-trade-line add-trade-line-and-user', remote: true
+  .panel-body.tradeline-panel#panel-body
+    - if @trade_lines.any?
+      = render 'trade_lines/index_dashboard'
+    - else
+      .no-data-div
+        %div
+          = image_tag('no-data-img.png')
+          %p.dashb Nothing here 😔
+          %p.dashb There is nothing here, please come back later.
+  #new_trade_line
+
+.row.au-ss-bottom-row
+  .col-md-12.au-wallet-balance
+    .col-sm-4.no-pad-right.au-dashboard-submitted
+      .panel.panel-default
+        .panel-heading.col-md-12
+          .text-left.col-md-6
+            .panel-title.dashb Authorized User Management
+          .text-right.col-sm-6{style: 'width: inherit'}
+            - if @users.present?
+              = link_to 'View All', users_path
+        #user-change-status
+        .panel-body#panel-body
+          %table.table.table-hover.table-striped.responsive-table
+            .tbody#tbody
+              - if @users.any?
+                - @users.each do |u|
+                  %tr.dashb-small-trow
+                    %td 
+                      %p.dashb= u.email
+                      %p.dashb-small-date= "Member since: #{month_date_and_year(u.created_at)}"
+                    %td.dashb.all-users-wallet-balance
+                      - if u.wallet_balance - u.wallet_balance.to_i == 0 
+                        = number_to_currency(u.wallet_balance, precision: 2)
+                      - else 
+                        = number_to_currency(u.wallet_balance, precision: 2)
+              - else
+                = render 'shared/no_data'
+
+    .col-sm-4.no-pad-right.no-pad-left.au-dashboard-recent.ss-js-mgmt-dashboard
+      .panel.panel-default
+        .panel-heading.col-md-12
+          .text-left.col-md-6
+            .panel-title.dashb Junior Staff Management
+          .text-right.col-sm-6
+            - if @juniors.present?
+              = link_to 'View All', applications_users_path(junior: true)
+        .panel-body#panel-body
+          %table.table.table-hover.table-striped.responsive-table
+            .tbody#tbody
+              - if @juniors.any?
+                - @juniors.each do |j|
+                  %tr.dashb-small-trow
+                    %td 
+                      %p.dashb= j.email
+                      %p.dashb-small-date= "Staff since: #{month_date_and_year(j.created_at)}"
+              - else
+                = render 'shared/no_data'
+
+    .col-sm-4.no-pad-right.au-dashboard-submitted
+      .panel.panel-default
+        .panel-heading.col-md-12
+          .text-left.col-md-6
+            .panel-title.dashb Submitted Applications
+          .text-right.col-sm-6
+            - if @submitted_users.present?
+              = link_to 'View All', applications_users_path
+        .panel-body#panel-body
+          %table.table.table-hover.table-striped.responsive-table
+            .tbody#tbody
+              - if @submitted_users.any?
+                - @submitted_users.each do |u|
+                  %tr.dashb-small-trow
+                    %td 
+                      %p.dashb= link_to "#{u.email}", edit_details_user_path(u), remote: :true
+                      %p.dashb-small-date= month_date_and_year(u.created_at)
+                    %td.dashb-app-status= u.status.humanize
+              - else
+                = render 'shared/no_data'

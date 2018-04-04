@@ -1,0 +1,501 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container.less-margin {
+  margin-top: -2.5%;
+}
+
+#wallet-balance {
+  border-color: #ddd;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  background: white; 
+ -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+}
+
+tr.dashb-small-trow {
+  height: 6em;
+}
+
+.dashb-app-status {
+  text-align: right;
+  font-size: 14px !important;
+  color: #f6a623 !important;
+  @media screen and (min-width: 992px){
+    font-size: 16px!important;
+  }
+}
+
+.dashb {
+@media screen and (max-width:991px) {
+  font-size: 14px;
+}
+}
+
+p.dashb-small-date {
+  font-size: 14px !important;
+  color: #959595;
+  margin-bottom: 0;
+  line-height: normal;
+  @media screen and (min-width: 992px){
+font-size: 16px!important;
+}
+}
+
+#purchase-user-info {
+margin-bottom: 30px;
+
+ p.dashb-small-date{
+   @media screen and (min-width: 992px){
+     font-size: 18px!important;
+   }
+ } 
+}
+
+#user-show-info .modal-body p.dashb-small-date.no-margin-bottom{
+  margin-bottom: 10px!important;
+  @media screen and (min-width: 992px){
+  font-size: 18px!important;
+}
+}
+
+.panel-title.dashb {
+//  width: 200px;
+}
+
+.container-fluid.no-pad-left.no-pad-right {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.col-md-12.au-wallet-balance {
+@media screen and (min-width: 768px){
+      display: flex;
+      justify-content: space-between;
+  }
+}
+
+.col-sm-4.no-pad-right {
+  padding-right: 0px;
+  padding-left: 0px;
+@media screen and (min-width:768px) {
+    border: 1px solid #ddd;
+    border-radius: 4px;    
+     -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+       box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+    background-color: #fff;
+    width: 32%;
+}
+}
+
+.col-sm-4.no-pad-left, .col-sm-8.no-pad-left {
+  padding-left: 0px;
+  padding-right: 0;
+@media screen and (min-width:768px) {
+  width: 32%;
+}
+}
+
+.col-sm-4.no-pad-right.no-pad-left.au-dashboard-recent{
+      margin-top: 20px;
+ @media screen and (min-width:768px) {
+     border: 1px solid #ddd;
+     border-radius: 4px;
+      -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+     background-color: #fff;
+     margin-top: 0;
+}
+ }
+
+.row.js-dashboard-wrapper{
+  @media screen and (min-width:768px) {
+      display: flex;
+      justify-content: space-between;
+ .col-md-4{
+    width: 32%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+    background-color: #fff;
+    margin-top: 0;
+    padding: 0;
+    margin: 0 15px;
+    }
+}
+}
+.col-sm-4.no-pad-right.no-pad-left.au-dashboard-recent .panel.panel-default,
+.col-sm-4.no-pad-right .panel.panel-default, .row.js-dashboard-wrapper>.col-md-4 .panel.panel-default{
+@media screen and (min-width:768px) {
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  height: 100%;
+}
+}
+
+.col-sm-4.no-pad-right.no-pad-left.au-dashboard-recent .panel.panel-default .panel-body,
+ .col-sm-4.no-pad-right .panel.panel-default .panel-body{
+   @media screen and (min-width:768px) {
+   flex: 1;
+ }
+ }
+
+.row.js-dashboard-wrapper>.col-md-4.notifications-wrapper{
+   @media screen and (min-width:768px) {
+     background-color: transparent;
+     border: none;
+     box-shadow: none;
+     display: flex;
+     flex-direction: column;
+   }
+}
+
+ .row.js-dashboard-wrapper>.col-md-4.notifications-wrapper .panel.panel-default{
+   @media screen and (min-width:768px) {
+     height: auto;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+
+     &.staff-dashboard-refunds{
+         margin-top: 30px;
+         flex: 1; 
+    }
+   }
+ }
+
+.panel.panel-default{
+   -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
+}
+
+.au-dashboard-recent .text-right > a, .au-dashboard-submitted .text-right > a{
+  text-transform: capitalize;
+  color: $theme-color;
+  font-size: 18px;
+  font-family: 'CircularStd';
+   &:hover, &:focus {
+       color: #3c1fa8;
+       text-decoration: none;
+   }
+   @media screen and (max-width:991px) {
+     font-size: 16px;
+     width: auto;
+     height: auto;
+     display: block;
+   }
+}
+
+.btn-gap {
+  margin-bottom: 0.5em !important;
+}
+
+td.dashb {
+  text-align: right;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.wallet-balance {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px 0 30px 20px;
+  height: 100%;
+  @media screen and (min-width:992px) {
+    padding: 49px 0 49px 34px;
+  }
+}
+
+
+.cash-img {
+  height: 64px;
+  width: 64px;
+  background: no-repeat;
+  background-image: image_url('stcwallet.png');
+}
+
+.balance-wrapper{
+  padding-left: 30px;
+}
+
+.wallet-bal {
+  font-size: 16px;
+  margin-bottom: 5px;
+  @media screen and (min-width:992px) {
+    font-size: 18px;
+  }
+}
+
+.wallet-amount {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: CircularStd;
+  color: #3C1FA8;
+}
+
+.modal-content.show-tl {
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+#user-profile-info {
+  visibility: hidden;
+}
+
+.user-info-btn {
+  text-align: left !important;
+  background: white;
+  border: 1px solid #3c1fa8 !important;
+}
+
+.user-info-btn:hover {
+  background: white !important;
+}
+
+.user-info-btn:focus {
+  background: white !important;
+}
+
+.user-info-label {
+  display: inline-flex;
+  width: calc(100% - 70px);
+  height: 100%;
+  margin-top: 5px;
+}
+
+.span-close {
+  line-height: 1em;
+}
+
+.tick-box {
+  height:34px;
+  width: 34px;
+  background: white;
+  border: 1px solid #3c1fa8 !important;
+  border-radius: 5px;
+}
+
+#user-profile-info:checked + .tick-box:before {
+  content: "\e013";
+  color: white;
+  background-color: #3c1fa8;
+  text-align: center;
+  line-height: 32px;
+  width: 100%;
+  display: block;
+}
+
+#new_banking_information_modal {
+  .modal-dialog {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    margin-top: 0;
+    min-height: 100%;    
+
+    .modal-header {
+      padding-bottom: 20px;
+      padding-left: 45px;
+
+      .modal-header-title {
+        margin-bottom: 0;
+        margin-top: 26px;
+
+        .title {
+          color: #3E24A1;
+        }
+      }
+
+      .success-message  {
+        height: 15px;
+        font-size: 12px;
+      }
+    }
+
+    #banking_information_success h3 {
+      margin-top: 0;
+    }
+    
+    .modal-body {
+      padding: 0 45px;
+
+      .form-control {
+        padding: 6px 0;
+      }
+
+      .help-block {
+        font-size: 12px;
+        margin-top: -10px;
+      }
+    }
+
+    .modal-footer {
+      padding: 0 45px 0 45px;
+
+      #banking-information-save-button {
+        background-color: #3E24A1;
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      .btn.cancel {
+        border-color: #3E24A1;
+        color: #3E24A1;
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 45px;
+        margin-top: 10px;
+      }
+
+      .btn-default:hover {
+        background-color: inherit;
+      }
+    }
+  }
+}
+
+.drop-files {
+  width: 100%;
+  display: block;
+  height: 150px;
+  opacity: 0.5;
+  border-radius: 8px;
+  background-color: #ededed;
+}
+
+.add-another-text {
+  color: #3c1fa8;
+  font-size: 18px;
+}
+
+.modal-header {
+  margin-top: 20px
+}
+
+.modal-footer {
+  margin-bottom: 10px;
+}
+
+.navbar-default .navbar-text{
+    margin: 0;
+    line-height: normal;
+}
+
+.navbar-img {
+  height: 35px;
+  width: 35px;
+  background-image: image_url('stclogo.png');
+  background-size: contain;
+  margin-right: 8px;
+}
+
+.no-data-image {
+  width: 50px;
+  height: 64px;
+  background-image: image_url('page-1.png');
+}
+
+.staff-dashboard-refunds, .staff-dashboard-trans {
+  min-height: 318px;
+}
+
+.staff-dashboard-users {
+//  min-height: 702px;
+}
+
+.au-dashboard-trans, .au-dashboard-apps {
+//  min-height: 430px;
+}
+
+.warning {
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.nav > li > a:hover, .nav > li > a:focus, .active-tab {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.table.table-hover.table-striped.responsive-table {
+  display: block;
+  tbody{
+    display: block;
+  }
+  .dashb-small-trow {
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+  }
+  tbody > tr > td:first-child{
+      @media screen and (min-width: 992px) {
+        width: 70%;
+      }
+  }
+  tbody > tr > td a.dashb{
+    width: auto;
+    word-break: break-all;
+  }
+}
+
+table.dataTable{
+  thead{ 
+    .sorting:after, .sorting_asc:after, .sorting_desc:after {
+      opacity: 0.2;
+      content: '';
+    }
+  }
+}
+
+/*#tradelineDataTable{
+    width: 100%!important;
+       -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    }
+#tradelineDataTable tbody{
+     -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    }
+#tradelineDataTable tbody tr{
+       -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+   }
+#tradelineDataTable tbody tr td{
+       -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+   padding: 27px 14px;
+ }*/
+
+.btn-grp-btn {
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+}
+
+search-form {
+  display: block !important;
+  width: 100% !important;
+  height: 34px !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+}
+

@@ -1,0 +1,20 @@
+.modal.fade#deposit-modal{ 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1' }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: { dismiss: 'modal' } }
+          %span &times;
+        %h4.modal-header-title 
+          %b.title Deposit Confirmation 
+        %span.sub-title Please review details before confirming a deposit 
+      = render 'edit_form'
+
+
+:javascript
+  $('.modal-footer input').on('click', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    var data = $(this).data('commit');
+    $('#deposit_status').val(data);
+    $('form').submit();
+  });

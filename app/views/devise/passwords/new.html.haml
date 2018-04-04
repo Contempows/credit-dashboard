@@ -1,0 +1,16 @@
+.login.row
+  .col-md-6.col-sm-6.login-bg-wrapper
+  .col-md-6.col-sm-6.login-form-wrapper
+    .col-md-offset-1.col-md-8.main.login-form-inner-wrapper
+      %b.welcome Forgot your password?
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, html: { class: 'form-horizontal' }, wrapper: :horizontal_form) do |f|
+        = f.error_notification
+        &nbsp;
+        = f.input :email, autofocus: true, required: false, label: false, placeholder: 'Email Address'
+
+        = f.button :submit, "Send me reset password link", class: 'btn btn-primary btn-block btn-lg'
+
+      &nbsp;
+      = button_to "LOGIN", new_user_session_path, class: 'btn btn-primary btn-block btn-lg', method: :get
+      &nbsp;
+      = button_to "NOT AN EXISTING USER? SIGNUP", new_user_path, class: 'btn btn-primary btn-block btn-lg', method: :get

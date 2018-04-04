@@ -1,0 +1,12 @@
+- if @purchase.rejected? && @purchase.errors.any?
+  $('#purchase_reject_page').html('')
+  $('#purchase_reject_page').html("#{escape_javascript(render partial: 'rejection', locals: { purchase: @purchase, trade_line: @purchase.trade_line })}")
+- elsif @result
+  location.reload();
+- elsif (current_user.staff? && !@purchase.submitted?)
+  location.reload();
+- elsif current_user.au?
+  $("#purchase_#{@purchase.id}").modal('show');
+  $('#edit-purchase-form').html("#{escape_javascript(render 'form_edit')}");
+- elsif @purchase.rejected?
+  $('#purchase_reject_page').html("#{escape_javascript(render partial: 'rejection', locals: { purchase: @purchase, trade_line: @purchase.trade_line })}")

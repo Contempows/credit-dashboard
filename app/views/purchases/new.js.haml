@@ -1,0 +1,4 @@
+$('.fade').remove();
+$('#new_trade_line').html('');
+$('#new_trade_line').html("#{escape_javascript(render 'new')}");
+$("#proceedModal_#{@trade_line.id}").modal('show');

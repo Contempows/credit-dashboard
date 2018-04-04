@@ -1,0 +1,2 @@
+$('#user-change-status').html("#{escape_javascript(render partial: 'user_info_modal', locals: { user: @user })}");
+$("#user-info-modal_#{@user.id}").modal('show');

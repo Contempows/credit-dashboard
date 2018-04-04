@@ -1,0 +1,11 @@
+.modal.fade#new_trade_line_modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: { dismiss: 'modal' } }
+          %span &times;
+        %h4.modal-header-title 
+          %b.title Edit Tradeline
+        %span.sub-title Please review details below before saving a Tradeline
+      #modal-body
+        = render 'form'

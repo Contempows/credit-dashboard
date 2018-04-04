@@ -1,0 +1,74 @@
+.row.js-dashboard-wrapper
+  .col-md-4.apps-pipeline-wrapper
+    .panel.panel-default
+      .panel-heading.col-md-12
+        .text-left.col-md-6
+          .panel-title Orders Pipeline 
+        .text-right.col-md-6
+          - if @orders.any?
+            = link_to 'View all', purchases_path, class: 'new-trade-line'
+      #user-change-status
+      .panel-body.apps-pipeline#panel-body
+        - if @orders.any?
+          = render 'orders'
+        - else
+          .no-data-div
+            %div
+              = image_tag('no-data-img.png')
+              %p.dashb Nothing here 😔
+              %p.dashb There is nothing here, please come back later.
+
+  .col-md-4.users-wrapper
+    .panel.panel-default
+      .panel-heading.col-md-12
+        .text-left.col-md-6
+          .panel-title User Management 
+        .text-right.col-md-6
+          - if @users.any?
+            = link_to 'View all', users_path, class: 'new-trade-line'
+      #btn-click-modal
+      .panel-body.staff-dashboard-users#panel-body
+        - if @users.any?
+          = render 'users'
+        - else
+          .no-data-div
+            %div
+              = image_tag('no-data-img.png')
+              %p.dashb Nothing here 😔
+              %p.dashb There is nothing here, please come back later.
+
+  .col-md-4.notifications-wrapper
+    .panel.panel-default.staff-dashboard-trans
+      .panel-heading.col-md-12
+        .text-left.col-md-6
+          .panel-title Deposits / Withdrawals Pipeline
+        .text-right.col-md-6
+          - if @notifications.any?
+            = link_to 'View all', deposits_path, class: 'new-trade-line'
+      .panel-body#panel-body
+        - if @notifications.any?
+          = render 'notifications'
+        - else
+          .no-data-div
+            %div
+              = image_tag('no-data-img.png')
+              %p.dashb Nothing here 😔
+              %p.dashb There is nothing here, please come back later.
+
+    .panel.panel-default.staff-dashboard-refunds
+      .panel-heading.col-md-12
+        .text-left.col-md-6
+          .panel-title Validation Pipeline
+        .text-right.col-md-6
+          - if @latest_ssn_users.any?
+            = link_to 'View all',ssns_path, class: 'new-trade-line'
+      .panel-body#panel-body
+        - if @latest_ssn_users.any?
+          = render 'latest_ssn_users'
+        - else
+          .no-data-div
+            %div
+              = image_tag('no-data-img.png')
+              %p.dashb Nothing here 😔
+              %p.dashb There is nothing here, please come back later.
+        

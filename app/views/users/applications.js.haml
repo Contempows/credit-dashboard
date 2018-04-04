@@ -1,0 +1,6 @@
+$('#applications').append("#{ j render partial: 'application', collection: @applications, as: :app }");
+- if @applications.next_page
+  $('.pagination').replaceWith("#{j will_paginate @applications}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

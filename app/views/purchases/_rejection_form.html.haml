@@ -1,0 +1,18 @@
+= simple_form_for @purchase, url: trade_line_purchase_path(@purchase.trade_line, @purchase), remote: true do |f|
+  .modal-body
+    = f.hidden_field :status, value: 'rejected'
+    = f.input :reason_for_rejection, collection: ['Uploaded documents are incomplete / unclear', 'Application information is wrong', 'Card is no longer available', 'SSN / CPN is invalid', 'Canceled due to client request'], label: 'Reason for Rejection'
+
+  .modal-footer
+    = f.submit 'reject purchase', class: 'btn btn-primary btn-lg btn-block' 
+    = link_to 'cancel', edit_trade_line_purchase_path(@purchase.trade_line, @purchase, back: true), class: 'btn btn-default btn-lg btn-block', remote: true 
+
+:javascript
+  $('select').select2({
+    maximumInputLength: 128,
+    selectOnClose: true,
+    tags:true
+  });
+  $('select').on('select2:open', function(){
+    $('input.select2-search__field').attr('maxlength', 128);
+  });

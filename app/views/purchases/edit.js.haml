@@ -1,0 +1,10 @@
+- if current_user.au?
+  $('#new_trade_line').html("#{escape_javascript(render partial: 'purchase_confirmation', locals: { purchase: @purchase, trade_line: @purchase.trade_line, purchased_by: @purchase.purchased_by })}");
+  $("#purchase_confirmation_#{@purchase.id}").modal('show');
+- elsif params[:approved] == 'false'
+  $('#purchase_reject_page').html("#{escape_javascript(render partial: 'rejection', locals: { purchase: @purchase, trade_line: @purchase.trade_line })}")
+- elsif params[:back] == 'true'
+  $('#purchase_reject_page').html("#{escape_javascript(render partial: 'approve_reject_page', locals: { purchase: @purchase, trade_line: @purchase.trade_line, purchased_by: @purchase.purchased_by })}")
+- else
+  $('#new_trade_line').html("#{escape_javascript(render partial: 'purchase_confirmation', locals: { purchase: @purchase, trade_line: @purchase.trade_line, purchased_by: @purchase.purchased_by })}");
+  $("#purchase_confirmation_#{@purchase.id}").modal('show');

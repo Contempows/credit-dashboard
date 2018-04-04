@@ -1,0 +1,8 @@
+.modal-header
+  %button.close{data: { dismiss: 'modal' } }
+    %span &times;
+  %h4.modal-header-title 
+    %b.title Partial Refund 
+  %span.sub-title Please enter the refund amount below to proceed 
+#partial-refund
+  = render 'partial_refund_form'

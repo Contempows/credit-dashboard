@@ -1,0 +1,10 @@
+- if params[:status] == 'partially_accepted'
+  $('#modal-content').html("#{escape_javascript(render 'partial_refund')}");
+- elsif params[:status] == 'rejected'
+  $('#modal-content').html("#{escape_javascript(render 'rejection')}");
+- elsif params[:status] == 'accepted'
+  $('#modal-content').html("#{escape_javascript(render 'accepted')}");
+- else
+  $('.fade').remove();
+  $('#user-change-status').html("#{escape_javascript(render 'edit')}");
+  $('#refund-modal').modal('show');

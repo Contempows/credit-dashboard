@@ -1,0 +1,9 @@
+- @users.each do |user|
+  %tr
+    %td
+      %p.dashb= link_to "#{user.email}", edit_ssns_user_path(user), remote: true 
+      %p.dashb-small-date
+        Client Email
+    %td
+      %p.dashb= month_date_and_year(user.ssns.active.order_desc.first.created_at)
+      %p.dashb-small-date Last SSN added on

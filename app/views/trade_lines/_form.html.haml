@@ -1,0 +1,51 @@
+= simple_form_for @trade_line, remote: true do |f|
+  .modal-body
+    = f.input :slots, label: 'Slots', as: :string,
+      input_html: { type: 'text', onKeyPress: "return isNumber(event);" }
+    = f.input :bank, label: 'Bank'
+    = f.input :credit_limit, label: 'Credit Limit', as: :string,
+      input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
+    = f.input :history, as: :string, label: 'History', 
+      input_html: { value: month_year(@trade_line.history), class: "datepicker" }
+    = f.input :statement_date, collection: 1..31, label: 'Select Statement Date',
+      selected: "#{@trade_line.statement_date}", include_blank: true
+    = f.input :state_id, collection: @states, include_blank: true, label: 'Please select a state'
+    = f.input :special_add, collection: boolean_options, selected: "#{@trade_line.special_add}",
+      label: 'Please select if special address is required', include_blank: true, input_html: { class: 'no-search' }
+    = f.input :ssn_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.ssn_req}", 
+      label: 'Please select if SSN is required', input_html: { class: 'no-search' }
+    = f.input :dl_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.dl_req}", 
+      label: 'Please select if Driving License is required', input_html: { class: 'no-search' }
+    = f.input :price, label: 'Price', as: :string,
+      input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
+    = f.input :expiration_date, as: :string, label: 'Expiration Date', 
+      input_html: { value: month_date_full_year(@trade_line.expiration_date), class: "expiry_date_datepicker" }
+    = f.input :is_active, as: :boolean, label: 'Activate'
+  .modal-footer
+    - if @trade_line.new_record?
+      = f.submit 'Add Tradeline', class: 'btn btn-primary btn-lg btn-block'
+    - else
+      = f.submit 'Update Tradeline', class: 'btn btn-primary btn-lg btn-block'
+    - unless @trade_line.new_record?
+      - unless @trade_line.purchases.any?
+        = f.submit 'Delete Tradeline', class: 'btn btn-default btn-block btn-lg', method: :delete
+
+
+:javascript
+  $(document).ready(function(){
+    $('select').select2({theme: 'bootstrap', dropdownParent: $('.modal')});
+    $('select.no-search').select2({theme: 'bootstrap', dropdownParent: $('.modal'), minimumResultsForSearch: -1});
+    $('input.datepicker').data({behaviour: "datepicker"}).datepicker({
+      format: 'mm/yyyy',
+      viewMode: 'months',
+      minViewMode: 'months',
+      endDate: '+0m',
+      autoclose: true,
+      orientation: 'bottom'
+    });
+    $('input.expiry_date_datepicker').data({behaviour: "datepicker"}).datepicker({
+      format: 'mm/dd/yyyy',
+      startDate: '+0d',
+      autoclose: true
+    });
+  });

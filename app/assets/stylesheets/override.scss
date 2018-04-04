@@ -1,0 +1,351 @@
+$break-small: 767px;
+$break-large: 991px;
+
+.fade{
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n) {
+      background-color: #f9f9f9;
+ }
+
+ .table-striped > tbody > tr:nth-of-type(2n+1) {
+   background-color: #fff;
+ }
+
+ .table{
+   margin-bottom: 14px;
+ }
+
+.table > tbody > tr > td {
+  border-top: none !important;
+  color: $theme-color; 
+  font-size:18px;
+  vertical-align: middle;
+  font-family: 'CircularStd-Book';
+  padding: 25px 30px;
+  line-height: normal;
+  @media screen and (max-width:991px) {
+      padding: 10px;
+      font-size: 16px;    
+  }
+  @media screen and (min-width:992px) {
+      padding: 10px 15px;    
+  }
+  a {
+    color: $theme-color;
+  }
+  a.dashb, p.dashb{
+     margin-bottom: 10px;
+     word-break: break-all;
+     @media screen and (min-width:992px) {
+       display: block;
+       width: 95%;
+       word-wrap: break-word;
+     }
+   }
+}
+
+.au-dashboard-submitted .table > tbody > tr > td.dashb-app-status{
+  padding-top: 27px;
+}
+
+.table > thead > tr > th {
+  font-family: 'CircularStd-Book';
+  color: #202020;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0.6;
+  vertical-align: middle;
+  line-height: normal;
+  border-bottom: 1px solid #ddd;
+@media screen and (max-width:991px) {
+   padding: 10px;
+   font-size: 14px;
+ }
+ @media screen and (min-width:992px) {
+    padding: 26px 20px;
+ }
+}
+
+.au-tradeline-panel .table > thead > tr > th:first-child, 
+.au-tradeline-panel .table > tbody > tr > td:first-child {
+@media screen and (min-width: 992px){
+  padding-left: 60px;
+}
+}
+
+.panel.panel-default .panel-body.all-tradeline{
+   @media screen and (max-width: 767px){
+     overflow-x: auto;
+   }
+}
+
+.all-tradeline .table > thead > tr > th,
+.all-tradeline .table > tbody > tr > td,
+.purchase-panel .table > tbody > tr > td,
+.deposit-panel .table > tbody > tr > td,
+.refund-panel .table > tbody > tr > td
+,.withdraw-panel .table > tbody > tr > td
+{
+  vertical-align: top;
+
+  @media screen and (min-width:992px) {
+     padding: 27px 20px;
+  }
+  @media screen and (min-width:992px) and (max-width: 1199px) {
+     padding: 27px 14px;
+  }
+}
+
+.all-tradeline.au-dashboard-apps{
+  @media screen and (max-width: 991px){
+    overflow-x: auto;
+  }
+}
+
+.all-tradeline .table > tbody > tr > td,
+.all-tradeline .table > thead > tr > th{
+  @media screen and (min-width:992px) {
+    padding: 27px 10px;
+  }
+  @media screen and (min-width:1200px) {
+    padding: 27px 15px;
+  }
+}
+
+.all-trans-tabs.purchase-panel,.deposit-panel,.refund-panel, .withdraw-panel {
+   @media screen and (max-width: 767px) { 
+         overflow-x: auto;
+   }
+}
+ .purchase-panel .table > tbody > tr,
+ .deposit-panel .table > tbody > tr,
+  .refund-panel .table > tbody > tr,
+   .withdraw-panel .table > tbody > tr{
+     @media screen and (max-width: 767px) {
+       display: flex;
+       justify-content: space-between;
+     }
+   }
+
+ .purchase-panel .table > tbody > tr > td,
+ .deposit-panel .table > tbody > tr > td,
+  .refund-panel .table > tbody > tr > td,
+   .withdraw-panel .table > tbody > tr > td{
+     @media screen and (max-width: 767px) {
+        padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+        font-size: 13px;
+     }
+   }
+
+.refund-panel 
+{
+  @media screen and (max-width: 767px) {
+    overflow-x: auto;
+  }
+  .table > tbody > tr > td{
+    @media screen and (max-width: 767px) {
+       padding: 10px;
+    }
+  }
+}   
+.all-tradeline .table > thead > tr > th:first-child,
+.all-tradeline .table > tbody > tr > td:first-child,
+.purchase-panel .table > tbody > tr > td:first-child,
+.deposit-panel .table > tbody > tr > td:first-child
+,.refund-panel .table > tbody > tr > td:first-child
+,.withdraw-panel .table > tbody > tr > td:first-child
+{
+  @media screen and (min-width: 992px){
+     padding-left: 60px;
+   }
+}
+
+.purchase-panel .table > tbody > tr > td.dashb-app-status,
+.deposit-panel .table > tbody > tr > td.dashb-app-status
+,.refund-panel .table > tbody > tr > td.dashb-app-status
+,.withdraw-panel .table > tbody > tr > td.dashb-app-status
+{
+  vertical-align: top;
+@media screen and (min-width: 992px){
+  padding-right: 40px;
+}
+}
+
+.au-dashboard-recent .table > tbody > tr > td, .au-dashboard-submitted .table > tbody > tr > td,
+.apps-pipeline .table > tbody > tr > td, .staff-dashboard-users .table > tbody > tr > td, .staff-dashboard-trans .table > tbody > tr > td, .staff-dashboard-refunds .table > tbody > tr > td{
+@media screen and (min-width:992px) {
+    padding: 25px 30px;
+}
+}
+
+.au-dashboard-recent:not(.ss-js-mgmt-dashboard) .table > tbody > tr > td:first-child, .au-dashboard-submitted .table > tbody > tr > td:first-child,.apps-pipeline .table > tbody > tr > td:first-child, .staff-dashboard-users .table > tbody > tr > td:first-child, .staff-dashboard-trans .table > tbody > tr > td:first-child, .staff-dashboard-refunds .table > tbody > tr > td:first-child{
+@media screen and (min-width:992px) {
+   padding-right: 0;
+}
+}
+
+.au-dashboard-recent:not(.ss-js-mgmt-dashboard) .table > tbody > tr > td:nth-last-child(1), .au-dashboard-submitted .table > tbody > tr > td:nth-last-child(1),.apps-pipeline .table > tbody > tr > td:nth-last-child(1),.staff-dashboard-users .table > tbody > tr > td:nth-last-child(1), .staff-dashboard-trans .table > tbody > tr > td:nth-last-child(1),.staff-dashboard-refunds .table > tbody > tr > td:nth-last-child(1){
+@media screen and (min-width:992px) {
+  padding-left: 0;
+  vertical-align: top;
+}
+}
+
+.ss-js-mgmt-dashboard .table > tbody > tr > td{
+  padding: 25px 30px;
+  width: 100%!important;
+  @media screen and (max-width: 991px){
+    padding: 10px 15px;
+  }
+  p.dashb{
+    width: 100%;
+  }
+}
+
+.panel-default > .panel-heading {
+  background-color: #fff !important;
+  border-color: solid 3px #979797 rgba(255, 0, 0, 0.3);
+  padding-top: 1.8em;
+  padding-bottom: 1.8em;
+  
+  .panel-title {
+    font-size: 18px;
+    height: 24px;
+    font-weight: 900;
+    font-family: 'CircularStd';
+    color: #1f1f1f;
+  }
+
+  .def-color {
+    color: #3c1fa8;
+  }
+}
+body{
+  overflow-x: hidden;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+} 
+
+button.btn, input.btn, a.btn {
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 20px 0;
+  font-size: 18px;
+   @media screen and (max-width: $break-large) {
+          font-size: 14px;
+	  padding: 14px 0;
+   }
+}
+
+a.btn-default {
+  color: $theme-color;
+}
+
+.modal-header {
+  .title, p.dashb.no-margin-bottom {
+    font-weight: 900;
+    color: $theme-color;
+    font-size: 22px;
+    font-family: 'CircularStd';
+    @media screen and (max-width: 991px){
+      font-size: 18px;
+    }
+  } 
+  
+  .sub-title {
+    font-size: 18px;
+    color: #272727;
+    opacity: 0.7;
+    width: 100%;
+    margin: 10px 0 0;
+    @media screen and (max-width: 991px){
+       font-size: 16px;
+    }
+  }
+}
+
+.nav-tabs.nav-justified{
+  @media screen and (max-width: 991px){
+    margin-bottom: 20px;
+  }
+}
+
+.nav-tabs.nav-justified > li > a{
+   color: #272727;
+   font-size: 18px;
+   font-weight: 900;
+   font-family: 'CircularStd';
+   border-radius: 0;
+   @media screen and (max-width: 991px){
+     font-size: 16px;
+     margin-bottom: 0;
+     border-bottom: 1px solid #ddd;
+   }
+ }
+
+.nav-tabs.nav-justified > li > a:hover,
+.nav-tabs.nav-justified > li > a.active-tab{
+  color: $theme-color;
+}
+
+.modal-body {
+  .body-sub-title {
+    font-size: 18px;
+    color: #727272;
+    line-height: normal;
+    @media screen and (max-width: 991px){
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .each-title {
+    font-weight: 900;
+    color: $theme-color;
+    font-size: 22px;
+    font-family: 'CircularStd';
+    line-height: normal;
+    @media screen and (max-width: 991px){
+      font-size: 16px;
+    }
+  } 
+}
+
+.btn-lg {
+  border-radius: 8px;
+}
+
+a.btn { 
+  padding: 1em;
+  border: solid 1px #3c1fa8;
+}
+
+.btn.btn-block.btn-lg:not(.btn-primary){
+  color: #3c1fa8;
+  &:hover {
+    color: #3c1fa8;
+  }
+}
+
+.datepicker table tr td.today, .datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active.active:hover, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled.active:hover, .datepicker table tr td span:hover, .datepicker table tr td span.focused, .datepicker table tr td.today:hover{
+  background-color: $theme-color;
+  border: none;
+  color: #fff;
+}

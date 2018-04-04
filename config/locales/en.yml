@@ -1,0 +1,79 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    attributes:
+      ssn:
+        ssnorcpn: 'SSN/CPN'
+  user:
+    au_user_added: 'Authorized User added successfully'
+    ss_js_added: 'Junior Staff added successfully'
+    au_user_updated: 'Authorized User details updated successfully'
+    ss_js_updated: 'Junior Staff details updated successfully'
+    details_updated: 'Profile details updated successfully'
+    js_details_updated: 'Junior Staff profile details updated successfully'
+    password_updated: 'Password updated successfully'
+    js_deleted: 'Junior Staff account deleted successfully'
+    au_deleted: 'AU account deleted successfully'
+    sign_up_message: "Thank you for signing up! We'll review your application shortly. Once approved, you will receive an email notification to have access to all of our AU inventory."
+  ssncpn:
+    requested: "Thank you! We'll reply to your request within 24 hours"
+    updated: 'SSN/CPN updated successfully'
+  tradeline:
+    added: 'Tradeline added successfully'
+    updated: 'Tradeline updated successfully'
+    deleted: 'Tradeline deleted successfully'
+  purchase:
+    added: 'Tradeline purchase sent for approval'
+    deleted: 'Tradeline transaction deleted successfully'
+    approved: 'Tradeline purchase approved successfully'
+    rejected: 'Tradeline purchase rejected successfully'
+  banking_info:
+    added: 'Banking Information added successfully'
+    updated: 'Banking Information updated successfully'
+  refund: 
+    has_active_refund: 'A refund for this transaction has been initiated'
+    grace_period: 'Note: Refund not available - line was purchased more than 6 weeks ago'
+    claim_amount: 'You cannot claim more than purchase amount' 
+    pwd_match: "Password didn't match"
+    update: "%{status}"
+    error: "%{error}"
+    create: 'Refund request successful'
+    accepted: 'Refund Accepted successfully'
+    rejected: 'Refund request rejected'
+    in_progress: 'Refund status set to In Progress'
+    partially_accepted: 'Partial refund successful'
+  withdraw:
+    active: "Note: There's an existing withdrawal request"
+    added: 'Withdrawal Request Submitted'
+    approved: 'Withdrawal approved successfully'
+    rejected: 'Withdrawal request rejected'
+  deposit:
+    added: 'Thanks for making a deposit. We will review your receipt and confirm within 24 hours!'
+    accepted: 'Deposit amount credited to Authorized user'
+    debited: 'Deposit amount debited from Authorized user'
+    rejected: 'Deposit request rejected'
+  ssn_charge:
+    added: 'SSN/CPN charge added successfully'
+    updated: 'SSN/CPN charge updated successfully'
+  transactions:
+    ledgers: 'All Transactions'

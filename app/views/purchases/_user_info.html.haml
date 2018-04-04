@@ -1,0 +1,20 @@
+.row
+  .col-md-12.display
+    .col-md-6.text-left.control-label
+      Address
+    .col-md-6.text-right.value#user-info-address
+      = user.address
+- if user.social.present?
+  .row
+    .col-md-12.display
+      .col-md-6.text-left.control-label
+        SSN
+      .col-md-6.text-right.value#user-info-ssn
+        = user.social
+- if user.date_of_birth.present?
+  .row
+    .col-md-12.display
+      .col-md-6.text-left.control-label
+        Date of Birth
+      .col-md-6.text-right.value#user-info-dob
+        = user.date_of_birth.strftime("%m/%d/%y")

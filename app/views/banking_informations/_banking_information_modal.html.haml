@@ -1,0 +1,9 @@
+.modal.fade#new_banking_information_modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-header-title 
+          %b.title #{banking_information.new_record? ? 'Add' : 'Update'} Banking Information
+        %div.success-message.text-success   
+      #modal-body
+        = render 'banking_informations/form'

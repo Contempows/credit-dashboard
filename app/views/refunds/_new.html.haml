@@ -1,0 +1,10 @@
+.modal.fade#refund-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        - unless flash.now[:error]
+          %h4.modal-header-title 
+            %b.title Request Refund 
+          %span.sub-title Review refund request details and select an option to proceed 
+      #modal-body
+        = render 'form'

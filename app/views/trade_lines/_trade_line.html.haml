@@ -1,0 +1,28 @@
+%tr
+  %td= trade_line.slots
+  %td#bank-name= trade_line.bank.capitalize
+  %td
+    - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
+      = number_to_currency(trade_line.credit_limit, precision: 2)
+    - else 
+      = number_to_currency(trade_line.credit_limit, precision: 2)
+  %td= date_to_years(trade_line.history)
+  %td= trade_line.statement_date.ordinalize
+  %td= trade_line.state.short_code
+  %td.tdcolor= parse_booleans(trade_line.special_add)
+  %td.tdcolor= parse_booleans(trade_line.ssn_req)
+  %td.tdcolor= parse_booleans(trade_line.dl_req)
+  %td= trade_line.price
+  - if current_user.senior?
+    %td= trade_line.is_active? ? 'Active' : 'Inactive'
+  %td
+    - if current_user.staff?
+      = link_to edit_trade_line_path(trade_line), remote: true do
+        %span.glyphicon.glyphicon-arrow-right
+    - elsif current_user.accepted? && !trade_line.slots.zero? && !current_user.wallet_balance.zero? && !profile_empty?
+      = link_to new_trade_line_purchase_path(trade_line), remote: true do
+        %span.glyphicon.glyphicon-arrow-right
+    - else
+      - @errors = "#{'<li>This profile is not yet approved.</li>' unless current_user.accepted?}#{"<li>Current wallet balance is zero.</li>" if current_user.wallet_balance.zero?}#{'<li>Number of slots for this tradeline is zero.</li>' if trade_line.slots.zero?}#{"<li>Your profile details are not updated. Please #{link_to 'click here', edit_details_user_path(current_user, profile_details: true)} to update your details</li>" if profile_empty?}"
+      %a
+        %span.glyphicon.glyphicon-arrow-right.data-error{ data: { error: @errors } }

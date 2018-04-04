@@ -1,0 +1,19 @@
+- trade_line.each do |trade_line|
+  %tr
+    %td= trade_line.slots
+    %td= trade_line.bank
+    %td
+    - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
+      = number_to_currency(trade_line.credit_limit, precision: 2)
+    - else 
+      = number_to_currency(trade_line.credit_limit, precision: 2)
+    %td= date_to_year(trade_line.history)
+    %td= trade_line.statement_date.ordinalize
+    %td= trade_line.state.short_code
+    %td= parse_booleans(trade_line.special_add)
+    %td= parse_booleans(trade_line.ssn_req)
+    %td= parse_booleans(trade_line.dl_req)
+    %td
+      = link_to trade_line_path(trade_line), remote: true do
+        %span.glyphicon.glyphicon-arrow-right
+#new_trade_line

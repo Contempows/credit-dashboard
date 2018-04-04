@@ -1,0 +1,10 @@
+- unless current_user.sign_in_count == 1 && current_user.invited_by_id.present?
+  - if flash[:notice]
+    .alert-wrapper
+      .alert.alert-success
+        = flash[:notice]
+
+  - if flash[:error]
+    .alert-wrapper
+      .alert.alert-danger
+        = flash[:error]

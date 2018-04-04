@@ -1,0 +1,11 @@
+.modal.fade#withdraw-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        - unless flash[:error]
+          %h4.modal-header-title 
+            %b.title Withdraw Your Funds
+      #modal-body
+        = render 'form'

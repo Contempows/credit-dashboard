@@ -1,0 +1,98 @@
+.modal-header
+  %button.close{'data-dismiss'=>'modal'}
+    %span.span-close &times;
+  %h4.modal-title.title= "Tradeline Details ##{trade_line.id}"
+  - if purchase && purchase.rejected?
+    %p.sub-title.status_rejected= purchase.reason_for_rejection
+  - elsif current_user.staff?
+    %p.sub-title Last step before you complete the purchase.
+.modal-body.purchase-wrapper
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-4.no-pad-left
+      %p.body-sub-title Slots
+      %p.each-title= trade_line.slots
+    .col-sm-4
+      %p.body-sub-title Bank
+      %p.each-title#bank-name= trade_line.bank.capitalize
+    .col-sm-4.no-pad-right
+      %p.body-sub-title Credit Limit
+      %p.each-title
+        - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
+          = number_to_currency(trade_line.credit_limit, precision: 2)
+        - else 
+          = number_to_currency(trade_line.credit_limit, precision: 2)
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-4.no-pad-left
+      %p.body-sub-title History
+      %p.each-title= "#{date_to_years(trade_line.history)} yrs"
+    .col-sm-4
+      %p.body-sub-title Statement Date
+      %p.each-title= trade_line.statement_date.ordinalize
+    .col-sm-4.no-pad-right
+      %p.body-sub-title State
+      %p.each-title= trade_line.state.short_code
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-4.no-pad-left
+      %p.body-sub-title Special Add.?
+      %p.each-title= parse_booleans(trade_line.special_add)
+    .col-sm-4
+      %p.body-sub-title SSN req.?
+      %p.each-title= parse_booleans(trade_line.ssn_req)
+    .col-sm-4.no-pad-right
+      %p.body-sub-title DL Req.?
+      %p.each-title= parse_booleans(trade_line.dl_req)
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-4.no-pad-left
+      %p.body-sub-title Price
+      %p.each-title= number_to_currency(trade_line.price, precision: 2)
+    .col-sm-4
+      %p.body-sub-title Purchased for
+      %p.each-title= "#{purchase.user.first_name} #{purchase.user.last_name}"
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-4.no-pad-left
+      %p.body-sub-title Purchased by(Client)
+      %p.each-title= "#{purchased_by.first_name} #{purchased_by.last_name}"
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-6.no-pad-left.purchase_conf_col
+      %p.body-sub-title Client SSN
+      %p.each-title= purchased_by.social.blank? ? 'Nan' : purchased_by.social
+    .col-sm-6.no-pad-right.purchase_conf_col
+      %p.body-sub-title Client DOB
+      %p.each-title= purchased_by.date_of_birth.present? ? purchased_by.date_of_birth : 'Nan'
+  .container-fluid.no-pad-left.no-pad-right
+    .col-sm-12.no-pad-left.purchase_conf_col
+      %p.body-sub-title Client Address
+      %p.each-title= [purchased_by.address, purchased_by.city, purchased_by.state].reject(&:blank?).join(', ')
+
+  - if trade_line.ssn_req? && purchase.file_for_ssn.file.present?
+    .container-fluid.no-pad-left.no-pad-right
+      - if purchase.file_for_ssn.file.present? && purchase.file_for_ssn.file.extension == 'pdf'
+        = link_to purchase.file_for_ssn.file.try(:filename), asset_url(purchase.file_for_ssn.purchase_url(:file_for_ssn))
+      - else
+        %img{src: "#{asset_url(purchase.file_for_ssn.purchase_url(:file_for_ssn))}", style: "max-height:500px;max-width:500px;"}
+  - if trade_line.dl_req? && purchase.file_for_dl.file.present?
+    .container-fluid.no-pad-left.no-pad-right
+      - if purchase.file_for_dl.file.present? && purchase.file_for_dl.file.extension == 'pdf'
+        = link_to purchase.file_for_dl.file.try(:filename), asset_url(purchase.file_for_dl.purchase_url(:file_for_dl))
+      - else
+        %img{src: "#{asset_url(purchase.file_for_dl.purchase_url(:file_for_dl))}", style: "max-height:500px;max-width:500px;"}
+  - if trade_line.special_add && purchase.file_for_special_add.file.present?
+    .container-fluid.no-pad-left.no-pad-right
+      - if purchase.file_for_special_add.file.extension == 'pdf'
+        = link_to purchase.file_for_special_add.file.try(:filename), asset_url(purchase.file_for_special_add.purchase_url(:file_for_special_add))
+      - else
+        %img{src: "#{asset_url(purchase.file_for_special_add.purchase_url(:file_for_special_add))}", style: "max-height:500px;max-width:500px;"}
+  &nbsp
+.modal-footer
+  - if current_user.au?
+    = link_to 'Close', '#', class: 'btn btn-primary btn-lg btn-block close_popup'
+  - else
+    - if purchase.approved? || purchase.rejected?
+      %b.sub-title.text-left.note-label Note:&nbsp;
+      %p.subtitle.note-msg= " Purchase request previously #{purchase.status.humanize}"
+      %button.btn.btn-primary.btn-lg.btn-block{'data-dismiss'=>'modal'} Close
+    - else
+      = link_to 'Approve', trade_line_purchase_path(purchase.trade_line, purchase, approved: true), remote: true,
+        method: :patch, class: 'btn btn-primary btn-lg btn-block'
+      = link_to 'Reject', edit_trade_line_purchase_path(purchase.trade_line, purchase, approved: false),
+        class: 'btn btn-default btn-lg btn-block', remote: true

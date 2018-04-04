@@ -1,0 +1,4 @@
+.modal.fade.purchase-confirmation-modal{id: "purchase_confirmation_#{purchase.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl#purchase_reject_page
+      = render partial: 'approve_reject_page', locals: { purchase: purchase, trade_line: trade_line, purchased_by: purchased_by }

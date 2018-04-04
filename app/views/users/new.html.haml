@@ -1,0 +1,16 @@
+.login.row
+  .col-md-6.col-sm-6.login-bg-wrapper
+  .col-md-6.col-sm-6.login-form-wrapper
+    .col-md-offset-1.col-md-8.main.login-form-inner-wrapper
+      %p.hello Hello.
+      %p.welcome Welcome to Coast to Coast Tradelines, please login or signup to proceed.
+      = simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+        = f.input :email, label: false, required: false, placeholder: 'Email Address*'
+        = hidden_field_tag :step, 1
+        = f.input :first_name, label: false, required: false, placeholder: 'First Name'
+        = f.input :last_name, label: false, required: false, placeholder: 'Last Name'
+        = f.input :password, label: false, placeholder: 'Password*'
+        = f.input :password_confirmation, label: false, placeholder: 'Confirm Password*'
+        = f.button :submit, 'SIGNUP', class: 'btn btn-primary btn-block btn-lg'
+      &nbsp;
+      = button_to "EXISTING USER? LOGIN", new_user_session_path, method: :get,  class: 'btn btn-primary btn-block btn-lg'

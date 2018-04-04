@@ -1,0 +1,20 @@
+%table.table.table-hover.table-striped.responsive-table
+  %tbody
+    - @users.each do |user|
+      %tr.dashb-small-trow
+        %td 
+          %p.dashb= link_to "#{user.email}", edit_details_user_path(user), remote: :true
+          .div
+            %p.dashb-small-date.js-dashb-status-date
+              = month_date_and_year(user.created_at)
+            %p.js-dashb-user-status{ class: "user_status_#{user.status}" }= user.status.humanize
+        %td.dashb
+          - if user.wallet_balance - user.wallet_balance.to_i == 0 
+            %p= number_to_currency(user.wallet_balance, precision: 2)
+          - else 
+            %p= number_to_currency(user.wallet_balance, precision: 2)
+          - if current_user.junior? && user.accepted?
+            %p.add-money= link_to 'Add Money', new_deposit_path(broker_id: user.id),
+              remote: true, method: :get
+
+

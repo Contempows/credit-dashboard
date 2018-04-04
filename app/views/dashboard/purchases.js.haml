@@ -1,0 +1,6 @@
+$('#tbody').append("#{ j render @purchases }");
+- if @purchases.next_page
+  $('.pagination').replaceWith("#{j will_paginate @purchases}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

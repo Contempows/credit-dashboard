@@ -1,0 +1,32 @@
+- new_ssns = 1
+- charge = Setting.last.ssn_charge
+- wallet_balance = current_user.wallet_balance
+
+= simple_nested_form_for current_user, url: update_ssns_user_path(current_user), method: :patch, remote: true do |f|
+  .modal-body.ssn-modal-body#ssn
+    = f.simple_fields_for :ssns do |ff|
+      - if ff.object.new_record?
+        = render partial: 'multiple_ssn', locals: { ff: ff }
+    %span.help-block.error{style: 'display: none'} You have insufficient funds in your wallet
+    = f.link_to_add '+ Add another', :ssns
+
+  .modal-footer
+    %b.sub-title.text-left.note-label Note:&nbsp;
+    %p.sub-title.note-ssns-charge.text-left.note-msg= "You will be charged $#{charge * new_ssns} ($#{charge}/number) for this validation"
+    = f.button :submit, 'Purchase Validation', class: 'btn btn-primary btn-lg btn-block ssn-submit-button'
+
+:javascript
+  wallet_balance = #{wallet_balance}
+  $('.ssn-submit-button').click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    if (Number(new_ssns) * Number(charge) <= Number(wallet_balance)){
+      $('#ssn').removeClass('has-error')
+      $('span.error').hide()
+      $('form').submit();
+    }
+    else {
+      $('#ssn').addClass('has-error')
+      $('span.error').show();
+    }
+  });

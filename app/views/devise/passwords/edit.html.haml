@@ -1,0 +1,21 @@
+.col-md-12{style: 'padding-top: 50px;'}
+  .col-md-3.col-sm-3
+  .col-md-6.col-sm-6
+    .col-md-offset-1.col-md-8.main
+      %b.welcome.devise-change-password Change your password
+
+      = simple_form_for(resource, as: resource_name, url: user_password_path(), method: :put, html: { class: 'form-horizontal'}) do |f|
+        = f.error_notification
+
+        - unless user_signed_in?
+          = f.input :reset_password_token, as: :hidden
+          = f.full_error :reset_password_token
+        = f.input :password, label: "New password", required: true, autofocus: true, 
+          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        = f.input :password_confirmation, label: "Confirm your new password", required: true
+        = f.button :submit, "Change my password", class: 'btn btn-primary btn-block btn-lg', method: :put
+
+      &nbsp;
+      = button_to "LOGIN", new_user_session_path, class: 'btn btn-primary btn-block btn-lg', method: :get
+      &nbsp;
+      = button_to "NOT AN EXISTING USER? SIGNUP", new_user_path, class: 'btn btn-primary btn-block btn-lg', method: :get

@@ -1,0 +1,20 @@
+#new_trade_line
+#btn-click-modal
+.container-content
+  .panel.panel-default
+    .panel-heading.col-md-12
+      .text-left.col-md-6
+        .panel-title Validation Pipeline
+
+    .panel-body#panel-body.deposit-panel
+      - if @users.any?
+        %table.table.table-striped
+          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
+            = render 'user'
+      - else
+        .no-data-div
+          %div
+            = image_tag('no-data-img.png')
+            %p.dashb Nothing here 😔
+            %p.dashb There is nothing here, please come back later
+

@@ -1,0 +1,28 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+    %style_script
+      :css
+        .mail-details p, .mail-details b {
+          display: inline;
+        }
+  %body
+    %p= "Hi #{@user.first_name.capitalize},"
+    %p 
+      = "Your deposit of #{number_to_currency(@deposit.amount, precision: 2)} has been confirmed! Your funds are immediately available to be used towards AU services. Thank you for your patience."
+    %p 
+      %a{href: "#{new_user_session_url}"} Sign in
+      now to see our entire selection of AU lines.
+    .mail-details
+      %b Deposit Amount:
+      %p #{number_to_currency(@deposit.amount, precision: 2)}
+    .mail-details
+      %b Deposited Bank: 
+      %p #{@deposit.banking_information.bank_name}
+    .mail-details
+      %b Deposit Date: 
+      %p #{month_date_full_year(@deposit.created_at)}
+    %p
+      Regards,
+      %br
+      Customer Service Team

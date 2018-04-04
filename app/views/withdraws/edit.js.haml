@@ -1,0 +1,2 @@
+$('#btn-click-modal').html("#{escape_javascript(render partial: 'withdraw_confirmation', locals: { withdraw: @withdraw })}");
+$("#withdraw_confirmation_#{@withdraw.id}").modal('show');

@@ -1,0 +1,21 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+  %body
+    %p= "Hi #{@user.first_name.capitalize},"
+    %p
+      Congratulations! Your account is now active and you are approved to transact. Please 
+      %a{href: "#{new_user_session_url}"} sign in 
+      to see all of the AU tradelines that we have available.
+    %p
+      The next step is to fund your account for AU tradeline purchases. Once you 
+      %a{href: "#{new_user_session_url}"} sign in
+      , click on 'Fund Your Wallet' for our banking information to make your deposit.
+
+    %p
+      If you have any questions, please don't hesitate to contact us. Our customer service team is on hand to address any questions and provide clarification. Thank you and we look forward to serving your AU needs.
+
+    %p
+      Regards,
+      %br
+      Customer Service Team

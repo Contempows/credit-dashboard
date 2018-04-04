@@ -1,0 +1,10 @@
+- if @purchase.errors.any?
+  $('#show-content').html("#{escape_javascript(render partial: 'new_content', locals: { trade_line: @trade_line })}");
+  console.log("#{@purchase.errors[:file_for_dl]}");
+  $('#new-purchase-form').html("#{escape_javascript(render 'form_new')}");
+  $("#proceedModal_#{@trade_line.id}").modal('show');
+- else
+  $('.fade').remove();
+  $('#new_trade_line').html('');
+  $('#new_trade_line').html("#{escape_javascript(render 'edit')}");
+  $("#purchase_#{@purchase.id}").modal('show');

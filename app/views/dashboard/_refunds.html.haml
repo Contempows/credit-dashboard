@@ -1,0 +1,8 @@
+%table.table.table-hover.table-striped
+  %tbody
+    - @refunds.each do |refund|
+      %tr.dashb-small-trow
+        %td 
+          %p.dashb= link_to "Refund Ref. ##{refund.ref}", edit_refund_path(refund.id), remote: true 
+          %p.dashb-small-date= month_date_and_year(refund.created_at)
+        %td.dashb= number_to_currency(refund.amount_refunded, precision: 2)

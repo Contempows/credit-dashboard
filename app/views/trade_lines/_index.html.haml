@@ -1,0 +1,60 @@
+%table.table.table-striped#tradelineDataTable.table-responsive
+  %thead
+    %tr
+      - if current_user.staff?
+        %th ID
+      %th Slots
+      %th Bank
+      %th Credit Limit
+      %th History
+      %th Statement Date
+      %th.no-sort State
+      %th.no-sort Special Add.?
+      %th.no-sort SSN req.?
+      %th.no-sort DL Req.?
+      %th Price
+      - if current_user.staff? 
+        %th.no-sort Status 
+      %th.no-sort
+  %tbody#trade_lines
+
+:javascript
+  $(document).ready(function(){
+    var index = window.location.href.indexOf('?utf');
+    var params = ''
+    if (index != -1){
+      params = window.location.href.substr(index);
+    }
+    $('#tradelineDataTable').DataTable({
+      "columnDefs": [ {
+        "targets": 'no-sort',
+        "orderable": false
+      } ],
+      info: false,
+      'pageLength': 30,
+      "bLengthChange": false,
+      searching: false,
+      'ajax': '/trade_lines.json' + params,
+      'serverSide': true,
+      'pagingType': 'full_numbers',
+      "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+        var id = $('td:eq(-1)', nRow).html();
+        var red = "<span style='color:red'>No</span>"
+        var green = "<span style='color:green'>Yes</span>"
+        var link = '/trade_lines/' + id;
+        var before_last_col = $('#tradelineDataTable thead tr th:eq(-2)').html();
+        link += before_last_col == 'Status' ? '/edit' : '/purchases/new'
+        $('td:eq(-1)', nRow).html("<a data-remote='true' href = '" + link + "' ><span class = 'glyphicon glyphicon-arrow-right'></span></a>");
+        var i, str, start, end;
+        start = before_last_col == 'Status' ? 7 : 6
+        end = before_last_col == 'Status' ? 9 : 8
+        for (i=start;i<=end;i++){
+          str = 'td:eq('+i+')'
+          $(str, nRow).html() == 'No' ? $(str, nRow).html(red) : $(str, nRow).html(green)
+        }
+      }
+    });
+  });
+  document.addEventListener("turbolinks:before-cache", function() {
+    $('#tradelineDataTable').DataTable().destroy();
+  });

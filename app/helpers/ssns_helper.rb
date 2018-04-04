@@ -1,0 +1,2 @@
+module SsnsHelper
+end

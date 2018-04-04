@@ -1,0 +1,6 @@
+$('#tbody').append("#{ j render @refunds }");
+- if @refunds.next_page
+  $('.pagination').replaceWith("#{j will_paginate @refunds}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

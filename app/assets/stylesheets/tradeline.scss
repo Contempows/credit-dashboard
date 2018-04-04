@@ -1,0 +1,93 @@
+.panel-default > .panel-heading.col-md-12{
+  display: flex;
+  float: none;
+  justify-content: space-between;
+@media screen and (min-width:992px) {
+  padding: 30px 30px 24px;
+}
+}
+
+.panel-default > .panel-heading.col-md-12 .text-left.col-md-6, 
+.panel-default > .panel-heading.col-md-12 .text-right.col-md-6,
+.panel-default > .panel-heading.col-md-12 .text-right.col-sm-6{
+  padding: 0;
+  width: auto;
+  justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.panel-default > .panel-heading.col-md-12 .panel-title{
+  height: auto;
+  @media screen and (max-width:991px) {
+    font-size: 16px;
+    height: auto;    
+}
+}
+
+.panel.panel-default .panel-body.tradeline-panel
+{
+
+  @media screen and (min-width:992px) and (max-width: 1199px) {
+  overflow-x: scroll;
+  }
+  @media screen and (max-width: 767px) {
+  overflow-x: scroll;
+}
+}
+
+.new-trade-line{
+  text-transform: capitalize;
+  color: $theme-color;
+  font-size: 18px;
+  font-family: 'CircularStd';
+  &:hover, &:focus {
+       color: #3c1fa8;
+          text-decoration: none;
+  }
+@media screen and (max-width:991px) {
+      font-size: 16px;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+}
+
+.new-trade-line.add-trade-line-and-user{
+  text-transform: uppercase;
+}
+//.pagination {
+ // display: none;
+//}
+
+#new_trade_line_modal {
+  input.btn.btn-primary.btn-lg.btn-block{
+       margin-top: 60px;
+       @media screen and (max-width:991px) {
+         margin-top: 20px;
+       }
+     }
+   input.btn.btn-default.btn-block.btn-lg{
+     margin-top: 10px;
+   }
+}
+
+.currency_wrapper {
+  font-size: 22px !important;
+  font-weight: 900;
+  color: #3c1fa8;
+}
+
+.currency_wrapper_for_form {
+  padding-right: 0px;
+  width: auto;
+  padding-top: 10px;
+}
+
+.currency_wrapper_withdraw {
+  padding-left: 0px;
+}
+
+.currency_form_block {
+  padding-left: 0px;
+}

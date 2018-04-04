@@ -1,0 +1,6 @@
+- if @banking_information.errors.any?
+  $('#modal-body').html("#{escape_javascript(render 'form')}");
+- else
+  $('#banking_info_modal').modal('hide');
+  $('#messages').html("#{escape_javascript(render 'shared/messages')}");
+  location.reload();

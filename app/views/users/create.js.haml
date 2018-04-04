@@ -1,0 +1,5 @@
+- if @user.errors.empty?
+  location.reload();
+- else
+  $('#new_user_application_modal').modal('show');
+  $('#user_modal_body').html("#{j render 'dashboard/form'}");

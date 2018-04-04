@@ -1,0 +1,22 @@
+- new_ssns = 1
+- charge = Setting.last.ssn_charge
+- wallet_balance = current_user.wallet_balance
+
+.modal.fade.ssns_modal{'id'=>"ssn-modal_#{current_user.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title Request SSN / CPN Validation
+        %p.sub-title Enter details below and proceed to validate
+        .charge{style: 'display: none'}= charge
+
+      #form-ssn
+        = render partial: 'users/form'
+  
+:javascript
+  var charge = #{charge};
+  var new_ssns = #{new_ssns};
+  var wallet_balance = #{wallet_balance}
+  

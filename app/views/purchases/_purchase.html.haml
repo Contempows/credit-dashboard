@@ -1,0 +1,29 @@
+- refund_initiated = purchase.refunds.detect { |refund| refund.submitted? }
+
+%tr
+  %td
+    = link_to "Payment Ref. ##{purchase.ref}", edit_trade_line_purchase_path(purchase.trade_line_id, purchase), remote: true, class: 'dashb'
+    %p.dashb-small-date
+      Reference #
+      - if current_user.au? && purchase.approved? && !cannot_refund(purchase)
+        = link_to 'Request Refund', new_refund_path(purchase_id: purchase.id), remote: true
+      - elsif refund_initiated
+        %span.glyphicon.glyphicon-warning-sign{'data-toggle'=>'tooltip', 'data-placement'=>'right', 'title'=>"This purchase has initiated refund request(Reference: ##{refund_initiated.ref})"}
+  %td
+    %p.dashb= "#{purchase.purchased_by.first_name} #{purchase.purchased_by.last_name}"
+  %td
+    %p.dashb= "#{purchase.user.first_name} #{purchase.user.last_name}"
+    %p.dashb-small-date Client Name
+  %td
+    - if current_user.au?
+      %p.dashb= purchase.created_at.strftime("%m/%d/%y")
+      %p.dashb-small-date Purchased on
+    - else
+      %p.dashb= purchase.updated_at.strftime("%m/%d/%y")
+      %p.dashb-small-date Last Status Changed Date
+  %td
+    %p.dashb{class: "status_#{purchase.status}"}= purchase.status.humanize
+    %p.dashb-small-date Status
+
+:javascript
+  $('[data-toggle="tooltip"]').tooltip()

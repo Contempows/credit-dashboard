@@ -1,0 +1,6 @@
+- if @setting.errors.any?
+  $('.setting-modal').modal('show');
+  $('#modal-body').html("#{escape_javascript(render 'form')}");
+- else
+  location.reload();
+  hideAlert();

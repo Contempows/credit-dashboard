@@ -1,0 +1,21 @@
+- if flash[:error]
+  = render 'shared/modal_error'
+- else
+  = simple_form_for @withdraw, html: { remote: true } do |f|
+    .modal-body
+      = f.input :payee, label: 'Who should we write the check to?',
+        placeholder: 'Enter payee here'
+      = f.input :address, label: 'Tell us where we should send the check?',
+        placeholder: 'Enter your address here'
+      = f.label 'How much do you want to withdraw?', class: 'control-label string required'
+      .row
+      %span.col-xs-1.currency_wrapper.currency_wrapper_for_form.currency_wrapper_withdraw.hidden $
+      .col-xs-5.col-md-11.currency_form_block
+        = f.input :amount, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string, placeholder: 'Enter amount here'
+    .modal-footer
+      = f.submit :submit, class: 'btn btn-primary btn-block btn-lg'
+
+:javascript
+  $('#withdraw_amount').focus(function(){
+    $('.currency_wrapper').removeClass('hidden');
+  });

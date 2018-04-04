@@ -1,0 +1,18 @@
+%tr
+  %td
+    %p.dashb= link_to "Refund Ref. ##{refund.ref}", edit_refund_path(refund.id), remote: true
+    %p.dashb-small-date
+      Reference #
+  %td
+    %p.dashb= month_date_and_year(refund.created_at)
+    %p.dashb-small-date Date
+  %td
+    %p.dashb{class: "status_#{refund.status}"}= refund.status.humanize
+    %p.dashb-small-date Status
+  - if current_user.staff?  
+    %td
+      %p.dashb= refund.purchase.user.email
+      %p.dashb-small-date Requested by
+  %td
+    %p.dashb-app-status= number_to_currency("#{refund.amount_refunded.nil? ? '0' : refund.amount_refunded }", precision: 2)
+    %p.dashb-small-date.pull-right Amount Refunded

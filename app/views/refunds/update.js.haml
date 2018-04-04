@@ -1,0 +1,10 @@
+- if @refund.errors.any?
+  - if @refund.partially_accepted?
+    $('#modal-content').html("#{escape_javascript(render 'partial_refund')}");
+  - elsif @refund.rejected?
+    $('#modal-content').html("#{escape_javascript(render 'rejection')}");
+  - elsif @refund.accepted?
+    $('#modal-content').html("#{escape_javascript(render 'accepted')}");
+- else
+  $('#refund-modal').modal('hide');
+  location.reload();

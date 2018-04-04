@@ -1,0 +1,45 @@
+= simple_form_for @deposit, remote: true do |f|
+  = f.hidden_field :status
+  .modal-body
+    .row
+      .col-md-12.display
+        .col-md-6.text-left.control-label
+          Deposit Amount 
+        .col-md-6.text-right.value
+          = number_to_currency(@deposit.amount, precision: 2)
+
+      - if @deposit.date_of_deposit.present?
+        .col-md-12.display
+          .col-md-6.text-left.control-label
+            Deposit Date 
+          .col-md-6.text-right.value
+            = @deposit.date_of_deposit.strftime('%m.%d.%y') 
+
+      - if @deposit.banking_information.present?  
+        .col-md-12.display
+          .col-md-6.text-left.control-label
+            Bank 
+          .col-md-6.text-right.value
+            = @deposit.banking_information.bank_name 
+
+      .col-md-12.display
+        .col-md-6.text-left.control-label
+          Authorization Code 
+        .col-md-6.text-right.value
+          = @deposit.authorization_code 
+      - if @deposit.attachment.present?
+        .col-md-12
+          %img{src: "#{asset_url(@deposit.attachment.url)}", style: "max-height:500px;max-width:500px;"}
+
+
+  .modal-footer
+    - if @deposit.accepted? || @deposit.rejected? || current_user.au?
+      %b.sub-title.text-left.note-label Note:&nbsp;
+      %p.subtitle.pull-left.note-msg= "Deposit request previously #{@deposit.status.humanize}"
+      %button.btn.btn-primary.btn-lg.btn-block{'data-dismiss'=>'modal', type: 'button'} Cancel
+    - else
+      = f.submit 'Approve', class: 'btn btn-primary btn-lg btn-block', 
+        data: { commit: 'accepted' } 
+
+      = f.submit 'Reject', class: 'btn btn-default btn-lg btn-block', 
+        data: { commit: 'rejected' } 

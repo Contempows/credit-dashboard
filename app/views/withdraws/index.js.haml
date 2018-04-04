@@ -1,0 +1,6 @@
+$('#tbody').append("#{ j render @withdraws }");
+- if @withdraws.next_page
+  $('.pagination').replaceWith("#{j will_paginate @withdraws}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

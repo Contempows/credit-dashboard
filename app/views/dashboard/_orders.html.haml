@@ -1,0 +1,11 @@
+%table.table.table-hover.table-striped.responsive-table
+  %tbody
+    - @orders.each do |transaction|
+      %tr.dashb-small-trow
+        %td
+          %p.dashb= "#{ref_text(transaction.first)} ##{transaction[1]}"
+          %p.dashb-small-date= month_date_and_year(transaction.last.to_time)
+        - if transaction[2].present?
+          %td.dashb= number_to_currency(transaction[2], precision: 2)
+        - else
+          %td.dashb= number_to_currency(0, precision: 2)

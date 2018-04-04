@@ -1,0 +1,9 @@
+.modal.fade.setting-modal{'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title.pull-left Settings
+      #modal-body
+        = render 'form'

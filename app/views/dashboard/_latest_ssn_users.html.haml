@@ -1,0 +1,7 @@
+%table.table.table-hover.table-striped.responsive-table.js-ssn-table-wrapper
+  %tbody
+    - @latest_ssn_users.each do |user|
+      %tr.dashb-small-trow
+        %td
+          %p.dashb= link_to "#{user.email}", edit_ssns_user_path(user), remote: true
+          %p.dashb-small-date Client Email

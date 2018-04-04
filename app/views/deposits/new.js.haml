@@ -1,0 +1,4 @@
+$('#btn-click-modal').html("#{escape_javascript(render partial: 'new')}");
+$('#new_deposit_modal').modal('show');
+- unless current_user.junior?
+  $('#my-awesome-dropzone').dropzone();

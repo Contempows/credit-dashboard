@@ -1,0 +1,6 @@
+= simple_form_for @setting, remote: true do |f|
+  .modal-body
+    = f.input :ssn_charge, as: :string, label: 'SSN/CPN Charge',
+      input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
+  .modal-footer
+    = f.submit :submit, class: 'btn btn-primary btn-block btn-lg'

@@ -1,0 +1,35 @@
+.container-content
+  .panel.panel-default
+    .panel-heading.col-md-12
+      .text-left.col-md-6
+        .panel-title
+          = "Notifications #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
+        #new_trade_line
+        #btn-click-modal
+    .panel-body#panel-body.withdraw-panel
+      %ul.nav.nav-tabs.nav-justified
+        - if params[:user_check_id].present? && current_user.staff?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id]), class: 'active-tab'
+        - elsif current_user.au?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path
+          %li= link_to 'Purchases', purchases_path
+          %li= link_to 'Deposits', deposits_path
+          %li= link_to 'Refunds', refunds_path
+          %li= link_to 'Withdrawals', withdraws_path, class: 'active-tab'
+        - else
+          %li= link_to 'Deposits', deposits_path
+          %li= link_to 'Withdrawals', withdraws_path, class: 'active-tab'
+
+      - if @withdraws.any?
+        %table.table.table-striped
+          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
+            = render @withdraws
+      - else
+        = render 'shared/no_data'
+            
+#infinite-scrolling
+  = will_paginate @withdraws

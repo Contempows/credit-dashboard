@@ -1,0 +1,10 @@
+.login.row
+  .col-md-6.col-sm-6.login-bg-wrapper
+  .col-md-6.col-sm-6.login-form-wrapper
+    .col-md-offset-1.col-md-8.main.login-form-inner-wrapper
+      %p.hello Hello.
+      %p.welcome Welcome to Coast to Coast Tradelines, please login or signup to proceed.
+      - if params[:step] == "1"
+        = render 'new'
+      - else
+        = render 'edit'

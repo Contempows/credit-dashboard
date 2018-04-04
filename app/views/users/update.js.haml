@@ -1,0 +1,6 @@
+- if @result.success?
+  hideAlert();
+  location.reload();
+- else
+  $('#user_modal_body').html("#{escape_javascript(render 'dashboard/form')}");
+  $('#new_user_application_modal').modal('show');

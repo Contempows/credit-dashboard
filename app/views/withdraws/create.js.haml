@@ -1,0 +1,6 @@
+- if @withdraw.errors.any?
+  $('#modal-body').html("#{escape_javascript(render 'form')}");
+- else
+  $('#withdraw-modal').modal('hide');
+  hideAlert();
+  location.reload();

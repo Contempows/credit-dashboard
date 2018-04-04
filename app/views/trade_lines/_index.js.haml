@@ -1,0 +1,6 @@
+$('#trade_lines').append("#{escape_javascript(render(@trade_lines))}");
+- if @trade_lines.next_page
+  $('.pagination').replaceWith("#{escape_javascript(will_paginate(@trade_lines))}");
+- else
+  $(window).off('scroll');
+  $('.pagination').remove();

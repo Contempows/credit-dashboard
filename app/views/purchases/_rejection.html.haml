@@ -1,0 +1,8 @@
+.modal-header
+  %button.close{data: { dismiss: 'modal' } }
+    %span &times;
+  %h4.modal-header-title 
+    %b.title Reject Purchase 
+  %span.sub-title Please enter the reason for rejection below to proceed 
+#reject-refund
+  = render 'rejection_form'

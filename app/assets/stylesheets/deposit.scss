@@ -1,0 +1,109 @@
+.auth-code {
+  background-color: #f5f5f5;
+  border: solid 1px #cfcfcf;
+  border-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  .text {
+    padding-top: 24px;
+    padding-bottom: 26px;
+
+    .code {
+      font-size: 16px;
+      color: $theme-color;
+    }
+  }
+}
+
+.auth-code .text .code + span{
+  font-size: 16px;
+  color: #272727;
+}
+
+.dropzone.dz-clickable .col-md-12.auth-code{
+  margin-top: 40px;
+  padding: 0;
+}
+
+#drag-area > .col-md-12{
+  margin-bottom: 40px !important;
+}
+
+.dropzone.dz-clickable .col-md-12.dz-message.needsclick{
+  padding: 0;
+  border-top: none;
+  height: 257px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.dropzone {
+  border: none;
+
+  .dz-message {
+    margin: 0px !important;
+    height: 200px;
+    background-color: #f5f5f5;
+    border: solid 1px #cfcfcf;
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    p {
+    //  padding-top: 8em;
+    margin: 0;
+    padding-bottom: 77px;
+    font-size: 18px;
+    color: #272727;
+    @media screen and (max-width: 991px){
+      font-size: 14px;
+    } 
+  }
+  }
+}
+
+.dropzone .dz-preview .dz-image {
+  width: 500px;
+  height: 300px;
+}
+
+  .select2-container--bootstrap{ 
+    .select2-selection--single{
+      height: auto;
+      line-height: normal;
+      font-family: CircularStd-Book;
+      font-size: 18px;
+      color: #727272;
+      padding: 12px 15px;
+      box-shadow: none;
+      @media screen and (max-width: 991px){
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+    &.select2-container--open{
+      .select2-selection{
+        border: solid 1px #979797;
+	box-shadow: none;
+      }
+    }
+  }
+
+.select2-container--bootstrap .select2-dropdown{
+  border: solid 1px #979797;
+  box-shadow: none;
+}
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected]{
+  background-color: #3c1fa8;
+}
+.select2-container--bootstrap .select2-results__option{
+  padding: 12px;
+  color: #727272;
+  font-size: 16px;
+  @media screen and (max-width: 991px){
+    font-size: 14px;
+  }
+}
+

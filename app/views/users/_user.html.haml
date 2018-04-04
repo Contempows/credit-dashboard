@@ -1,0 +1,11 @@
+%li{ role: 'presentation'} 
+  = link_to user_path(user), remote: true do
+    %span.user-list-info-wrapper
+      %p.dashb= user.email
+      %p.dashb.pull-right.all-users-wallet-balance
+        - if user.wallet_balance - user.wallet_balance.to_i == 0 
+          = number_to_currency(user.wallet_balance, precision: 2)
+        - else 
+          = number_to_currency(user.wallet_balance, precision: 2)
+    %p.dashb-small-date.js-dashb-status-date= month_date_and_year(user.created_at)
+    %p.js-dashb-user-status{ class: "user_status_#{user.status}" }= user.status.humanize

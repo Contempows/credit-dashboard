@@ -1,0 +1,36 @@
+#banking_info
+.panel.panel-default
+  .panel-heading.col-md-12
+    .text-left.col-md-6
+      .panel-title Banking Information 
+    .text-right.col-md-6.view-all
+      - if current_user.senior?
+        = link_to '+ ADD NEW BANKING INFO', new_banking_information_path, 
+          class: 'new-trade-line', remote: true
+  .panel-body.withdraw-panel
+    - if @banking_infos.any?
+      %table.table.table-striped
+        %tbody#trade_lines
+          - @banking_infos.each do |info|
+            %tr
+              %td
+                %p.dashb= link_to info.account_number, edit_banking_information_path(info), remote: true
+                %p.dashb-small-date Acc. Number
+              %td
+                %p.dashb= info.routing_info
+                %p.dashb-small-date Routing Info
+              %td
+                %p.dashb= info.bank_name
+                %p.dashb-small-date Bank Name 
+              %td
+                %p.dashb= info.account_name
+                %p.dashb-small-date Account Name
+              - if current_user.senior?
+                %td
+                  = link_to banking_information_path(info), method: :delete, 
+                    data: { confirm: 'Are you sure that you want to delete this banking info?' } do
+                    %span.glyphicon.glyphicon-trash
+      %center
+        = will_paginate @banking_infos
+    - else
+      = render 'shared/no_data'

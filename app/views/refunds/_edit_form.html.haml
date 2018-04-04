@@ -1,0 +1,54 @@
+.modal-header
+  %button.close{data: { dismiss: 'modal' } }
+    %span &times;
+  %h4.modal-header-title 
+    %b.title Request Refund 
+  - unless current_user.au?
+    %span.sub-title Review Refund request details and select an option to proceed
+= simple_form_for @refund, remote: true do |f|
+  = f.hidden_field :status
+  .modal-body
+    .row
+      .col-md-12.display
+        .col-md-6.text-left.control-label
+          Payment Ref
+        .col-md-6.text-right.value
+          = @refund.purchase.ref.insert(-1, '#')
+      .col-md-12.display
+        .col-md-6.text-left.control-label
+          Reason for Refund
+        .col-md-6.text-right.value
+          = @refund.reason
+      .col-md-12.display
+        .col-md-6.text-left.control-label
+          Purchase Amount
+        .col-md-6.text-right.value
+          = number_to_currency(@refund.purchase.amount, precision: 2)
+      - if @refund.reason == 'Other'
+        - if @refund.attachment?
+          = link_to 'Download the file?', @refund.attachment.url, download: "#{@refund.attachment.file.filename}"
+        - else
+          .col-md-12.display
+            .col-md-6.text-left.control-label
+              Credit Monitoring Service
+            .col-md-6.text-right.value
+              = @refund.cm_service
+
+  .modal-footer
+    - if !(@refund.submitted? || @refund.in_progress?) || current_user.au?
+      %b.sub-title.text-left.note-label Note:&nbsp;
+      %p.subtitle.pull-left.note-msg= "Refund request previously #{@refund.status.humanize}"
+      %button.btn.btn-primary.btn-lg.btn-block{'data-dismiss'=>'modal', type: 'button'} Close
+    - else
+      = link_to 'Approve Refund', edit_refund_path(@refund, status: 'accepted'),
+        class: 'btn btn-primary btn-lg btn-block', remote: true,
+        data: { commit: 'accepted' } 
+
+      = link_to 'Reject refund', edit_refund_path(@refund, status: 'rejected'), 
+        class: 'btn btn-primary btn-lg btn-block', remote: true, 
+        data: { commit: 'rejected' } 
+
+      = link_to 'Refund Partially', edit_refund_path(@refund, status: 'partially_accepted'), 
+        class: 'btn btn-default btn-lg btn-block', remote: true,
+        data: { commit: 'partially_accepted' }  
+

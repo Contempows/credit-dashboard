@@ -1,0 +1,3 @@
+= simple_form_for @purchase, url: trade_line_purchase_path(@purchase.trade_line.id, @purchase.id), html: { class: 'form-horizontal' }, wrapper: :horizontal_form, remote: true do |f|
+  = f.input :amount, label: false, placeholder: 'Amount', input_html: { value: "#{number_with_precision(@purchase.trade_line.price, precision: 2)}", readonly: true }
+  = f.button :submit, "Complete Purchase", class: 'btn btn-primary btn-lg btn-block', style: 'display: none'

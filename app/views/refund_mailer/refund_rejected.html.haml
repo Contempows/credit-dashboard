@@ -1,0 +1,77 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+    %style_script
+      :css
+        .mail-details p, .mail-details b {
+          display: inline;
+        }
+        .mail-details p.green {
+          color: green;
+        }
+  %body
+    %p
+      Hi #{@user.first_name.capitalize}, 
+
+    %p
+      Sorry, your refund request could not be granted.  We will email you separately as to the specific reason why. Sorry for any inconvenience this causes you and/or your client, and we hope to resolve this situation as soon as possible. We appreciate your patience and understanding in this matter.
+
+    .mail-details
+      %b AU Name: 
+      %p= "#{@user.first_name} #{@user.last_name}"
+    .mail-details
+      %b Last 4 digits of SSN:
+      %p #{@user.social.to_s[-4..-1]}
+    .mail-details
+      %b Purchase Ref: 
+      %p= "##{@purchase.ref}"
+    %br
+    .mail-details
+      %b Refund Ref: 
+      %p ##{@refund.ref}
+    .mail-details
+      %b Reason:
+      %p #{@refund.reason}
+    %br
+    .mail-details
+      %b Bank: 
+      %p #{@trade_line.bank}
+    .mail-details
+      %b Credit Limit: 
+      %p #{number_to_currency(@trade_line.credit_limit.to_f, precision: 2)}
+    .mail-details
+      %b Tradeline History: 
+      %p= "#{date_to_years(@trade_line.history)} yrs"
+    .mail-details
+      %b Statement Date: 
+      %p #{@trade_line.statement_date.ordinalize}
+    .mail-details
+      %b Tradeline Cost:
+      %p #{number_to_currency(@trade_line.price)}
+    %br
+    .mail-details
+      %b Current Wallet Balance:
+      %p.green #{number_to_currency(@user.wallet_balance)}
+
+    - if @refund.attachment.present?
+      .mail-details
+        %b Report file:
+        %p= image_tag @refund.attachment.url
+    - if @refund.cm_service.present? 
+      .mail-details
+        %b CM Service:
+        %p #{@refund.cm_service}
+    - if @refund.cm_login.present? 
+      .mail-details
+        %b CM Login:
+        %p #{Base64.decode64(@refund.cm_login)}
+    - if @refund.cm_password.present? 
+      .mail-details
+        %b CM Password:
+        %p #{Base64.decode64(@refund.cm_password)}
+
+
+    %p
+      Regards,
+      %br
+      Customer Service Team

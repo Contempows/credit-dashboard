@@ -1,0 +1,54 @@
+- if flash[:error]
+  = render 'shared/modal_error'
+- else
+  = simple_form_for @refund, remote: true do |f|
+    .modal-body
+      = f.input :reason, collection: ['Did not post to one or more bureaus', "The line posted with a high balance (exceeding 30% of limit)", 'The line posted with wrong limit / history', 'Other'], label: 'Reason for Refund'
+      .other
+        .select-options-tag
+          = f.input :info, collection: ['I have credit monitoring service', 'I have a credit report'], label: 'What information do you have?', include_blank: true
+          .cms-attachment-div
+            .credit-monitering-service
+              = f.input :cm_service, label: 'Credit Monitoring Service'
+              = f.input :cm_login, label: 'Credit Monitoring Login'
+              = f.input :cm_password, as: :password, label: 'Credit Monitoring Password' 
+              = f.input :confirm_password, as: :password, label: 'Confirm Credit Monitoring Password'
+            %label.attachment-div{for: 'refund_attachment'}
+              = f.file_field :attachment
+      = f.hidden_field :purchase_id, value: @refund.purchase_id
+    .modal-footer
+      = f.submit 'Request Refund', class: 'btn btn-primary btn-lg btn-block'
+      = link_to 'cancel', '#', class: 'btn btn-default btn-block btn-lg', data: { dismiss: 'modal' }
+
+:javascript
+  $('select#refund_reason').select2({
+    maximumInputLength: 128,
+    selectOnClose: true,
+    tags:true
+  });
+  $('select#refund_reason').on('select2:open', function(){
+    $('input.select2-search__field').attr('maxlength', 128);
+  });
+  $('select#refund_info').select2();
+  $('.other').hide();
+  $('.credit-monitering-service').hide();
+  $('.attachment-div').hide();
+  $('#refund_reason').change(function(){
+    if ($(this).val() == 'Other'){
+      $('.other').show();
+    }
+    else {
+      $('.other').hide();
+    }
+  }).trigger('change');
+  $('#refund_info').change(function(){
+    if ($(this).val()=='I have credit monitoring service'){
+      $('.credit-monitering-service').show();
+      $('.attachment-div').hide();
+    }
+    if ($(this).val()=='I have a credit report'){
+      $('.credit-monitering-service').hide();
+      $('.attachment-div').show();
+    }
+  }).trigger('change');
+

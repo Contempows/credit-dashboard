@@ -1,0 +1,8 @@
+.modal-header
+  %button.close{data: { dismiss: 'modal' } }
+    %span &times;
+  %h4.modal-header-title 
+    %b.title Refund Confirmation
+  %span.sub-title Please confirm the refund amount before you proceed
+#refund-in-progress
+  = render 'accepted_form'

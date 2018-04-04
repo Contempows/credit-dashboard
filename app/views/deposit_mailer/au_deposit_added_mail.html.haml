@@ -1,0 +1,29 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+    %style_script
+      :css
+        .mail-details p, .mail-details b {
+          display: inline;
+        }
+  %body
+    %p= "Hi #{@user.first_name.capitalize},"
+    %p 
+      Your deposit confirmation form has been successfully submitted.  We will confirm your deposit within 24 hours, and notify you again once it's been confirmed. Thank you for your patience.
+    .mail-details
+      %b Current Wallet Balance:
+      %p #{number_to_currency(@user.wallet_balance, precision: 2)}
+    %br
+    .mail-details
+      %b Deposit Amount:
+      %p #{number_to_currency(@deposit.amount, precision: 2)}
+    .mail-details
+      %b Deposited Bank: 
+      %p #{@deposit.banking_information.bank_name}
+    .mail-details
+      %b Deposit Date: 
+      %p #{month_date_year(@deposit.created_at)}
+    %p
+      Regards,
+      %br
+      Customer Service Team

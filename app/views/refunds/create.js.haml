@@ -1,0 +1,6 @@
+- if @refund.errors.any?
+  $('#modal-body').html("#{escape_javascript(render 'form')}");
+- else
+  location.reload();
+  $('#refund-modal').modal('hide');
+  $('#messages').html("#{escape_javascript(render 'shared/messages')}");

@@ -1,0 +1,14 @@
+jQuery ->
+  $(document).on 'ready turbolinks:load', ->
+    if $('#infinite-scrolling').size() > 0
+      $(window).on 'scroll', ->
+        scrollBody()
+      $('#users-list').on 'scroll', ->
+        scrollBody()
+      return
+  scrollBody = ->
+    more_url = $('.pagination .next_page a').attr('href')
+    if more_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
+      $('.pagination').html('<img src="<%= image_path('ajax-loader.gif') %>" alt="Loading..." title="Loading..." />')
+      $.getScript more_url
+    return

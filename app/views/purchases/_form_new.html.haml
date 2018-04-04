@@ -1,0 +1,100 @@
+= simple_form_for @purchase, url: trade_line_purchases_path(@trade_line), html: { id: "file-upload", multipart: true, remote: true } do |f|
+  = f.hint 'Note: Only completed profiles are displayed here'
+  .row
+    .col-md-12.display
+      .col-md-6.text-left.control-label
+        Name
+      .col-md-6.text-right.value
+        = f.select :user_id, @users.map {|m| ["#{m.first_name} #{m.last_name}", m.id]} 
+  #purchase-user-info
+    = render partial: 'user_info', locals: { user: current_user }
+  &nbsp;
+  &nbsp;
+  - if @trade_line.ssn_req
+    = f.input :file_for_ssn, as: :file
+    %span.glyphicon.glyphicon-remove.for_ssn.cursor-pointer{ onclick: "removeFile(event, 'purchase_file_for_ssn');" }
+  - if @trade_line.dl_req
+    = f.input :file_for_dl, as: :file, label: 'File for Driving License'
+    %span.glyphicon.glyphicon-remove.for_dl.cursor-pointer{ onclick: "removeFile(event, 'purchase_file_for_dl');"}
+  / - if @trade_line.special_add
+  /   = f.input :file_for_special_add, as: :file, label: 'File for Special Address'
+  /   %span.glyphicon.glyphicon-remove.for_special_add.cursor-pointer{ onclick: "removeFile(event, 'purchase_file_for_special_add');"}
+
+  %img.loading-gif{src: "#{image_path('loading.gif')}", style: 'display: none;width: 500px;'}
+
+  &nbsp;
+  = f.button :submit, "Proceed", class: 'btn btn-primary btn-block btn-lg submit-purchase-form', data: {tid: "#{@trade_line.id}"}
+
+:javascript
+  $('#purchase_user_id').change(function(){
+    var id = $(this).val();
+    $.get({
+      url: '/users/' + id,
+      dataType: 'json'
+    }).done(function(user){
+      $('#user-info-address').html(user.address);
+      $('#user-info-ssn').html(user.ssn);
+      $('#user-info-dob').html(user.dob);
+    });
+  });
+  function removeFile(event, id){
+    $('#'+id).val('');
+    $(event.target).hide();
+  }
+  $('#purchase_file_for_ssn').change(function(){
+    if ($(this).val() != '') {
+      $('.for_ssn').show();
+    }
+  });
+  $('#purchase_file_for_dl').change(function(){
+    if ($(this).val() != '') {
+      $('.for_dl').show();
+    }
+  });
+  $('#purchase_file_for_special_add').change(function(){
+    if ($(this).val() != '') {
+      $('.for_special_add').show();
+    }
+  });
+  $('.submit-purchase-form').click(function(event){
+    event.preventDefault();
+    if ($('#purchase_file_for_ssn').val() == '' || $('#purchase_file_for_dl').val() == '') {
+      if ($('#purchase_file_for_ssn').val() == ''){
+        $('.purchase_file_for_ssn span').remove();
+        $('.purchase_file_for_ssn').addClass('has-error');
+        $('.purchase_file_for_ssn').append("<span class='help-block'>Please select a file</span>");
+      }
+      else {
+        $('.purchase_file_for_ssn span').remove();
+        $('.purchase_file_for_ssn').removeClass('has-error');
+      }
+      if ($('#purchase_file_for_dl').val() == ''){
+        $('.purchase_file_for_dl span').remove();
+        $('.purchase_file_for_dl').addClass('has-error');
+        $('.purchase_file_for_dl').append("<span class='help-block'>Please select a file</span>");
+      }
+      else {
+        $('.purchase_file_for_dl span').remove();
+        $('.purchase_file_for_dl').removeClass('has-error');
+      }
+    }
+    else{
+      var form = $('#file-upload')[0];
+      var data = new FormData(form);
+      $('.loading-gif').show();
+      var id = $(this).data("tid");
+      url = '/trade_lines/'+id+'/purchases';
+      $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: url,
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(){
+          $('.loading-gif').hide();
+        }
+      });
+    }
+  });
+

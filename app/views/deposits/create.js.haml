@@ -1,0 +1,6 @@
+- if current_user.junior? 
+  - if @result.success?
+    location.reload();
+  - else
+    $('#new_deposit_modal').modal('show');
+    $('#modal-body').html("#{escape_javascript(render 'form')}");

@@ -1,0 +1,4 @@
+= ff.input :ssnorcpn, label: false, placeholder: 'SSN/CPN Number', maxlength: 9,
+  input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+= ff.hidden_field :status, value: 'requested'
+= ff.link_to_remove 'Remove'

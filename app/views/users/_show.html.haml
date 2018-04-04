@@ -1,0 +1,61 @@
+.panel.panel-default.user-profile-panel
+  .panel-body#panel-body.user-profile-panel
+    .col-sm-4.no-pad-right.no-pad-left
+      - if @user.profile?
+        %img{src: "#{asset_url(@user.profile.fixed_height_url)}"}
+    .col-sm-8.no-pad-left.user-details
+      .col-sm-8.no-pad-left.pull-left
+        %p.dashb.no-margin-bottom
+          %b.bold-font= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}"
+        %p.dashb-small-date.no-margin-bottom= "#{@user.email}#{', +1' if @user.phone.present?}#{@user.try(:phone)}"
+        %p.dashb-small-date= @user.address.capitalize
+        - if current_user.junior? && @user.invited_by.blank? && @user.accepted? && @is_broker
+          %p.add-money= link_to 'Add Money', new_deposit_path(broker_id: @user.id),
+            remote: true, method: :get
+      .col-sm-4
+        %table
+          %tbody
+            %tr
+              %td.wallet-balance-box.align-middle
+                %b.bold-font.w-balance-all-users= number_to_currency(@user.wallet_balance, precision: 2) 
+              %td.align-middle.vertical-option-icon
+                = link_to edit_details_user_path(@user), remote: true do
+                  %span.glyphicon.glyphicon-option-vertical
+
+.panel.panel-default.recent-transactions-user
+  .panel-heading.col-md-12
+    .text-left.col-md-6
+      .panel-title.dashb Recent Transactions
+    .text-right.col-md-6
+      - if @ledger_entries.any?
+        = link_to 'View all', ledger_entries_path(user_check_id: @user.id), target: :_blank, 
+          class: 'new-trade-line'
+  .panel-body#panel-body
+    %table.table.table-striped.scroll-transactions
+      .tbody#tbody
+        - if @ledger_entries.present?
+          - @ledger_entries.each do |ledger_entry|
+            %tr.dashb-small-trow
+              %td
+                - if ledger_entry.entry_type == 'Deposit' && ledger_entry.credit.negative?
+                  %p.dashb= "Adjustment ##{ledger_entry.entry.ref}"
+                - elsif ledger_entry.entry_type == 'Ssn'
+                  %p.dashb SSN/CPN charge
+                -else
+                  %p.dashb= "#{ledger_entry.entry_type} ##{ledger_entry.entry.ref}"
+              %td
+                - if ledger_entry.entry_type == 'Deposit' && ledger_entry.credit.negative?
+                  %p.dashb= number_to_currency(ledger_entry.credit, precision: 2)
+                - elsif ledger_entry.debit.zero?
+                  %p.dashb= "+ #{number_to_currency(ledger_entry.credit, precision: 2)}"
+                - else
+                  %p.dashb= "- #{number_to_currency(ledger_entry.debit, precision: 2)}"
+              %td
+                %p.dashb-app-status= number_to_currency(ledger_entry.balance)
+                %p.dashb-small-date.pull-right Current Wallet balance
+        - else
+          .no-data-div
+            %div
+              = image_tag('no-data-img.png')
+              %p.dashb Nothing here 😔
+              %p.dashb There is nothing here, please come back later

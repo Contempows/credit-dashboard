@@ -1,0 +1,53 @@
+.modal{'id'=>"proceedModal_#{@trade_line.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title= "Tradeline Details ##{@trade_line.id}"
+        %p.sub-title Last step before you complete the purchase.
+      .modal-body
+        .container-fluid.no-pad-left.no-pad-right
+          .col-sm-4.no-pad-left
+            %p.body-sub-title Slots
+            %p.each-title= @trade_line.slots
+          .col-sm-4
+            %p.body-sub-title Bank
+            %p.each-title#bank-name= @trade_line.bank.capitalize
+          .col-sm-4.no-pad-right
+            %p.body-sub-title Credit Limit
+            %p.each-title
+              - if @trade_line.credit_limit - @trade_line.credit_limit.to_i == 0 
+                = number_to_currency(@trade_line.credit_limit, precision: 2)
+              - else 
+                = number_to_currency(@trade_line.credit_limit, precision: 2)
+        .container-fluid.no-pad-left.no-pad-right
+          .col-sm-4.no-pad-left
+            %p.body-sub-title History
+            %p.each-title= "#{date_to_years(@trade_line.history)} yrs"
+          .col-sm-4
+            %p.body-sub-title Statement Date
+            %p.each-title= @trade_line.statement_date.ordinalize
+          .col-sm-4.no-pad-right
+            %p.body-sub-title State
+            %p.each-title= @trade_line.state.short_code
+        .container-fluid.no-pad-left.no-pad-right
+          .col-sm-4.no-pad-left
+            %p.body-sub-title Special Add.?
+            %p.each-title= parse_booleans(@trade_line.special_add)
+          .col-sm-4
+            %p.body-sub-title SSN req.?
+            %p.each-title= parse_booleans(@trade_line.ssn_req)
+          .col-sm-4.no-pad-right
+            %p.body-sub-title DL Req.?
+            %p.each-title= parse_booleans(@trade_line.dl_req)
+        .btn.btn-default.btn-block.btn-lg.user-info-btn{'aria-labelledby'=>'user-info-label'}
+          %label.user-info-label{'for'=>'user-profile-info'} Use Profile Information
+          %input#user-profile-info{'type'=>'checkbox'}
+          .tick-box.pull-right.glyphicon
+        &nbsp;
+        .drop-files Click or drag and drop files here to upload.
+        &nbsp;
+      .modal-footer
+        %button.btn.btn-primary.btn-lg.btn-block PROCEED
+        &nbsp;

@@ -1,0 +1,9 @@
+= simple_form_for @refund, remote: true do |f|
+  .modal-body
+    = f.hidden_field :status, value: 'rejected'
+    = f.hidden_field :amount_refunded, value: 0
+    = f.input :reason_for_rejection, label: 'Reason for Rejection'
+
+  .modal-footer
+    = f.submit 'reject refund', class: 'btn btn-primary btn-lg btn-block' 
+    = link_to 'cancel', edit_refund_path(@refund), class: 'btn btn-default btn-lg btn-block', remote: true 

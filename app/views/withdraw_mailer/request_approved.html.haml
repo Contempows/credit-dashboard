@@ -1,0 +1,36 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+    %style_script
+      :css
+        .mail-details p, .mail-details b {
+          display: inline;
+        }
+  %body
+    %p
+      Hi #{@withdraw_by.first_name.capitalize},
+
+    %p
+      Your withdrawal request has been approved.  We will be mailing a check to the address you have designated within one week. Thank you.
+
+    .mail-details
+      %b Withdraw Ref: 
+      %p ##{@withdraw.ref}
+    .mail-details
+      %b Payee: 
+      %p #{@withdraw.payee}
+    .mail-details
+      %b Address: 
+      %p #{@withdraw.address}
+    .mail-details
+      %b Amount: 
+      %p #{number_to_currency(@withdraw.amount.to_f, precision: 2)}
+    %br
+    .mail-details
+      %b Remaining Balance
+      %p #{number_to_currency(@withdraw_by.wallet_balance)}
+
+    %p
+      Regards,
+      %br
+      Customer Service Team

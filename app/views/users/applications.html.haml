@@ -1,0 +1,50 @@
+.panel.panel-default.ss-all-application-wrapper
+  - if current_user.staff? && !params[:junior]
+    #user-change-status
+    #user-show-info
+    .panel-heading.col-md-12
+      #panel-search
+        .text-left.col-md-6
+          .panel-title= link_to 'All Applications', applications_users_path
+        .text-right.col-md-6#search-users.pull-right
+          %p.search-users-text Search Users
+      #search-box
+        = form_tag applications_users_path, method: :get do
+          = text_field_tag :term, nil, placeholder: 'Search Applications',
+            value: params[:term]
+        %span.glyphicon.glyphicon-remove.search-box-remove.pull-right
+  - else
+    .panel-heading.col-md-12
+      .text-left.col-md-6
+        .panel-title= "#{params[:junior]? 'All Junior Staff Users' : 'All Applications'}"
+      .text-right.col-md-6
+        - if current_user.senior? && params[:junior]
+          = link_to '+ Add Junior Staff', new_user_path, remote: true, 
+            class: 'new-trade-line add-trade-line-and-user'
+
+        - if current_user.au?
+          = link_to '+ Add New Authorised User', new_user_path, remote: true, 
+            class: 'new-trade-line add-trade-line-and-user'
+
+  .panel-body.all-applications#panel-body.withdraw-panel
+    - if @applications.any?
+      %table.table.table-striped
+        %tbody#applications
+          = render partial: 'application', collection: @applications, as: :app
+    - else 
+      = render 'shared/no_data'
+
+#infinite-scrolling
+  = will_paginate @applications 
+
+:javascript
+  $('#search-box').hide();
+  $('.search-users-text').on('click', function(){
+    $('#panel-search').hide();
+    $('#search-box').show();
+    $('#term').focus();
+  });
+  $('.search-box-remove').on('click', function(){
+    $('#panel-search').show();
+    $('#search-box').hide();
+  });

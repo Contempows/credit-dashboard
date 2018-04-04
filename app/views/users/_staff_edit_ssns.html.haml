@@ -1,0 +1,11 @@
+.modal.fade.ssns_modal{'id'=>"ssn-edit-modal_#{@user.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title Request SSN / CPN Validation
+        %p.sub-title Enter details below and proceed to validate
+
+      #form-ssn
+        = render partial: 'users/edit_form'

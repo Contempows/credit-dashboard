@@ -1,0 +1,5 @@
+- if @result.success?
+  $('#new_trade_line_modal').modal('hide');
+  location.reload();
+- else
+  $('#modal-body').html("#{escape_javascript(render 'form')}");

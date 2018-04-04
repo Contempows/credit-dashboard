@@ -1,0 +1,23 @@
+.modal.fade{'id'=>"proceedModal_#{@trade_line.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl#show-content
+      - if current_user.accepted? && !@trade_line.slots.zero? && !current_user.wallet_balance.zero? && !profile_empty?
+        = render partial: 'new_content', locals: { trade_line: @trade_line }
+      - else
+        .modal-header
+          %button.close{'data-dismiss'=>'modal'}
+            %span.span-close &times;
+          %h4.modal-title.title Alert
+        .modal-body
+          .alert.alert-warning
+            - unless current_user.accepted?
+              %li This profile is not yet approved
+            - if current_user.wallet_balance.zero?
+              %li Current wallet balance is zero
+            - if @trade_line.slots.zero?
+              %li Number of slots for this tradeline is zero
+            - if profile_empty?
+              %li Your profile details are not updated. Please #{link_to 'click here', edit_details_user_path(current_user, profile_details: true)} to update your details
+
+:javascript
+  $('select').select2({theme: 'bootstrap', dropdownParent: $('.modal')});

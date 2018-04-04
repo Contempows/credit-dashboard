@@ -1,0 +1,52 @@
+- unless !user_signed_in? && current_user.au?
+  #user-change-status
+  #btn-click-modal
+  .panel.panel-default.all-users-js-ss-wrapper
+    .panel-heading.col-md-12.no-pad-search
+      #panel-search
+        .text-left.col-md-6
+          .panel-title= link_to 'All Users', users_path
+        .col-md-6#search-users
+          %p.search-users-text.pull-right Search Users
+      #search-box
+        = form_tag users_path, method: :get do
+          = text_field_tag :term, nil, placeholder: 'Search Users'
+        %span.glyphicon.glyphicon-remove.search-box-remove.pull-right
+    .panel-body#panel-body.all-users
+      - if @users.any?
+        .row
+          .col-sm-4
+            %ul.nav.nav-tabs.nav-stacked.users-list#users-list
+              = render @users
+            #infinite-scrolling
+              = will_paginate @users
+
+
+          .col-sm-8
+            #user-show-info
+      - else
+        .no-data-div
+          %div
+            = image_tag('no-data-img.png')
+            %p.dashb Nothing here 😔
+            %p.dashb There is nothing here, please come back later.
+
+
+
+:javascript
+  $('#search-box').hide();
+  $('.search-users-text').on('click', function(){
+    $('#panel-search').hide();
+    $('#search-box').show();
+    $('#term').focus();
+    $('.no-pad-search').css('padding', '0px')
+  });
+  $('.search-box-remove').on('click', function(){
+    $('#panel-search').show();
+    $('#search-box').hide();
+    $('.no-pad-search').css('padding', '1.8em 15px 1.8em 15px')
+  });
+  $('body').on('click','.nav.users-list li', function(){
+    $('.nav.users-list li').removeClass('active');
+    $(this).addClass('active');
+  });

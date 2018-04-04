@@ -1,0 +1,138 @@
+.modal.fade#new_deposit_modal{ 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialo    g', 'tabindex'=>'-1' }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: { dismiss: 'modal' } }
+          %span &times;
+        - if current_user.au?
+          %h4.modal-header-title
+            %b.title Upload Receipt 
+          %span.sub-title As a proof of deposit we would need you to upload the receipt 
+        - else
+          %h4.modal-header-title
+            %b.title Add Money 
+      #modal-body
+        = render 'form'
+
+
+:javascript     
+
+  Dropzone.options.myAwesomeDropzone = { 
+      autoProcessQueue: false, 
+      previewsContainer: ".dropzone-previews",
+      maxFiles: 1, 
+      maxFilesize: 10, 
+      acceptedFiles: 'image/*',
+      addRemoveLinks: true,
+      paramName: "deposit[attachment]",
+      thumbnailWidth: 500,
+      thumbnailHeight: 300,
+      dataType: 'js',
+
+      init: function() {
+        var myDropzone = this;
+
+        $("input[type=submit]").on("click", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log($('#deposit_banking_information_id').val());
+          if(myDropzone.files.length == 0) {
+            $('.image-add-remove-msg').remove();
+            $('.help-block').hide();
+            $('.deposit_amount, .deposit_date_of_deposit, .deposit_banking_information_id, #drag-area').removeClass('has-error');
+            myDropzone.emit('fileError', 'Please upload a file');
+            if ($('#deposit_amount').val() == ''){
+              $('.deposit_amount').addClass('has-error');
+              $('#deposit_amount').after("<span class=help-block>Deposit amount can't be blank</span>");
+            }
+            if ($('#deposit_date_of_deposit').val() == '') {
+              $('.deposit_date_of_deposit').addClass('has-error');
+              $('#deposit_date_of_deposit').after("<span class=help-block>Deposit date can't be blank</span>");
+            }
+            if ($('#deposit_banking_information_id').val() == '') {
+              $('.deposit_banking_information_id').addClass('has-error');
+              $('.deposit_banking_information_id .select2').after("<span class='help-block'>Deposit bank name can't be blank</span>")
+            }
+            return;
+          }
+          else if (myDropzone.files[0].size > myDropzone.options.maxFilesize * 1024 * 1024 || $('#deposit_amount').val() == '' || $('#deposit_date_of_deposit').val() == '' || $('#deposit_banking_information_id').val() == '') {
+            $('.help-block').hide();
+            $('#drag-area-help-block').hide();
+            $('.deposit_amount, .deposit_date_of_deposit, #drag-area, .deposit_banking_information_id').removeClass('has-error');
+            $('.dz-remove').show();
+            if (myDropzone.files[0].size > myDropzone.options.maxFilesize * 1024 * 1024) {
+              myDropzone.removeFile(myDropzone.files[0])
+              myDropzone.emit('fileError', 'Max file size is 10 MB');
+            }
+            if ($('#deposit_amount').val() == '') {
+              $('.deposit_amount').addClass('has-error');
+              $('#deposit_amount').after("<span class=help-block>Deposit amount can't be blank</span>");
+            }
+            if ($('#deposit_date_of_deposit').val() == '') {
+              $('.deposit_date_of_deposit').addClass('has-error');
+              $('#deposit_date_of_deposit').after("<span class=help-block>Deposit date can't be blank</span>")
+            }
+            if ($('#deposit_banking_information_id').val() == '') {
+              $('.deposit_banking_information_id').addClass('has-error');
+              $('.deposit_banking_information_id .select2').after("<span class='help-block'>Deposit bank name can't be blank</span>")
+            }
+          }
+          else {
+            myDropzone.processQueue();
+          }
+        });
+
+        this.on('fileError', function(error) {
+          $('#drag-area').addClass('has-error');
+          $('#drag-area-help-block').show();
+          $('#drag-area-help-block').html(error);
+        });
+
+        this.on('addedfile', function(a, b) {
+          $('.dz-progress').hide();
+          $('#drag-area').toggle();
+          $('.image-add-remove-msg').remove();
+          $('.dz-preview.dz-image-preview').css('width', '40%');
+          $('.dz-remove').css('display', 'inline-block');
+          $('.dz-remove').after("<span class='image-add-remove-msg' style= 'display: inline-block;padding-left:5px'>Image uploaded!</span>");
+        });
+
+        this.on('removedfile', function(a, b) {
+          $('#drag-area').toggle();
+          $('.image-add-remove-msg').remove();
+          $('.dz-message.needsclick').after("<span class='image-add-remove-msg' style= 'display: inline-block'>Image removed!</span>");
+        });
+
+        this.on('success', function(a, b) {
+          $('.modal-backdrop').remove();
+          $('#btn-click-modal').html('');
+          hideAlert();
+          location.reload();
+        });
+
+        this.on('removedfile', function(file) {
+          $('#drag-area-help-block').html('');
+        });
+
+        this.on('error', function(file, res) {
+          $('.dz-remove').show();
+          if(file.size > this.options.maxFilesize * 1024 * 1024) {
+            this.emit('fileError', 'Max file size is 10 MB');
+            return;
+          }
+
+          $('.help-block').hide();
+          $('.deposit_amount, .deposit_date_of_deposit').removeClass('has-error');
+
+          if(res.errors.amount != undefined) {
+            $('.deposit_amount').addClass('has-error');
+            $('#deposit_amount').after("<span class=help-block>" + res.errors.amount[0] + "</span>");
+          }
+
+          if(res.errors.date_of_deposit != undefined) {
+            $('.deposit_date_of_deposit').addClass('has-error');
+            $('#deposit_date_of_deposit').after("<span class=help-block>" + res.errors.date_of_deposit[0] + "</span>");
+          }
+        });
+     }
+  }

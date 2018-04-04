@@ -1,0 +1,22 @@
+%tr
+  %td
+    - if ledger_entry.entry_type == 'Deposit' && ledger_entry.credit.negative?
+      %p.dashb= "Adjustment ##{ledger_entry.entry.ref}"
+    - elsif ledger_entry.entry_type == 'Ssn'
+      %p.dashb SSN/CPN charge
+    -else
+      %p.dashb= "#{ledger_entry.entry_type} ##{ledger_entry.entry.try(:ref)}"
+    %p.dashb-small-date Reference #
+  %td
+    %p.dashb= month_date_and_year(ledger_entry.created_at)
+    %p.dashb-small-date Date
+  %td
+    - if ledger_entry.entry_type == 'Deposit' && ledger_entry.credit.negative?
+      %p.dashb= number_to_currency(ledger_entry.credit, precision: 2)
+    - elsif ledger_entry.debit.zero?
+      %p.dashb= "+ #{number_to_currency(ledger_entry.credit, precision: 2)}"
+    - else
+      %p.dashb= "- #{number_to_currency(ledger_entry.debit, precision: 2)}"
+  %td
+    %p.dashb-app-status= number_to_currency(ledger_entry.balance)
+    %p.dashb-small-date.pull-right Wallet balance

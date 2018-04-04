@@ -1,0 +1,40 @@
+.container-content
+  .panel.panel-default
+    .panel-heading.col-md-12
+      .text-left.col-md-6
+        -if current_user.au?
+          .panel-title Ledger Entries
+        - else
+          .panel-title= "All Transactions #{@user.present? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
+      .col-md-6.text-right
+        .col-sm-6.text-right Ledger Balance:&nbsp;
+        .def-color.col-md-6.text-left.def-color= number_to_currency(@user.wallet_balance, precision: 2)
+        #new_trade_line
+        #btn-click-modal
+    .panel-body#panel-body.deposit-panel
+      %ul.nav.nav-tabs.nav-justified
+        - if params[:user_check_id].present? && current_user.staff?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id]), class: 'active-tab'
+          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id])
+          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id])
+        - elsif current_user.au?
+          %li= link_to t('transactions.ledgers'), ledger_entries_path, class: 'active-tab'
+          %li= link_to 'Purchases', purchases_path
+          %li= link_to 'Deposits', deposits_path
+          %li= link_to 'Refunds', refunds_path
+          %li= link_to 'Withdrawals', withdraws_path
+      - if @ledger_entries.any?
+        %table.table.table-striped
+          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
+            = render @ledger_entries
+      - else
+        .no-data-div
+          %div
+            = image_tag('no-data-img.png')
+            %p.dashb Nothing here 😔
+            %p.dashb There is nothing here, please come back later
+
+#infinite-scrolling
+  = will_paginate @ledger_entries

@@ -1,0 +1,67 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Welcome to Coast to Coast Tradelines
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag
+  %body
+    %nav.navbar.navbar-default.navbar-fixed-top.navbar-expand-lg
+      .container
+        .page-main-heading-wrapper
+          .navbar-header{ class: "#{'max-width-image' if current_user.junior?}" }
+            = link_to (image_tag('header-logo-ctc.png')), root_path, class: 'header-logo'
+          - unless current_user.sign_in_count <= 1 && current_user.invited_by_id.present?
+            - unless current_user.au?
+              %button.btn.btn-default.no-border.navbar-toggle.collapsed.navbar-icon-wrraper{"aria-expanded" => "false", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+                %span.glyphicon.glyphicon-th-large
+              #navbarSupportedContent.collapse.navbar-collapse
+                %ul.navbar-nav.nav
+                  %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
+                    %a{href: "/purchases"} Orders Pipeline
+                  %li{ class: "#{'activated' if controller.controller_name == 'users' && !params[:profile_details]}" }
+                    %a{href: "/users"} User Management
+                  %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
+                    %a{href: "/deposits"} Deposits / Withdrawals Pipeline
+                  %li{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
+                    %a{href: "/ssns"} Validation Pipeline
+
+        - unless current_user.sign_in_count <= 1 && current_user.invited_by_id.present?
+          .nav-session
+            .btn-group
+              %button.btn.btn-default.no-border.dropdown-toggle.bar-icon-wrraper{ 'type'=>'button', 'data-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' }
+                %span.glyphicon.glyphicon-menu-hamburger
+              %ul.dropdown-menu.dropdown-menu-right
+                %li= link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
+                %li= link_to 'Change Password', edit_password_user_path(current_user)
+                - if current_user.au?
+                  - if current_user.accepted?
+                    %li= link_to 'Authorised Users', applications_users_path
+                    %li= link_to 'Recent Transactions', ledger_entries_path
+                - if current_user.staff?
+                  %li= link_to 'Tradelines', trade_lines_path
+                  - if Setting.last.blank?
+                    %li= link_to 'Add SSN/CPN charge', new_setting_path(@setting), remote: true
+                  - else
+                    %li= link_to 'SSN/CPN charge', edit_setting_path(Setting.last), remote: true
+                - if current_user.senior?
+                  %li= link_to 'Junior Staff', applications_users_path(junior: true)
+                  %li= link_to 'Banking Information', banking_informations_path
+                %li= link_to 'About Us', about_path
+                %li= link_to 'Contact Us', contact_path
+                %li.divider{ 'role'=>'separator' }
+                %li= link_to 'Logout', destroy_user_session_path, method: :delete
+
+    .row.display-body
+      .container
+        .container-content
+          #error
+            = render partial: 'shared/error' 
+          #messages
+            = render 'shared/messages'
+          #user-render-partial
+          - if current_user.staff?
+            #new-trade-line
+          = yield

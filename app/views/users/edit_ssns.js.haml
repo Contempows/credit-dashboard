@@ -1,0 +1,6 @@
+- if current_user.au?
+  $('#btn-click-modal').html("#{escape_javascript(render 'edit_ssns')}");
+  $('#ssn-modal_#{current_user.id}').modal('show');
+- else
+  $('#btn-click-modal').html("#{escape_javascript(render 'staff_edit_ssns')}");
+  $('#ssn-edit-modal_#{@user.id}').modal('show');

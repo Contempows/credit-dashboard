@@ -1,0 +1,32 @@
+%html
+  %head
+    %meta{'content'=>'text/html; charset=UTF-8', 'http-equiv'=>'Content-Type'}
+    %style_script
+      :css
+        .mail-details p, .mail-details b {
+          display: inline;
+        }
+  %body
+    %p
+      Hi #{@withdraw_by.first_name.capitalize},
+
+    %p
+      Your withdrawal request has been received. We will respond within 24 hours. Thank you.
+
+    .mail-details
+      %b Withdraw Ref: 
+      %p ##{@withdraw.ref}
+    .mail-details
+      %b Payee: 
+      %p #{@withdraw.payee}
+    .mail-details
+      %b Address: 
+      %p #{@withdraw.address}
+    .mail-details
+      %b Requested Amount: 
+      %p #{number_to_currency(@withdraw.amount.to_f, precision: 2)}
+
+    %p
+      Regards,
+      %br
+      Customer Service Team

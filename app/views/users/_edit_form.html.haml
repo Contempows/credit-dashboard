@@ -1,0 +1,14 @@
+= simple_nested_form_for @user, url: update_ssns_user_path(@user), method: :patch, remote: true do |f|
+  .modal-body.ssn-modal-body#ssn.staff-ssn-modal-wrapper
+    .row
+      = f.simple_fields_for :ssns do |ff|
+        - if ff.object.requested?
+          .col-md-12.display
+            .col-md-6.control-label
+              = ff.input :ssnorcpn, label: false, readonly: true
+            .col-md-6.text-right.value
+              = ff.select :status, [['Requested', 'requested'], ['Approved', 'approved'], ['Rejected', 'rejected']], selected: 'requested'
+  .modal-footer
+    = f.button :submit, 'Validate Purchase', class: 'btn btn-primary btn-lg btn-block'
+:javascript
+  $('select').select2({theme: 'bootstrap', dropdownParent: $('.modal'), minimumResultsForSearch: -1});

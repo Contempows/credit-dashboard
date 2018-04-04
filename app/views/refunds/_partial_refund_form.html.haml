@@ -1,0 +1,17 @@
+= simple_form_for @refund, remote: true do |f|
+  .modal-body
+    = f.hidden_field :status, value: 'partially_accepted'
+    = f.label 'Partial refund amount', class: 'control-label string optional'
+    .row
+    %span.col-xs-1.currency_wrapper.currency_wrapper_for_form.currency_wrapper_withdraw.hidden $
+    .col-xs-5.col-md-11.currency_form_block
+      = f.input :amount_refunded, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string
+
+  .modal-footer
+    = f.submit 'Grant refund', class: 'btn btn-primary btn-lg btn-block' 
+    = link_to 'cancel', edit_refund_path(@refund), class: 'btn btn-default btn-lg btn-block', remote: true
+
+:javascript
+  $('#refund_amount_refunded').focus(function(){
+    $('.currency_wrapper').removeClass('hidden');
+  });

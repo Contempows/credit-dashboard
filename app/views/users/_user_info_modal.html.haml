@@ -1,0 +1,59 @@
+.modal.fade.user-info-modal-wrapper.js-user-detail-wrapper{'id'=>"user-info-modal_#{user.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog.user-info{'role'=>'document'}
+    .modal-content
+      .modal-header.user-info
+        - if user.profile?
+          .image-div
+            %img{src: "#{asset_url(user.profile.url)}", style: 'width: 100%;'}
+        %button.close.user-modal-image-close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+      - if user.submitted?
+        = simple_form_for user, url: update_details_user_path(user) do |f|
+          .modal-body
+            .row
+              .col-md-12.display
+                .col-md-6.text-left.control-label
+                  Email
+                .col-md-6.text-right.value
+                  = user.email
+              .col-md-12.display.select2-display-field
+                .col-md-6.text-left.control-label
+                  Profile Status
+                .col-md-6.text-right.value
+                  = f.select :status, [['Submitted', 'submitted'], ['Accepted', 'accepted'], ['Rejected', 'rejected']], label: 'Profile Status'
+          .modal-footer
+            &nbsp;
+            = f.button :submit, 'Update status', class: 'btn btn-primary btn-block'
+      - else
+        .modal-body
+          %h4.modal-header-title
+            %b.title= "#{user.first_name.capitalize} #{user.last_name.capitalize}"
+          .row
+            .col-md-12.display
+              .col-md-6.text-left.control-label
+                Email
+              .col-md-6.text-right.value
+                = user.email
+            - if user.phone.present?
+              .col-md-12.display
+                .col-md-6.text-left.control-label
+                  Phone
+                .col-md-6.text-right.value
+                  = "+1 #{user.phone}"
+            - if user.ssns.present?
+              .col-md-12.display
+                .col-md-6.text-left.control-label
+                  SSN/CPN
+                .col-md-6.text-right.value
+                  = user.ssns.where(status: 1).pluck(:ssnorcpn).join(', ') 
+            - if user.address.present?
+              .col-md-12.display
+                .col-md-6.text-left.control-label
+                  Address
+                .col-md-6.text-right.value
+                  = user.address
+        .modal-footer
+          &nbsp;
+          %button.btn.btn-primary.btn-block{ data: { dismiss: 'modal' } } Close
+:javascript
+  $('select').select2({theme: 'bootstrap', dropdownParent: $('.modal')});

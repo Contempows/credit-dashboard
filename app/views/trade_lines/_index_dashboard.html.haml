@@ -1,0 +1,31 @@
+%table.table.table-striped.table-responsive.dashboard-tradeline-table
+  %thead
+    %tr
+      %th Slots
+      %th Bank
+      %th Credit Limit
+      %th History
+      %th Statement Date
+      %th.no-sort State
+      %th.no-sort Special Add.?
+      %th.no-sort SSN req.?
+      %th.no-sort DL Req.?
+      %th Price
+      - if current_user.senior? 
+        %th.no-sort Status 
+      %th.no-sort
+  %tbody#trade_lines
+    - if @trade_lines.any?
+      = render @trade_lines
+    - else
+      = render 'shared/no-data'
+
+:javascript
+  $('tbody#trade_lines td.tdcolor').each(function(){
+    if ($(this).text() == 'Yes'){
+      $(this).css('color', 'green');
+    }
+    else{
+      $(this).css('color', 'red');
+    }
+  });

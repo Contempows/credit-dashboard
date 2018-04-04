@@ -1,0 +1,49 @@
+.modal.fade.finish-purchse-modal{'id'=>"purchase_#{@purchase.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1', 'data-id'=>"#{@purchase.id}", 'data-trade-line-id'=>"#{@purchase.trade_line.id}"}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title= "Payment Confirmation"
+        %p.sub-title= "Please confirm purchase for: #{@purchase.user.full_name}"
+      .modal-body
+        .row.payment-detail-wrapper
+          - if @purchase.trade_line.slots >= 1
+            .col-sm-6
+              %p.sub-title Current Wallet Balance
+              %h4.modal-title.title
+                - if current_user.wallet_balance - current_user.wallet_balance.to_i == 0 
+                  = number_to_currency(current_user.wallet_balance, precision: 2)
+                - else 
+                  = number_to_currency(current_user.wallet_balance, precision: 2)
+            .col-sm-6
+              %p.sub-title Total Payable Amount
+              .row
+                .col-md-1
+                  %span.currency_wrapper $
+                .col-md-10.currency_form_block
+                  #edit-purchase-form
+                    = render partial: 'purchases/form_edit'
+      .modal-footer.payment-detail-modal-footer
+        .row.payment-detail-footer-wrapper
+          %button.btn.btn-primary.btn-lg.btn-block#submit-payment-form COMPLETE PURCHASE
+          = link_to 'GO BACK', trade_line_purchase_path(@purchase.trade_line, @purchase, delete: true), method: :delete,
+            class: 'btn btn-primary btn-lg btn-block', remote: true
+
+:javascript
+  $('#submit-payment-form').click(function(){
+    var payment_puchase_id = $(this).parent().parent().siblings('.modal-body').find('form').attr('id');
+    console.log(payment_puchase_id);
+    $('#' + payment_puchase_id).submit();
+  });
+  $('.finish-purchse-modal').on('hide.bs.modal', function(event){
+    var id = event.target.dataset.id;
+    var tid = event.target.dataset.tradeLineId
+    console.log(event.target.dataset.id);
+    console.log(event.target.dataset.tradeLineId);
+    $.ajax({
+      type: 'DELETE',
+      url: '/trade_lines/' + tid + '/purchases/' + id,
+      dataType: 'json'
+    });
+  });

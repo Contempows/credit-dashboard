@@ -1,0 +1,11 @@
+- if @result || @result.nil?
+  $('#ssn-modal_#{current_user.id}').modal('hide');
+  location.reload();
+- else
+  - if current_user.au?
+    $('#form-ssn').html("#{escape_javascript(render 'users/form')}");
+    $('#ssn-modal_#{current_user.id}').modal('show');
+  - else
+    $('#form-ssn').html("#{escape_javascript(render 'users/edit_form')}");
+    $('#ssn-edit-modal_#{@user.id}').modal('show');
+

@@ -1,0 +1,12 @@
+= @users.errors.full_messages
+= simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+  = f.input :email, label: false, required: false, placeholder: 'Email Address*'
+  = f.input :first_name, label: false, required: false, placeholder: 'First Name'
+  = f.input :last_name, label: false, required: false, placeholder: 'Last Name'
+  = f.input :password, label: false, placeholder: 'Password*'
+  = f.input :password_confirmation, label: false, placeholder: 'Confirm Password*'
+  = hidden_field_tag :step, 1
+  &nbsp;
+  = f.button :submit, 'SIGNUP', class: 'btn btn-primary btn-block btn-lg'
+&nbsp;
+= button_to "EXISTING USER? LOGIN", new_user_session_path, class: 'btn btn-primary btn-block btn-lg'

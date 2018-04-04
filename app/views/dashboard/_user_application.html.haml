@@ -1,0 +1,15 @@
+.modal#new_user_application_modal.fade{'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %button.close{'data-dismiss'=>'modal'}
+          %span.span-close &times;
+        %h4.modal-title.title.pull-left User Information
+        %div.success-message.text-success   
+      #user_modal_body
+        = render 'dashboard/form'
+
+:javascript
+  $(document).ready(function(){
+    $('input.datepicker').data({behaviour: "datepicker"}).datepicker({format: 'mm/dd/yyyy'});
+  });

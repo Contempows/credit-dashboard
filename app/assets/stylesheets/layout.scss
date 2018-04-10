@@ -3,13 +3,15 @@ html{
   width: 100%;
 }
 body {
-  font-family: 'CircularStd-Book';
   height: 100%;
   width: 100%;
-@media screen and (min-width:992px) {
-display: flex;
-flex-direction: column;
-}
+  color: $default-text-color;
+  font: $default-font-weight normal $default-font-size/$default-line-height $default-font-family;
+
+  @media screen and (min-width:992px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .panel.panel-default .panel-body{
@@ -163,36 +165,35 @@ flex-direction: column;
   max-width: 476px;
 }
 
-  .simple_form.edit_user{
-    text-align: left;
-    select{
-        -webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	padding: 10px 10px 10px 0;
-	color: #555555;
-	font-family: CircularStd-Book;
-	font-size: 18px;
-	background-color: #fff;
-	box-shadow: none;
-	border: none;
-        border-bottom: 1px solid #a6a6a6;
-	width: 50%;
-	border-radius: 0;
-	margin-bottom: 36px;
-       @media screen and (max-width: 767px){
-         margin-bottom: 15px;
-	 width: 100%;
-       }
-    }
+.simple_form.edit_user {
+  text-align: left;
 
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px 10px 10px 0;
+    color: #555555;
+    font-size: 18px;
+    background-color: #fff;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #a6a6a6;
+    width: 50%;
+    border-radius: 0;
+    margin-bottom: 36px;
+
+    @media screen and (max-width: 767px){
+      margin-bottom: 15px;
+      width: 100%;
+    }
   }
+}
 
 .modal.fade.in.js-user-detail-wrapper .modal-dialog .modal-content .modal-body{
   .modal-header-title{
     margin: 0 0 10px;
     b.title{
-      font-family: CircularStd;
       font-size: 22px;
       font-weight: 900;
       text-align: left;
@@ -204,15 +205,14 @@ flex-direction: column;
   }
 
   .dashb-small-date {
-        font-family: CircularStd-Book;
-	font-size: 18px!important;
-	text-align: left;
+  font-size: 18px!important;
+  text-align: left;
         color: #727272;
         margin-bottom: 10px!important;
-	display: block;
-	@media screen and (max-width: 767px){
-	    font-size: 14px !important;
-	}
+  display: block;
+  @media screen and (max-width: 767px){
+      font-size: 14px !important;
+  }
 }
 }
 
@@ -261,7 +261,6 @@ flex-direction: column;
     position: relative;
   }
   .remove_nested_fields,.add_nested_fields{
-    font-family: CircularStd-Book;
     font-size: 18px;
     color: #3c1fa8;
     display: block;
@@ -393,7 +392,6 @@ select:-moz-focusring {
   appearance: none;
   padding: 10px 10px 10px 0;
   color: #555555;
-  font-family: CircularStd-Book;
   font-size: 20px;
   background-color: #fff;
   box-shadow: none;
@@ -557,7 +555,6 @@ select:-moz-focusring {
     font-size: 18px;
     font-weight: 900;
     height: 24px;
-    font-family: 'CircularStd-Book';
   }
 }
 
@@ -565,7 +562,7 @@ select:-moz-focusring {
     flex: 1;
     margin: 0;
     @media screen and (min-width:992px) {
-        margin-left: 25px;	
+        margin-left: 25px;  
     }
 }
 
@@ -739,17 +736,16 @@ select:-moz-focusring {
 .navbar.navbar-default.navbar-fixed-top > .container > .nav-session{
     padding-top : 0;
     @media screen and (min-width:768px) and  (max-width: 991px) {
-        margin-right: 2px;	 
+        margin-right: 2px;   
     }
     @media screen and (min-width:992px) {
-       margin-right: 16px;	
+       margin-right: 16px;  
     }
 }
 .display {
   height: auto;
   display: flex;
   .control-label {
-    font-family: 'CircularStd-Book';
     font-size: 18px;
     color: #727272;
     border-bottom: solid 1px #979797;
@@ -761,7 +757,6 @@ select:-moz-focusring {
   }
 
   .value {
-    font-family: CircularStd-Book;
     font-size: 18px;
     color: $theme-color;
     border-bottom: solid 1px #979797;
@@ -806,7 +801,7 @@ select:-moz-focusring {
       }
       .col-md-6.text-left.control-label,.col-md-6.text-right.value{
         padding: 15px 0;
-	width: 50%;
+  width: 50%;
       }
     }
   }
@@ -855,15 +850,14 @@ select:-moz-focusring {
     }
   }
 }
-label.control-label{
-font-size: 16px;
-color: #3C1FA8;
-font-weight: 300;
-margin: 15px 0 5px;
-}
+
 label.control-label abbr{
   display: none;
 }
 label.control-label + input.form-control{
   padding-top: 0;
+}
+
+.col-50 {
+  width: 48%;
 }

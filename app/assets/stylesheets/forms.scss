@@ -1,0 +1,64 @@
+$form-control-height-md: 46px;
+$form-control-height-sm: 42px;
+
+$rounded-sm: 2px;
+
+input:focus,
+.form-control:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+input, 
+textarea {
+    text-overflow: ellipsis;
+}
+
+textarea {
+
+    &.form-control {
+        padding-top: 8px !important;
+    }
+}
+
+.form-control {
+    height: $form-control-height-md !important;
+    padding: 0 15px !important;
+    color: $default-text-color !important;
+    font-size: $default-font-size !important;
+    font-weight: $default-font-weight !important;
+    border: 1px solid $light-secondary !important;
+    box-shadow: none !important;
+    border-radius: $rounded-sm !important;
+    line-height: 1.92 !important;
+    margin-bottom: 3.2% !important;
+
+    &.rounded {
+        border-radius: $rounded-sm;
+    }
+
+    &:focus, 
+    &:active {
+        box-shadow: none;
+        outline: 0;
+    }
+}
+
+.form-control-sm {
+    height: $form-control-height-sm;
+}
+
+.control-label {
+    margin-bottom: 10px !important;
+    color: $default-text-color;
+    font-size: em(16);
+    font-weight: 400;
+    line-height: 1.56;
+}
+
+.step-2 {
+    display: none;
+}

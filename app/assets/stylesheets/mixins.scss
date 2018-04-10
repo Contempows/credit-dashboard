@@ -1,0 +1,297 @@
+@mixin vh() {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+// Fallback for rem values https://raw.githubusercontent.com/pierreburel/sass-rem/master/_rem.scss
+$rem-baseline: 16px !default;
+$rem-fallback: true !default;
+$rem-px-only: false !default;
+
+@mixin pseudo-el($el, $el-width, $el-height) {
+
+    @if $el == "before" or $el == "after" {
+
+        &:#{$el} {
+            @extend %pseudos;
+            width: $el-width;
+            height: $el-height;
+            @content;
+        }
+    }
+
+    @else {
+        @warn "`#{$el}` is not a valid pseudo-element.";
+    }
+}
+
+@function letterspacing-em($val) {
+    @return ( $val / 1000 ) * 1em;
+}
+
+@function letterspacing-px($val, $font-size) {
+    @return ( $val * $font-size / 1000 ) * 1px;
+}
+
+@function em($pixels, $context: $default-font-size) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+    @return $pixels / $context * 1em;
+}
+
+@function rem-separator($list, $separator: false) {
+    @if $separator == "comma" or $separator == "space" {
+        @return append($list, null, $separator);
+    } 
+  
+    @if function-exists("list-separator") == true {
+        @return list-separator($list);
+    }
+    // list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+
+    $test-list: ();
+    @each $item in $list {
+        $test-list: append($test-list, $item, space);
+    }
+
+    @return if($test-list == $list, space, comma);
+}
+
+@mixin rem-baseline($zoom: 100%) {
+    font-size: $zoom / 16px * $rem-baseline;
+}
+
+@function rem-convert($to, $values...) {
+    $result: ();
+    $separator: rem-separator($values);
+  
+    @each $value in $values {
+
+        @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+
+            $result: append($result, $value / 1rem * $rem-baseline + 0px, $separator);
+
+        } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+
+            $result: append($result, $value / $rem-baseline + 0rem, $separator);
+
+        } @else if type-of($value) == "list" {
+
+            $value-separator: rem-separator($value);
+            $value: rem-convert($to, $value...);
+            $value: rem-separator($value, $value-separator);
+            $result: append($result, $value, $separator);
+
+        } @else {
+            $result: append($result, $value, $separator);
+        }
+    }
+    @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+@function rem($values...) {
+    @if $rem-px-only {
+
+        @return rem-convert(px, $values...);
+
+    } @else {
+
+        @return rem-convert(rem, $values...);
+
+    }
+}
+
+@mixin rem($properties, $values...) {
+    @if type-of($properties) == "map" {
+
+        @each $property in map-keys($properties) {
+            @include rem($property, map-get($properties, $property));
+        }
+
+    } @else {
+
+        @each $property in $properties {
+
+            @if $rem-fallback or $rem-px-only {
+                #{$property}: rem-convert(px, $values...);
+            }
+
+            @if not $rem-px-only {
+                #{$property}: rem-convert(rem, $values...);
+            }
+        }
+    }
+}
+
+// Includes font $font-face.
+@mixin font-face ($name, $file-name, $font-weight: 400, $font-style: normal) {
+
+    @font-face {
+        font-family: $name;
+        src: url('#{$path-fonts}#{$file-name}.woff2') format('woff2'),
+            url('#{$path-fonts}#{$file-name}.woff') format('woff'),;
+        font-weight: $font-weight;
+        font-style: $font-style;
+    }
+
+    %#{$file-name} {
+        font-family: $name;
+    }
+}
+
+@mixin custom-row($offset) {
+
+    margin-left: -$offset/2;
+    margin-right: -$offset/2;
+
+    & > * {
+        padding-left: $offset/2;
+        padding-right: $offset/2;
+    }
+}
+
+@mixin arrow($width: 20px, $height: $width, $direction: up, $color: $white) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    // Right
+    @if $direction == right {
+        border-width: $height/2 0 $height/2 $width;
+        border-color: transparent transparent transparent $color;
+    }
+
+    // Left
+    @if $direction == left {
+        border-width: $height/2 $width $height/2 0;
+        border-color: transparent $color transparent transparent;
+    }
+
+    // Up
+    @if $direction == up {
+        border-width: 0 $width/2 $height $width/2;
+        border-color: transparent transparent $color transparent;
+    }
+
+    // Down
+    @if $direction == down {
+        border-width: $height $width/2 0 $width/2;
+        border-color: $color transparent transparent transparent;
+    }
+}
+
+%font-awesome {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: inherit;
+    line-height: 1;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin placeholder {
+    &:-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
+
+@mixin container($width, $offsetX: 15px, $offsetXTablet: $offsetX, $offsetXMobile: $offsetX) {
+    width: 100%;
+    max-width: $width;
+    padding-left: $offsetX;
+    padding-right: $offsetX;
+    
+    @include media-breakpoint-down(md) {
+        padding-left: $offsetXTablet;
+        padding-right: $offsetXTablet;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding-left: $offsetXMobile;
+        padding-right: $offsetXMobile;
+    }
+}
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant($color, $background, $border) {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+
+    &:focus,
+    &.focus {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 25%);
+    }
+
+    &:hover {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $color;
+            background-color: darken($background, 17%);
+          border-color: darken($border, 25%);
+        }
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        background-image: none;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: $background;
+            border-color: $border;
+        }
+    }
+
+    .badge {
+        color: $background;
+        background-color: $color;
+    }
+}
+
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    line-height: $line-height;
+    border-radius: $border-radius;
+}

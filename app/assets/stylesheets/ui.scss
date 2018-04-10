@@ -1,0 +1,42 @@
+//Main theme colors
+$theme-color:  #3ebdc7;
+$brand-color: #23a1aa;
+$primary-color-light: $theme-color;
+$primary-color-dark: $brand-color;
+$grey-primary: #3c3c3c;
+$grey-secondary: #4e4e4e;
+$light-primary: #a4a4a4;
+$light-secondary: #d4d4d4;
+$light-tertiary: #f0f0f0;
+
+$btn-primary-bg: $theme-color;
+
+$ui-colors: (
+    primary-color-dark: $primary-color-dark,
+    primary-color-light: $primary-color-light
+);
+
+//Fonts colors
+$default-text-color: $grey-primary;
+
+//Buttons variants
+@each $color, $value in $ui-colors {
+
+    .btn-#{$color} {
+        @include button-variant($value, $value, $value);
+    }
+}
+
+.input-labeled {
+    
+    .text-form {
+        position: relative;
+
+        @include pseudo-el(after, 24px, 24px) {
+            top: 43%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: url('calendar-icon.png') no-repeat;
+        }
+    }
+}

@@ -2,15 +2,16 @@
   .col-md-6.col-sm-6.login-bg-wrapper
   .col-md-6.col-sm-6.login-form-wrapper
     .col-md-offset-1.col-md-8.main.login-form-inner-wrapper
-      %b.welcome Forgot your password?
+      .d-flex.align-items-center.justify-content-between.header-holder
+        .col-left
+          %h4.title-brand Forgot your password?
       = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, html: { class: 'form-horizontal' }, wrapper: :horizontal_form) do |f|
         = f.error_notification
         &nbsp;
         = f.input :email, autofocus: true, required: false, label: false, placeholder: 'Email Address'
 
-        = f.button :submit, "Send me reset password link", class: 'btn btn-primary btn-block btn-lg'
-
-      &nbsp;
-      = button_to "LOGIN", new_user_session_path, class: 'btn btn-primary btn-block btn-lg', method: :get
-      &nbsp;
-      = button_to "NOT AN EXISTING USER? SIGNUP", new_user_path, class: 'btn btn-primary btn-block btn-lg', method: :get
+        %a{class: 'btn btn-cyan btn-lg', href: '/'}= f.button :submit, "Send me reset password link"
+      / .d-flex
+      /   %a{class: 'btn btn-cyan btn-sm'}= button_to "Sign Up", new_user_session_path, method: :get 
+      /   %a{class: 'btn btn-light-primary btn-sm', href: '/'}= button_to "Go Back", new_user_session_path, method: :get 
+      /   %a{class: 'btn btn-light-primary btn-sm', href: '/'}= button_to "Log In", new_user_session_path, method: :get 

@@ -102,3 +102,11 @@ function changeNote(count) {
   new_ssns += count;
   $('.note-ssns-charge').html(' You will be charged $' + Number(charge) * Number(new_ssns) + ' ($' + charge + '/number) for this purchase')
 }
+
+;(function () {
+
+  $(document).ready(function () {
+    $('.date-of-birth').datepicker();
+  })
+
+})();

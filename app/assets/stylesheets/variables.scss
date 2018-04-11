@@ -1,0 +1,43 @@
+$lato: 'Lato';
+
+$default-font-family: $lato, sans-serif;
+
+$default-font-size: 15px;
+$default-font-weight: 400;
+$default-line-height: 1;
+
+$font-size-heading: 32px;
+$font-size-sub: 22px;
+$font-size-sm: 14px;
+
+//Extend
+%pseudos {
+    position: absolute;
+    display: block;
+    content: '';
+}
+
+%marginCenter {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+%absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%absCenterY {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%absCenterX {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,44 +1,36 @@
 $break-small: 767px;
 $break-large: 991px;
 
-.col-md-6.col-sm-6.login-bg-wrapper{
-    background-image: image_url('login-bg-img.png');
-    background-size: cover;
-     @media screen and (min-width:768px) and  (max-width: $break-large) {
-         width: 100%;
-     }
-     @media screen and (max-width: $break-small) {
-         display: none;
-    }
-  }
 .login.row{
   height: 100%;
   display: flex;
   margin: 0;
-max-width: 1170px;
+  max-width: -webkit-fill-available;
   margin: 0 auto;
-@media screen and (min-width: 992px){
-  width: 100%;
-}
+
+  @media screen and (min-width: 992px){
+    width: 100%;
+  }
 }
 .col-md-6.col-sm-6.login-form-wrapper {
    display: flex;
    justify-content: center;
-@media screen and (min-width:768px) and  (max-width: $break-large) {
- width: 60%;
-  position: absolute;
-  background-color: #fff;
-  margin: auto;
-  opacity: 0.9;
-  left: 0;
-  right: 0;
-  align-self: center;
-  padding-top: 10px;
-  padding-bottom: 30px;
- }
- @media screen and (max-width: $break-small) {
-     width: 100%;    
- }
+
+  @media screen and (min-width:768px) and  (max-width: $break-large) {
+   width: 60%;
+    position: absolute;
+    background-color: #fff;
+    margin: auto;
+    opacity: 0.9;
+    left: 0;
+    right: 0;
+    align-self: center;
+    padding-top: 10px;
+    padding-bottom: 30px;
+   }
+   @media screen and (max-width: $break-small) {
+       width: 100%;    
+   }
  }
 .col-md-offset-1.col-md-8.main.login-form-inner-wrapper {
       margin: 0;
@@ -51,10 +43,12 @@ max-width: 1170px;
   font-size: 55px;
   font-weight: 900;
   font-family: CircularStd;
+
   @media screen and (max-width: $break-large) {
      font-size: 35px;
   }
- @media screen and (max-width: $break-small) {
+
+  @media screen and (max-width: $break-small) {
       font-size: 28px;	      
   }
 }
@@ -62,10 +56,11 @@ max-width: 1170px;
   font-size: 20px;
   color: #414141;
   margin-bottom: 45px;
-@media screen and (max-width: $break-large) {
-     font-size: 16px;
-     margin-bottom: 20px;
-}
+
+  @media screen and (max-width: $break-large) {
+       font-size: 16px;
+       margin-bottom: 20px;
+  }
 }
 .welcome + .alert{
     margin: -12px 0 -8px;
@@ -79,6 +74,7 @@ max-width: 1170px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
+
     @media screen and (max-width: $break-large) {
         margin-bottom: 22px; 
     }
@@ -87,24 +83,6 @@ max-width: 1170px;
 .form-horizontal .form-group {
   margin-left: 0px !important;
   margin-right: 0px !important;
-}
-
-.form-control {
-  border: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-transition: none !important;
-  transtion: none !important;
-  font-size: 20px !important;
-  padding: 15px 0;
-  height: auto;
-  line-height: normal;
-  border-bottom: 1px solid #979797 !important;
-  border-radius: 0px !important;
-  margin-bottom: 3.2% !important;
-  @media screen and (max-width: $break-large) {
-        font-size: 14px!important;
-   }	
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control,
@@ -171,21 +149,16 @@ textarea.form-control{
 }
 
 #new_user + .button_to .btn-primary{
-     border: solid 1px #3c1fa8;
-     background-color: #fff;
-     color: #3c1fa8;
+  border: solid 1px #3c1fa8;
+  background-color: #fff;
+  color: #3c1fa8;
 }
 
 
 @media only screen and (min-width: 1500px) {
-  .form-control {
-    font-size: 20px !important;
-  }
-
   .welcome {
     font-size: 20px;
   }
-
 
   .forgot-password {
     font-size: 20px;

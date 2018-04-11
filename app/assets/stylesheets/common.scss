@@ -1,0 +1,17 @@
+.header-holder {
+    padding-bottom: 30px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.login-bg-wrapper{
+  background: url("logo.png") top 25px left 20px / 218px 31px no-repeat, url("login-bg-img.png") top center / cover;
+
+   @media screen and (min-width:768px) and  (max-width: 991px) {
+       width: 100%;
+   }
+
+   @media screen and (max-width: 767px) {
+       display: none;
+  }
+}

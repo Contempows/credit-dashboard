@@ -8,6 +8,7 @@ end
 gem 'ajax-datatables-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0'
 gem 'bootstrap-will_paginate'
 gem 'cancancan'
 gem 'carrierwave-aws'

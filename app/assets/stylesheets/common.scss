@@ -15,3 +15,66 @@
        display: none;
   }
 }
+
+.top-bar {
+    padding: 18px 40px 17px;
+    background: $grey-secondary;
+
+    .user-holder {
+        
+        span {
+            margin-right: 50px;
+            color: #fff;
+        }
+    }
+
+    .user-logo {
+        width: 45px;
+        height: 45px;
+        margin-right: 15px;
+        border-radius: 50%;
+        background: url('avatar.png') no-repeat;
+        overflow: hidden;
+    }
+}
+
+.fa-power-off {
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+
+    a {
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 0;
+    }
+}
+
+.display-body {
+    background: #fcfcfc;
+    width: auto;
+    margin-left: 280px;
+    min-height: 100%;
+
+    .main-title {
+        weight: 700;
+    }
+
+    .subtitle {
+        color: $grey-secondary;
+    }
+
+    .title {
+
+    }
+
+    .wallet-amount {
+
+    }
+}

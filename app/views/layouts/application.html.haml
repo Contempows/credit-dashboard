@@ -8,60 +8,55 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top.navbar-expand-lg
-      .container
-        .page-main-heading-wrapper
-          .navbar-header{ class: "#{'max-width-image' if current_user.junior?}" }
-            = link_to (image_tag('header-logo-ctc.png')), root_path, class: 'header-logo'
-          - unless current_user.sign_in_count <= 1 && current_user.invited_by_id.present?
-            - unless current_user.au?
-              %button.btn.btn-default.no-border.navbar-toggle.collapsed.navbar-icon-wrraper{"aria-expanded" => "false", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-                %span.glyphicon.glyphicon-th-large
-              #navbarSupportedContent.collapse.navbar-collapse
-                %ul.navbar-nav.nav
-                  %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
-                    %a{href: "/purchases"} Orders Pipeline
-                  %li{ class: "#{'activated' if controller.controller_name == 'users' && !params[:profile_details]}" }
-                    %a{href: "/users"} User Management
-                  %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
-                    %a{href: "/deposits"} Deposits / Withdrawals Pipeline
-                  %li{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
-                    %a{href: "/ssns"} Validation Pipeline
-
-        - unless current_user.sign_in_count <= 1 && current_user.invited_by_id.present?
-          .nav-session
-            .btn-group
-              %button.btn.btn-default.no-border.dropdown-toggle.bar-icon-wrraper{ 'type'=>'button', 'data-toggle'=>'dropdown', 'aria-haspopup'=>'true', 'aria-expanded'=>'false' }
-                %span.glyphicon.glyphicon-menu-hamburger
-              %ul.dropdown-menu.dropdown-menu-right
-                %li= link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
-                %li= link_to 'Change Password', edit_password_user_path(current_user)
-                - if current_user.au?
-                  - if current_user.accepted?
-                    %li= link_to 'Authorised Users', applications_users_path
-                    %li= link_to 'Recent Transactions', ledger_entries_path
-                - if current_user.staff?
-                  %li= link_to 'Tradelines', trade_lines_path
-                  - if Setting.last.blank?
-                    %li= link_to 'Add SSN/CPN charge', new_setting_path(@setting), remote: true
-                  - else
-                    %li= link_to 'SSN/CPN charge', edit_setting_path(Setting.last), remote: true
-                - if current_user.senior?
-                  %li= link_to 'Junior Staff', applications_users_path(junior: true)
-                  %li= link_to 'Banking Information', banking_informations_path
-                %li= link_to 'About Us', about_path
-                %li= link_to 'Contact Us', contact_path
-                %li.divider{ 'role'=>'separator' }
-                %li= link_to 'Logout', destroy_user_session_path, method: :delete
-
-    .row.display-body
-      .container
-        .container-content
-          #error
-            = render partial: 'shared/error' 
-          #messages
-            = render 'shared/messages'
-          #user-render-partial
-          - if current_user.staff?
-            #new-trade-line
-          = yield
+    %header.header
+      .header-top
+        %a.logo-holder.d-flex.align-items-center.justify-content-center.w-100{href: '/'}
+          %h2 Coast To Coast Tradelines
+      .header-body
+        %nav
+          %ul.navigation
+            %li.activated.icon.icon-home{ class: "#{'activated' if controller.action_name == '/'|| controller.controller_name == '/' && !params[:user_check_id]}" }
+              %a{href: "/"} Home
+            %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'profile'|| controller.controller_name == 'profile' && !params[:user_check_id]}" }
+              = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
+            %li.icon.icon-locker= link_to 'Change Password', edit_password_user_path(current_user)
+            - if current_user.au?
+              - if current_user.accepted?
+                %li= link_to 'Authorised Users', applications_users_path
+                %li= link_to 'Recent Transactions', ledger_entries_path
+            %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
+              %a{href: "/brokers"} Brokers / Vendors
+            %li.dropdown.icon.icon-cash
+              %a.dropdown-toggle.d-flex.align-items-center.justify-content-between{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+                Recent Transactions
+                %i.fa.fa-chevron-down
+              %ul.dropdown-menu
+                %li{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
+                  %a{href: "/brokers"} Ledgers
+                %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
+                  %a{href: "/purchases"} Purchases
+                %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
+                  %a{href: "/deposits"} Deposits
+                %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
+                  %a{href: "/purchases"} Refunds
+                %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
+                  %a{href: "/deposits"} Withdrawals
+            %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
+              %a{href: "/ssns"} SSN/CPN Validation
+    .display-body
+      .top-bar.d-flex.align-items-center.justify-content-end
+        .user-holder.d-flex.align-items-center
+          .user-logo
+          %span 
+            Welcome,
+            %strong.user-name Username
+        %i.fa.fa-power-off= link_to 'Logout', destroy_user_session_path, method: :delete
+      .container-content
+        #error
+          = render partial: 'shared/error' 
+        #messages
+          = render 'shared/messages'
+        #user-render-partial
+        - if current_user.staff?
+          #new-trade-line
+        = yield

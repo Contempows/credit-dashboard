@@ -7,67 +7,8 @@ $break-large: 991px;
   transition: none;
 }
 
-.table-striped > tbody > tr:nth-of-type(2n) {
-      background-color: #f9f9f9;
- }
-
- .table-striped > tbody > tr:nth-of-type(2n+1) {
-   background-color: #fff;
- }
-
- .table{
-   margin-bottom: 14px;
- }
-
-.table > tbody > tr > td {
-  border-top: none !important;
-  color: $theme-color; 
-  font-size:18px;
-  vertical-align: middle;
-  font-family: 'CircularStd-Book';
-  padding: 25px 30px;
-  line-height: normal;
-  @media screen and (max-width:991px) {
-      padding: 10px;
-      font-size: 16px;    
-  }
-  @media screen and (min-width:992px) {
-      padding: 10px 15px;    
-  }
-  a {
-    color: $theme-color;
-  }
-  a.dashb, p.dashb{
-     margin-bottom: 10px;
-     word-break: break-all;
-     @media screen and (min-width:992px) {
-       display: block;
-       width: 95%;
-       word-wrap: break-word;
-     }
-   }
-}
-
 .au-dashboard-submitted .table > tbody > tr > td.dashb-app-status{
   padding-top: 27px;
-}
-
-.table > thead > tr > th {
-  font-family: 'CircularStd-Book';
-  color: #202020;
-  font-weight: 500;
-  font-size: 16px;
-  opacity: 0.6;
-  vertical-align: middle;
-  line-height: normal;
-  border-bottom: 1px solid #ddd;
-@media screen and (max-width:991px) {
-   padding: 10px;
-   font-size: 14px;
- }
- @media screen and (min-width:992px) {
-    padding: 26px 20px;
- }
 }
 
 .au-tradeline-panel .table > thead > tr > th:first-child, 
@@ -243,21 +184,6 @@ body{
   border-top: none;
 } 
 
-button.btn, input.btn, a.btn {
-  text-transform: uppercase;
-  font-weight: 900;
-  padding: 20px 0;
-  font-size: 18px;
-   @media screen and (max-width: $break-large) {
-          font-size: 14px;
-	  padding: 14px 0;
-   }
-}
-
-a.btn-default {
-  color: $theme-color;
-}
-
 .modal-header {
   .title, p.dashb.no-margin-bottom {
     font-weight: 900;
@@ -326,22 +252,6 @@ a.btn-default {
       font-size: 16px;
     }
   } 
-}
-
-.btn-lg {
-  border-radius: 8px;
-}
-
-a.btn { 
-  padding: 1em;
-  border: solid 1px #3c1fa8;
-}
-
-.btn.btn-block.btn-lg:not(.btn-primary){
-  color: #3c1fa8;
-  &:hover {
-    color: #3c1fa8;
-  }
 }
 
 .datepicker table tr td.today, .datepicker table tr td.active:active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active.active:hover, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled.active:hover, .datepicker table tr td span:hover, .datepicker table tr td span.focused, .datepicker table tr td.today:hover{

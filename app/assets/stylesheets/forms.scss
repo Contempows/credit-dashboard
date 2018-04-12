@@ -24,6 +24,24 @@ textarea {
     }
 }
 
+.form-control-holder {
+    position: relative;
+
+    .fa {
+        @extend %absCenterY;
+        right: 10px;
+    }
+
+    .fa-search {
+        font-size: em(20);
+        color: #344c67;
+    }
+
+    .form-control {
+        margin-bottom: 0 !important;
+    }
+}
+
 .form-control {
     height: $form-control-height-md !important;
     padding: 0 15px !important;

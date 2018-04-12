@@ -1,6 +1,3 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 .nav-tabs.users-list > li > a {
   border-radius: 0px !important;
   border: none;
@@ -68,34 +65,9 @@ table#tradelineDataTable thead tr th {
   font-size: 12px!important;
 }
 
-.row.au-dashboard-button-wrapper {
-  .col-md-12 {
-    .col-md-3{
-      padding-left: 0px;
-    }
-    .col-md-3:last-child{
-      padding-right:0px;
-    }
-    @media screen and (max-width: 991px) {
-      .col-md-3 {
-        padding-right: 0px;
-      }
-    }
-  }
-}
-
 .withdraw-control-label {
   flex: 4 !important;
 }
-
-/*.dz-remove {
-  display: inline-block;
-}
-
-.image-add-remove-msg {
-  display: inline-block;
-  padding-left: 5px;
-}*/
 
 .dz-progress {
   display: none;
@@ -124,19 +96,6 @@ table#tradelineDataTable thead tr th {
   display: flex;
 }
 
-.dob_wrapper .select2.select2-container.select2-container--bootstrap {
-  display: inline-block;
-  width: 30% !important;
-  padding-top: 15px;
-  .selection {
-    .select2-selection.select2-selection--single {
-      .select2-selection__rendered {
-        text-align: center;
-      }
-    }
-  }
-}
-
 p.dob-slash {
   width: fit-content;
   margin-right: 0px;
@@ -163,7 +122,15 @@ li.select2-selection__choice {
 }
 
 .dashboard-tradeline-table{ 
-  display: block;
+  display: table;
+}
+
+#tradelineDataTable_wrapper {
+  display: flex;
+  flex-flow:  column nowrap;
+  align-items: flex-start;
+
+
 }
 
 #tradelineDataTable{
@@ -196,49 +163,6 @@ li.select2-selection__choice {
 
 .nav-tabs.users-list > li:hover{
   background-color: rgba(242,242,242, 0.70);
-}
-
-.nav.users-list {
-  max-height: 300px;
-  overflow-y: auto;
-  border: none;
-  border-right: solid 1px #ddd;
-  @media screen and (min-width:768px){
-    height: 600px;
-    max-height: none;
-  }
-  @media screen and (max-width: 767px){
-    border-right: none;
-  }
-  li{
-    padding-left: 35px;
-    margin: 0;
-    &.active{
-      background-color: rgba(242,242,242, 0.70);
-      border-left: 5px solid #3f22a9;
-      a{
-        background-color: transparent;
-        border-left: none;
-	border-top: none;
-	border-right: none;
-	border-bottom: 1px solid rgba(151,151,151,0.30);
-      }
-    }
-    @media screen and (max-width: 991px){
-      padding-left: 15px;
-    }
-    .user-list-info-wrapper{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      p.dashb, .all-users-wallet-balance{
-        font-size: 18px;
-      }
-      p.dashb:not(.all-users-wallet-balance){
-        word-break: break-all;
-      }
-    }
-  }
 }
 
 .nav-tabs.users-list > li.active > a, .nav-tabs.users-list > li.active > a:hover, .nav-tabs.users-list > li.active > a:focus {
@@ -400,22 +324,6 @@ padding: 26px 20px;
     padding: 15px 20px;
     font-size: 16px;
 }
-.select2-display-field {
-  padding-bottom: 0px;
-  .control-label {
-    padding-bottom: 0px;
-  }
-  .value {
-    padding-bottom: 0px;
-    .select2.select2-container {
-      .selection {
-        .select2-selection.select2-selection--single {
-          border-bottom: none !important;
-        }
-      }
-    }
-  }
-}
 
 .glyphicon-th-large {
   color: #3C1FA8;
@@ -466,212 +374,4 @@ border-bottom: 1px solid #e7e7e7;
 
 #user_month, #user_day, #user_year {
   text-align: center;
-}
-
-.panel.panel-default.orders-pipeline-wrapper {
-  #panel-search {
-    width: 100%;
-    .search-users-text{
-      margin: 0;
-      font-family: CircularStd;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: right;
-      color: #3c1fa8;
-    }
-  }
-  #search-box {
-    width: 100%;
-    display: none;
-  }
-}
-
-.panel.panel-default.all-users-js-ss-wrapper,
-.panel.panel-default.ss-all-application-wrapper{
-  border-radius: 8px;
-  background-color: #ffffff;
-  border-color: transparent;
-  .panel-heading.col-md-12{
-    @media screen and (min-width: 992px) {
-      padding: 30px 35px 24px!important;
-    }
-    #panel-search{
-       width: 100%;
-       display: flex;
-       flex-direction: column;
-       @media screen and (min-width: 768px) {
-         flex-direction: row;
-       }
-       #search-users{
-         flex: 1;
-	 width: auto;
-	 float: none;
-	 padding: 0;
-         .search-users-text{
-	   margin: 0;
-	   font-family: CircularStd;
-	   font-size: 18px;
-	   font-weight: bold;
-	   text-align: right;
-	   color: #3c1fa8;
-	   @media screen and (max-width: 767px){
-	     float: left!important;
-	     font-size: 14px;
-	   }
-	 }
-       }
-    }
-  }
-  #panel-body{
-    .row{
-      @media screen and (min-width: 768px){
-        display: flex;
-      }
-      @media screen and (max-width: 767px){
-        margin: 0;
-      }
-      .col-sm-4{
-	padding-right: 0;
-        @media screen and (max-width: 767px){
-	  padding: 0;
-	}
-      }
-      .col-sm-8{
-	  padding: 30px 42px 24px 27px;
-	@media screen and (max-width: 991px){
-	  padding: 25px 25px 10px 10px;
-	}
-        #user-show-info{
-	  @media screen and (min-width: 768px){
-	    display: flex;
-	    flex-direction: column;
-	    height: 100%;
-	  }
-	  .panel.panel-default.recent-transactions-user{
-	    border-radius: 8px;
-	    @media screen and (min-width: 768px){
-	      flex: 1;
-	      margin-bottom: 0;
-	    }
-	    .panel-heading.col-md-12{
-	      border-top-left-radius: 8px;
-	      border-top-right-radius: 8px;
-	    }
-	    #panel-body.panel-body{
-	      height: auto;
-	      .table > tbody > tr{
-	        td{
-		  @media screen and (min-width: 992px){
-		    padding: 25px;
-		  }
-		  &:first-child{
-		    @media screen and (min-width: 992px){
-		      padding-left: 32px;
-		    }
-		  }
-		  &:nth-last-child(1){
-		    vertical-align: top;
-		    @media screen and (min-width: 992px){
-		      padding-right: 40px;
-		    }
-		  }
-		}
-	      }
-	    }
-	  }
-	  .panel.panel-default.user-profile-panel{
-	    border-radius: 8px;
-	    #panel-body{
-	      display: flex;
-	      @media screen and (max-width: 767px){
-	        flex-direction: column;
-	      }
-	      .col-sm-4.no-pad-right.no-pad-left{
-		height: auto;
-		width: auto;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-		box-shadow: none;
-		border: none;
-		img{
-		  border-top-left-radius: 8px;
-		  border-bottom-left-radius: 8px;
-		  width: 100%;
-		  max-width: 175px;
-		  height: 100%;
-		}
-	      }
-	      .col-sm-8.no-pad-left.user-details{
-	        padding: 0;
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		@media screen and (min-width: 768px) and (max-width: 991px){
-		  flex-direction: column;
-		  align-items: flex-start;
-		}
-		@media screen and (max-width: 767px){
-		  flex-direction: column;
-		}
-		.col-sm-8.no-pad-left.pull-left{
-		  padding: 44px 20px 44px 40px;
-		  flex: 1;
-		  @media screen and (max-width: 991px){
-		    padding: 20px 10px 20px 20px;
-		  }
-		  .dashb.no-margin-bottom{
-		    .bold-font{
-		      font-size: 22px;
-		      font-weight: 900;
-		      margin-bottom: 10px;
-		      @media screen and (max-width: 991px){
-		        font-size: 18px;
-		      }
-		    }
-		  }
-		  .dashb-small-date.no-margin-bottom{
-		    font-weight: 400;
-		    line-height: normal;
-		    margin-bottom: 4px !important;
-		  }
-		}
-		.col-sm-4{
-		  padding: 0;
-		  width: auto;
-		  padding-right: 60px;
-		  @media screen and (min-width: 768px) and (max-width: 991px){  
-		    padding: 20px;
-		  }
-		  @media screen and (max-width: 767px){
-		    padding: 10px 0 20px;
-		  }
-		  .wallet-balance-box.align-middle{
-		    height: auto;
-		    width: auto;
-		    border-radius: 8px;
-		    padding: 21px 18px;
-		    @media screen and (max-width: 991px){
-		      padding: 13px 10px;
-		    }
-		    .bold-font.w-balance-all-users{
-		      font-size: 22px;
-		      font-weight: 900;
-		    @media screen and (max-width: 991px){
-		      font-size: 18px;
-		    }
-		  }
-		  }
-		  td.align-middle.vertical-option-icon{
-		    padding-left: 36px;
-		    @media screen and (max-width: 991px){
-		      padding-left: 15px;
-		    }
-		  }
-		}
-	      }
-	    }
-	  }
-	}    
-  }													          }													     }
 }

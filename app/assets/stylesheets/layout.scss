@@ -530,14 +530,6 @@ select:-moz-focusring {
   align-items: center;
 }
 
-.container-content {
-  margin-top: 40px;
-  min-height: 100%;
-@media screen and (min-width:992px) {
-  margin-top: 65px;
-}
-}
-
 .col-sm-12.user-wrapper{
   background-color: #fff;
   padding-top: 10px;
@@ -781,6 +773,10 @@ select:-moz-focusring {
       margin-top: 10px;
     }
   }
+}
+
+.row-holder {
+  padding: 30px 40px;
 }
 
 label.control-label abbr{

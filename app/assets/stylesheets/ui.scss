@@ -157,4 +157,12 @@ $default-text-color: $grey-primary;
         display: block;
         background: url('icon-wallet.png');
     }
+
+    &.icon-filter {
+        width: 22px;
+        height: 23px;
+        display: block;
+        margin-left: 5px;
+        background: url('icon-filter.png');
+    }
 }

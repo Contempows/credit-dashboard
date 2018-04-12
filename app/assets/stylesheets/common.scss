@@ -16,6 +16,14 @@
   }
 }
 
+.login {
+
+    .btn-link {
+        padding-left: 3px;
+        font-weight: 700;
+    }
+}
+
 .top-bar {
     padding: 18px 40px 17px;
     background: $grey-secondary;
@@ -70,11 +78,26 @@
         color: $grey-secondary;
     }
 
-    .title {
-
-    }
-
     .wallet-amount {
+        margin-right: 20px;
+        color: $default-text-color;
+        font-size: em(16);
+        font-weight: 300;
 
+        .icon {
+            margin-right: 10px;
+        }
+
+        strong {
+            padding-left: 5px;
+        }
     }
+}
+
+.btn-reset-filters {
+    margin-right: 20px;
+}
+
+.btn-filters {
+
 }

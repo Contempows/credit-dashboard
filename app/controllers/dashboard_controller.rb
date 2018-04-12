@@ -6,7 +6,6 @@ class DashboardController < ApplicationController
       redirect_to edit_password_user_path(current_user)
     elsif is_au?
       Purchase.where(status: 'initiated').destroy_all
-      @all_trade_lines = TradeLine.accessible_by(current_ability)
       @states = State.pluck(:name, :id)
       respond_to do |format|
         format.html
@@ -18,6 +17,7 @@ class DashboardController < ApplicationController
       @latest_ssn_users = Ssn.latest_ssns_group_by_users.keys.first(3)
       @notifications = User.notifications
     end
+    @trade_lines = TradeLine.accessible_by(current_ability)
     @can_confirm_deposit = BankingInformation.last.present?
   end
 

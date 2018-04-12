@@ -20,6 +20,7 @@
 @import "navigation";
 @import "content";
 @import "modals";
+@import "tables";
 
 @import "signupin";
 @import "dashboard";
@@ -31,40 +32,6 @@
 @import "deposit";
 @import "users";
 
-// @font-face {
-//   font-family: 'CircularStd-Bold';
-//   src: asset_url('CircularStd-Bold.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-BoldItalic';
-//   src: asset_url('CircularStd-BoldItalic.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-Book';
-//   src: asset_url('CircularStd-Book.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-BookItalic';
-//   src: asset_url('CircularStd-BookItalic.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd';
-//   src: asset_url('CircularStd-Black.otf');
-// }
-// @font-face {
-//   font-family: 'CircularStd-Medium';
-//   src: asset_url('CircularStd-Medium.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-MediumItalic';
-//   src: asset_url('CircularStd-MediumItalic.otf');
-// }
-
 .display-user-details-body{
   margin-top: 5.2em;
 }
@@ -75,13 +42,6 @@
 
 .no-border:hover {
   background: white !important;
-}
-
-.btn.btn-default.no-border.dropdown-toggle.bar-icon-wrraper{
-    position: relative;
-    border-radius: 0;
-    line-height: normal;
-    padding: 0px 9px;
 }
 
 span.glyphicon.glyphicon-menu-hamburger {

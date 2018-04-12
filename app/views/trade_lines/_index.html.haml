@@ -1,22 +1,23 @@
-%table.table.table-striped#tradelineDataTable.table-responsive
+%table.table.table-responsive.dashboard-tradeline-table#tradelineDataTable
   %thead
     %tr
-      - if current_user.staff?
-        %th ID
-      %th Slots
-      %th Bank
-      %th Credit Limit
-      %th History
-      %th Statement Date
+      %th.no-sort Card icon
+      %th.no-sort Bank Name
+      %th.no-sort Slot
+      %th.no-sort Credit Limit
+      %th.no-sort Card Age
+      %th.no-sort Statement Date
       %th.no-sort State
-      %th.no-sort Special Add.?
-      %th.no-sort SSN req.?
-      %th.no-sort DL Req.?
+      %th.no-sort Special Add
+      %th.no-sort SSN req
+      %th.no-sort DL Req
       %th Price
-      - if current_user.staff? 
-        %th.no-sort Status 
-      %th.no-sort
+      %th.no-sort Purchase
   %tbody#trade_lines
+    - if @trade_lines.any?
+      = render @trade_lines
+    - else
+      = render 'shared/no-data'
 
 :javascript
   $(document).ready(function(){
@@ -30,10 +31,15 @@
         "targets": 'no-sort',
         "orderable": false
       } ],
+      "language": {
+        "search": "",
+        "searchPlaceholder": "Search by bank name, price or credit limit..."
+      },
       info: false,
       'pageLength': 30,
       "bLengthChange": false,
       searching: false,
+      filtering: true,
       'ajax': '/trade_lines.json' + params,
       'serverSide': true,
       'pagingType': 'full_numbers',

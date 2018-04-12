@@ -1,5 +1,6 @@
 .btn {
     margin-right: 5px;
+    padding: 0 !important;
     color: #fff;
     font-family: $default-font-family;
     font-size: em(16) !important;
@@ -17,7 +18,8 @@
 
     input,
     button {
-        padding: 0 !important;
+        width: 100%;
+        margin: 0 !important;
         border: 0 !important;
         background: none !important;
 
@@ -78,14 +80,56 @@
     }
 }
 
-.btn-sm {
-    @include button-size(8px 0, 8px 0, em(18, 18), 1, 2px);
+.btn-secondary {
+    background: #fff !important;
+    border: 1px solid #fff !important;
+    
+    input,
+    button {
+        color: #fff !important;
+        text-transform: none !important;
+        font-weight: 400 !important;
+    }
+}
+
+.btn-xl {
+    @include button-size(0, 0, em(15, 16), 1, 2px);
+    min-width: 200px;
+    padding: 16px 0 !important;
+
+    input,
+    button {
+        padding: 12px 0 !important;
+    }
+}
+
+.btn-lg {
+    @include button-size(0, 0, em(18, 18), 1, 2px);
     min-width: 220px;
-    padding: 9px 0 !important
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
 }
 
 .btn-sm {
-    @include button-size(8px 0, 8px 0, em(18, 18), 1, 2px);
+    @include button-size(0, 0, em(18, 18), 1, 2px);
     min-width: 193px;
-    padding: 9px 0 !important
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
+}
+
+.btn-xm {
+    @include button-size(0, 0, em(18, 18), 1, 2px);
+    min-width: 152px;
+    padding: 7px !important;
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
 }

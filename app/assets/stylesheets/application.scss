@@ -6,6 +6,7 @@
 @import 'bootstrap-datepicker3';
 @import 'dataTables/jquery.dataTables';
 @import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
+@import "font-awesome";
 
 @import "variables";
 @import "mixins";
@@ -16,6 +17,9 @@
 @import "typo";
 @import "buttons";
 @import "common";
+@import "navigation";
+@import "content";
+@import "modals";
 
 @import "signupin";
 @import "dashboard";

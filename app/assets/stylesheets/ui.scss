@@ -1,0 +1,160 @@
+//Main theme colors
+$theme-color:  #3ebdc7;
+$brand-color: #23a1aa;
+$primary-color-light: $theme-color;
+$primary-color-dark: $brand-color;
+$grey-primary: #3c3c3c;
+$grey-secondary: #4e4e4e;
+$light-primary: #a4a4a4;
+$light-secondary: #d4d4d4;
+$light-tertiary: #f0f0f0;
+
+$btn-primary-bg: $theme-color;
+
+$bg-colors: (
+    grey-light: #f0f0f0
+);
+
+$ui-colors: (
+    primary-color-dark: $primary-color-dark,
+    primary-color-light: $primary-color-light
+);
+
+$icons-arr: (
+    home: home,
+    user: user,
+    locker: locker,
+    hands: hands,
+    cash: cash,
+    checked: checked,
+    wallet: wallet
+);
+
+//Fonts colors
+$default-text-color: $grey-primary;
+
+//Buttons variants
+@each $color, $value in $ui-colors {
+
+    .btn-#{$color} {
+        @include button-variant($value, $value, $value);
+    }
+}
+
+//Buttons variants
+@each $color, $value in $bg-colors {
+
+    .bg-#{$color} {
+        background: $value;
+    }
+}
+
+.input-labeled {
+    
+    .text-form {
+        position: relative;
+
+        @include pseudo-el(after, 24px, 24px) {
+            top: 43%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: url('calendar-icon.png') no-repeat;
+        }
+    }
+}
+
+.icon {
+
+    @each $name, $value in $icons-arr {
+
+        &.icon-#{$name} {
+
+            & > a {
+                position: relative;
+                
+                &:before {
+                    position: absolute;
+                    top: 50%;
+                    left: 30px;
+                    transform: translateY(-50%);
+                    display: block;
+                    content: '';
+                    background: url('icon-' + $name + '.png');
+                }
+            }
+        }
+    }
+
+    &.icon-home {
+
+        & > a {
+
+            &:before {
+                width: 24px;
+                height: 21px;
+            }
+        }
+    }
+
+    &.icon-user {
+
+        & > a {
+
+            &:before {
+                width: 19px;
+                height: 18px;
+            }
+        }
+    }
+
+    &.icon-locker {
+
+        & > a {
+
+            &:before {
+                width: 18px;
+                height: 23px;
+            }
+        }
+    }
+
+    &.icon-hands {
+
+        & > a {
+
+            &:before {
+                width: 27px;
+                height: 18px;
+            }
+        }
+    }
+
+    &.icon-cash {
+
+        & > a {
+
+            &:before {
+                width: 26px;
+                height: 23px;
+            }
+        }
+    }
+
+    &.icon-checked {
+
+        & > a {
+
+            &:before {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+    
+    &.icon-wallet {
+        width: 37px;
+        height: 28px;
+        display: block;
+        background: url('icon-wallet.png');
+    }
+}

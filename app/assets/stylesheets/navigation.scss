@@ -1,0 +1,130 @@
+.header {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.logo-holder {
+    padding: 29px 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        border: 0;
+        color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+        font-family: $brand-font-family;
+        font-size: em(20);
+    }
+}
+
+.header-top {
+    background: $grey-primary;
+}
+
+.header-body {
+    width: 100%;
+    height: 100%;
+    background: $primary-color-light;
+    overflow: hidden;
+    overflow-y: auto;
+
+    .navigation {
+
+        & > li {
+
+            &:hover {
+                background: $primary-color-dark;
+
+                & > ul {
+                    background: $primary-color-light;
+
+                    li {
+                        background: transparent;
+                    }
+                }
+
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            a {
+                display: block;
+                padding: 21px 15px 21px 70px;
+                color: #fff;
+            }
+        }
+
+        .activated {
+            background: $primary-color-dark;
+
+            a {
+
+            }
+        }
+
+        .dropdown-toggle {
+
+            &:after { 
+                display: none;
+            }
+        }
+
+        .dropdown-menu {
+            position: relative;
+            top: initial;
+            left: initial;
+            z-index: 1000;
+            display: block;
+            float: initial;
+            min-width: auto;
+            padding: 0;
+            margin: 0;
+            list-style: circle;
+            font-size: inherit;
+            text-align: initial;
+            background-color: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            background-clip: initial;
+
+            & > li {
+
+                &:hover {
+                    background: $primary-color-dark;
+                }
+
+                a {
+                    position: relative;
+                    padding-left: 95px;
+
+                    &:before {
+                        @extend %pseudos;
+                        @extend %absCenterY;
+                        left: 70px;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        border: 1px solid #fff;
+                    }
+                    
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+            }
+        }
+    }
+}

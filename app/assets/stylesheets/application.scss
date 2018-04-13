@@ -1,13 +1,26 @@
-$theme-color:  #3C1FA8;
-$btn-primary-bg: $theme-color; 
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css";
 @import "select2";
 @import "select2-bootstrap";
 @import 'bootstrap-datepicker3';
 @import 'dataTables/jquery.dataTables';
 @import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
+@import "font-awesome";
+
+@import "variables";
+@import "mixins";
+@import "ui";
+
+@import "fonts";
+@import "forms";
+@import "typo";
+@import "buttons";
+@import "common";
+@import "navigation";
+@import "content";
+@import "modals";
+
 @import "signupin";
 @import "dashboard";
 @import "basic.min";
@@ -18,39 +31,39 @@ $btn-primary-bg: $theme-color;
 @import "deposit";
 @import "users";
 
-@font-face {
-  font-family: 'CircularStd-Bold';
-  src: asset_url('CircularStd-Bold.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd-Bold';
+//   src: asset_url('CircularStd-Bold.otf');
+// }
 
-@font-face {
-  font-family: 'CircularStd-BoldItalic';
-  src: asset_url('CircularStd-BoldItalic.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd-BoldItalic';
+//   src: asset_url('CircularStd-BoldItalic.otf');
+// }
 
-@font-face {
-  font-family: 'CircularStd-Book';
-  src: asset_url('CircularStd-Book.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd-Book';
+//   src: asset_url('CircularStd-Book.otf');
+// }
 
-@font-face {
-  font-family: 'CircularStd-BookItalic';
-  src: asset_url('CircularStd-BookItalic.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd-BookItalic';
+//   src: asset_url('CircularStd-BookItalic.otf');
+// }
 
-@font-face {
-  font-family: 'CircularStd';
-  src: asset_url('CircularStd-Black.otf');
-}
-@font-face {
-  font-family: 'CircularStd-Medium';
-  src: asset_url('CircularStd-Medium.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd';
+//   src: asset_url('CircularStd-Black.otf');
+// }
+// @font-face {
+//   font-family: 'CircularStd-Medium';
+//   src: asset_url('CircularStd-Medium.otf');
+// }
 
-@font-face {
-  font-family: 'CircularStd-MediumItalic';
-  src: asset_url('CircularStd-MediumItalic.otf');
-}
+// @font-face {
+//   font-family: 'CircularStd-MediumItalic';
+//   src: asset_url('CircularStd-MediumItalic.otf');
+// }
 
 .display-user-details-body{
   margin-top: 5.2em;

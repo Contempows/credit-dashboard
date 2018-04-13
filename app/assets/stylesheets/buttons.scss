@@ -1,0 +1,135 @@
+.btn {
+    margin-right: 5px;
+    padding: 0 !important;
+    color: #fff;
+    font-family: $default-font-family;
+    font-size: em(16) !important;
+    font-weight: 400;
+    line-height: 1.56;
+    transition: all .15s ease;
+    cursor: pointer;
+    z-index: 99;
+
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+    }
+
+    input,
+    button {
+        width: 100%;
+        margin: 0 !important;
+        border: 0 !important;
+        background: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: none !important;
+            border: 0 !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+}
+
+.btn-link {
+    min-width: auto;
+    padding: 0 0 0 3px;
+    text-transform: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    transition: all .15s ease;
+    color: $default-text-color;
+    font-weight: 700;
+
+    &:focus,
+    &:active,
+    &:hover {
+        outline: 0;
+    }
+
+    &:hover {
+        opacity: .75;
+    }
+}
+
+.btn-cyan {
+    background: $primary-color-light !important;
+    border: 1px solid $primary-color-light !important;
+
+    input,
+    button {
+        color: #fff !important;
+        text-transform: none !important;
+        font-weight: 400 !important;
+    }
+}
+
+.btn-light-primary {
+    background: $light-primary !important;
+    border: 1px solid $light-primary !important;
+    
+    input,
+    button {
+        color: #fff !important;
+        text-transform: none !important;
+        font-weight: 400 !important;
+    }
+}
+
+.btn-secondary {
+    background: #fff !important;
+    border: 1px solid #fff !important;
+    
+    input,
+    button {
+        color: #fff !important;
+        text-transform: none !important;
+        font-weight: 400 !important;
+    }
+}
+
+.btn-xl {
+    @include button-size(0, 0, em(15, 16), 1, 2px);
+    min-width: 200px;
+    padding: 16px 0 !important;
+
+    input,
+    button {
+        padding: 12px 0 !important;
+    }
+}
+
+.btn-lg {
+    @include button-size(0, 0, em(18, 18), 1, 2px);
+    min-width: 220px;
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
+}
+
+.btn-sm {
+    @include button-size(0, 0, em(18, 18), 1, 2px);
+    min-width: 193px;
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
+}
+
+.btn-xm {
+    @include button-size(0, 0, em(18, 18), 1, 2px);
+    min-width: 152px;
+    padding: 7px !important;
+
+    input,
+    button {
+        padding: 9px 0 !important;
+    }
+}

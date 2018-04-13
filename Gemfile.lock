@@ -67,6 +67,10 @@ GEM
     aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     bootstrap-sass (3.3.7)
@@ -120,6 +124,8 @@ GEM
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
     ffi (1.9.23)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -187,6 +193,7 @@ GEM
     parser (2.5.0.5)
       ast (~> 2.4.0)
     pg (1.0.0)
+    popper_js (1.12.9)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -384,6 +391,7 @@ PLATFORMS
 
 DEPENDENCIES
   ajax-datatables-rails
+  bootstrap (~> 4.0.0)
   bootstrap-datepicker-rails
   bootstrap-sass
   bootstrap-will_paginate
@@ -393,6 +401,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_girl_rails
+  font-awesome-rails
   haml-rails
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)

@@ -75,6 +75,13 @@
     }
 }
 
+.btn-grey-primary {
+    background: $grey-primary;
+    border: 1px solid $grey-primary;
+    min-width: 110px;
+    padding: 9px 0;
+}
+
 .btn-light-primary {
     background: $light-primary;
     border: 1px solid $light-primary;

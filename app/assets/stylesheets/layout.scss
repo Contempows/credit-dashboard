@@ -775,6 +775,14 @@ select:-moz-focusring {
   }
 }
 
+.row {
+
+  &:before,
+  &:after {
+    display: block;
+  }
+}
+
 .row-holder {
   padding: 30px 40px;
 }

@@ -40,54 +40,38 @@
   - else
     = render 'trade_lines/index'
 
-.modal#filters-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+.modal.filters-modal#filters-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
   .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
-        %h5.modal-title#filter-modal-label Modal title
+        %h5.modal-title#filter-modal-label.title-sub-brand Filter your search result
         %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
           %span{'aria-hidden': 'true'} Close
       .modal-body
-        = form_tag trade_lines_path, method: :get do
-          .col-md-12
-            .row
-              .col-md-12.trade-line-search-column{style: 'padding-bottom:15px'}
-                = label_tag :bank, 'Bank', class: 'control-label', style: 'width: 10%'
-                = select_tag :bank, options_for_select(@trade_lines.uniq.pluck(:bank), params[:bank]), multiple: true, class: 'form-control search-form'
-            .row
-              .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
-                = label_tag :state, 'State', class: 'control-label', style: 'width: 50%'
-                = select_tag :state
-              .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
-                = label_tag :special_add, 'Special Add Required?', class: 'control-label', style: 'width: 50%'
-                = select_tag :special_add, options_for_select([['Yes', true], ['No', false]], params[:special_add]),
-                include_blank: true
-            .row
-              .col-md-6.trade-line-search-column
-                = label_tag :min_credit_limit, 'Min Credit Limit', class: 'control-label', style: 'width: 50%'
-                = text_field_tag :min_credit_limit, params[:min_credit_limit],
-                onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
-                class: 'form-control search-form '
-              .col-md-6.trade-line-search-column
-                = label_tag :ssn_req, 'SSN Req?', class: 'control-label', style: 'width: 50%'
-                = select_tag :ssn_req, options_for_select([['Yes', true], ['No', false]], params[:ssn_req]),
-                include_blank: true
-            .row
-              .col-md-6.trade-line-search-column
-                = label_tag :max_price, 'Max Price', class: 'control-label', style: 'width: 50%'
-                = text_field_tag :max_price, params[:max_price],
-                onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
-                class: 'form-control search-form '
-              .col-md-6.trade-line-search-column
-                = label_tag :dl_req, 'DL Req?', class: 'control-label', style: 'width: 50%'
-                = select_tag :dl_req, options_for_select([['Yes', true], ['No', false]], params[:dl_req]),
-                include_blank: true
-          &nbsp;
-          &nbsp;
-          .col-md-12
-            .row
-              .col-md-4.col-md-offset-4
-                %button.btn.btn-primary.btn-block{type: 'submit'} Search
-                &nbsp;
+        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
+          .col-50.d-flex.flex-column
+            = label_tag :bank, 'Bank', class: 'control-label'
+            = select_tag :bank, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+            = label_tag :state, 'State', class: 'control-label'
+            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
       .modal-footer
-        %button.btn.btn-primary{'data-dismiss': 'modal', 'aria-label': 'Close'} Apply Filter
+        %button.btn.btn-cyan.btn-sm{'data-dismiss': 'modal', 'aria-label': 'Close'} Apply Filter

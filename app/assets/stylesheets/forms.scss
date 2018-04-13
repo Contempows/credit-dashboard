@@ -20,7 +20,7 @@ textarea {
 textarea {
 
     &.form-control {
-        padding-top: 8px !important;
+        padding-top: 8px;
     }
 }
 
@@ -38,21 +38,21 @@ textarea {
     }
 
     .form-control {
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
     }
 }
 
 .form-control {
-    height: $form-control-height-md !important;
-    padding: 0 15px !important;
-    color: $default-text-color !important;
-    font-size: $default-font-size !important;
-    font-weight: $default-font-weight !important;
-    border: 1px solid $light-secondary !important;
-    box-shadow: none !important;
-    border-radius: $rounded-sm !important;
-    line-height: 1.92 !important;
-    margin-bottom: 3.2% !important;
+    height: $form-control-height-md;
+    padding: 0 15px;
+    color: $default-text-color;
+    font-size: $default-font-size;
+    font-weight: $default-font-weight;
+    border: 1px solid $light-secondary;
+    box-shadow: none;
+    border-radius: $rounded-sm;
+    line-height: 1.92;
+    margin-bottom: 3.2%;
 
     &.rounded {
         border-radius: $rounded-sm;
@@ -62,6 +62,10 @@ textarea {
     &:active {
         box-shadow: none;
         outline: 0;
+    }
+
+    &.select-picker {
+        border: 0
     }
 }
 

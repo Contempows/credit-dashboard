@@ -1,4 +1,6 @@
 %tr
+  %td
+    = image_tag('bank-of-america.png')
   %td= trade_line.slots
   %td#bank-name= trade_line.bank.capitalize
   %td
@@ -15,6 +17,7 @@
   - if current_user.senior?
     %td= trade_line.is_active? ? 'Active' : 'Inactive'
   %td
+    %button.btn.btn-grey-primary Purchase
     - if current_user.staff?
       / = link_to edit_trade_line_path(trade_line), remote: true do
       /   %span.glyphicon.glyphicon-arrow-right

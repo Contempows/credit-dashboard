@@ -26,7 +26,7 @@
                 %li= link_to 'Recent Transactions', ledger_entries_path
             %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
               %a{href: "/brokers"} Brokers / Vendors
-            %li.dropdown.icon.icon-cash
+            %li.dropdown.icon.icon-cash.open
               %a.dropdown-toggle.d-flex.align-items-center.justify-content-between{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
                 Recent Transactions
                 %i.fa.fa-chevron-down

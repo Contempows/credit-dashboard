@@ -14,12 +14,14 @@
 
 @import "fonts";
 @import "forms";
+@import "select2-custom";
 @import "typo";
 @import "buttons";
 @import "common";
 @import "navigation";
 @import "content";
 @import "modals";
+@import "tables";
 
 @import "signupin";
 @import "dashboard";
@@ -31,57 +33,8 @@
 @import "deposit";
 @import "users";
 
-// @font-face {
-//   font-family: 'CircularStd-Bold';
-//   src: asset_url('CircularStd-Bold.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-BoldItalic';
-//   src: asset_url('CircularStd-BoldItalic.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-Book';
-//   src: asset_url('CircularStd-Book.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-BookItalic';
-//   src: asset_url('CircularStd-BookItalic.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd';
-//   src: asset_url('CircularStd-Black.otf');
-// }
-// @font-face {
-//   font-family: 'CircularStd-Medium';
-//   src: asset_url('CircularStd-Medium.otf');
-// }
-
-// @font-face {
-//   font-family: 'CircularStd-MediumItalic';
-//   src: asset_url('CircularStd-MediumItalic.otf');
-// }
-
 .display-user-details-body{
   margin-top: 5.2em;
-}
-
-.no-border {
-  border: none !important;
-}
-
-.no-border:hover {
-  background: white !important;
-}
-
-.btn.btn-default.no-border.dropdown-toggle.bar-icon-wrraper{
-    position: relative;
-    border-radius: 0;
-    line-height: normal;
-    padding: 0px 9px;
 }
 
 span.glyphicon.glyphicon-menu-hamburger {
@@ -239,30 +192,6 @@ input#term[type='text']:focus {
 
 .glyphicon-warning-sign {
   color: red;
-}
-
-
-
-.select2-selection.select2-selection--single {
-  height: 41px !important;
-}
-.select2-selection.select2-selection--multiple, .select2-selection.select2-selection--single {
-  border: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-transition: none !important;
-  transtion: none !important;
-  font-size: 18px !important;
-  padding: 4.3px 0;
-  height: auto;
-  line-height: normal;
-  border-bottom: 1px solid #979797 !important;
-  border-radius: 0px !important;
-  margin-bottom: 0px !important;
-}
-
-.select2-container--bootstrap .select2-selection--single .select2-selection__rendered{
-  padding-right: 25px !important;
 }
 
 .staff-ssn-modal-wrapper .row .fields .col-md-12 .col-md-6:nth-child(1) {

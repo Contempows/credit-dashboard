@@ -106,7 +106,12 @@ function changeNote(count) {
 ;(function () {
 
   $(document).ready(function () {
-    $('.date-of-birth').datepicker();
+    
+    $('.date-of-birth').datepicker()
+
+    $('.select-picker').each(function (i, el) {
+      $(this).select2()
+    })
   })
 
 })();

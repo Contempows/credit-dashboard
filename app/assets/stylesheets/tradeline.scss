@@ -36,58 +36,6 @@
 }
 }
 
-.new-trade-line{
-  text-transform: capitalize;
-  color: $theme-color;
-  font-size: 18px;
-  font-family: 'CircularStd';
-  &:hover, &:focus {
-       color: #3c1fa8;
-          text-decoration: none;
-  }
-@media screen and (max-width:991px) {
-      font-size: 16px;
-      width: auto;
-      height: auto;
-      display: block;
-    }
-}
-
 .new-trade-line.add-trade-line-and-user{
   text-transform: uppercase;
-}
-//.pagination {
- // display: none;
-//}
-
-#new_trade_line_modal {
-  input.btn.btn-primary.btn-lg.btn-block{
-       margin-top: 60px;
-       @media screen and (max-width:991px) {
-         margin-top: 20px;
-       }
-     }
-   input.btn.btn-default.btn-block.btn-lg{
-     margin-top: 10px;
-   }
-}
-
-.currency_wrapper {
-  font-size: 22px !important;
-  font-weight: 900;
-  color: #3c1fa8;
-}
-
-.currency_wrapper_for_form {
-  padding-right: 0px;
-  width: auto;
-  padding-top: 10px;
-}
-
-.currency_wrapper_withdraw {
-  padding-left: 0px;
-}
-
-.currency_form_block {
-  padding-left: 0px;
 }

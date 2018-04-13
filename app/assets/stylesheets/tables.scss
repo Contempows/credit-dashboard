@@ -1,0 +1,155 @@
+.table-responsive {
+    border: 0;
+}
+
+.table-holder {
+    margin-bottom: 15px;
+}
+
+.table-striped {
+
+    > tbody {
+        
+        > tr {
+            
+            &:nth-of-type(even) {
+                background: transparent;
+            }
+
+            &:nth-of-type(odd) {
+                background: #eee;
+            }
+        }
+    }
+}
+
+.table {
+    display: table;
+    margin-bottom: 0;
+    font-size: em(15);
+    border-color: $light-secondary !important;
+
+    > thead,
+    > tbody,
+    > tfoot {
+
+        > tr {
+            background: transparent !important;
+
+            > th,
+            > td {
+                border: 0;
+                line-height: 1.5;
+
+                &:nth-child(2) {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    > thead {
+        position: relative;
+
+        @include pseudo-el(after, auto, 2px) {
+            top: 50px;
+            left: 0;
+            right: 0;
+            background: $light-secondary;
+        }
+
+        > tr {
+
+            > th {
+                width: auto !important;
+
+                &:first-child {
+                    padding-left: 40px;
+                }
+            }
+        }
+
+        td {
+
+        }
+    }
+
+    > tbody {
+
+        > tr {
+
+            > th,
+            > td {
+                padding: 10px 18px;
+                color: $grey-secondary;
+                border: 0;
+                line-height: 1.5;
+                vertical-align: baseline;
+                text-align: left;
+
+                &:first-child {
+                    &:first-child {
+                        padding-left: 40px;
+                    }
+                }
+            }
+
+            > td {
+                vertical-align: middle;
+                text-align: left;
+            }
+
+            &:last-child {
+
+            }
+        }
+    }
+}
+
+
+.dashboard-tradeline-table{ 
+    display: table;
+}
+
+#tradelineDataTable_wrapper {
+    display: flex;
+    flex-flow:  column nowrap;
+    align-items: flex-start;
+
+    .row {
+        width: 100%;
+
+        &:first-child {
+            flex-direction: row-reverse;
+
+            & > div {
+                display: flex;
+                align-items: flex-end;
+                width: 100%;
+            }
+        }
+
+        &:nth-child(2) {
+            margin: 0;
+
+            & > div {
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+.dataTables_filter {
+    width: 100%;
+
+    .form-control {
+        width: 100%;
+    }
+}
+
+#tradelineDataTable{
+    display: table !important;
+    width: 100% !important;
+}
+

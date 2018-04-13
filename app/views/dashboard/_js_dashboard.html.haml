@@ -1,94 +1,77 @@
-.row
+.row.row-holder.align-items-center
   .col-sm-6
     %h2.main-title.title-brand Welcome To Our TradeLines
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6
     .d-flex.justify-content-end
-      = link_to 'FUND YOUR WALLET', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true
-      = link_to 'CONFIRM your DEPOSIT', new_deposit_path, class: 'btn btn-cyan btn-xl', remote: true, method: :get
+      = link_to 'Fund Your Wallet', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true
+      = link_to 'Confirm Your Deposit', new_deposit_path, class: 'btn btn-cyan btn-xl', remote: true, method: :get
 
-.row.bg-grey-light
+.row.row-holder.align-items-center.bg-grey-light
   .col-sm-6
     %h3.title.title-sub-brand All TradeLines
   .col-sm-6
     .d-flex.justify-content-end
       %span.wallet-amount.d-flex.align-items-center
         %i.icon.icon-wallet
+        Wallet balance:
         - precision = user_wallet_balance_precision(current_user.wallet_balance)
-        = number_to_currency(current_user.wallet_balance, precision: 2)
+        %strong
+          = number_to_currency(current_user.wallet_balance, precision: 2)
       = link_to 'Withdraw Funds', new_withdraw_path, class: 'btn btn-secondary btn-xm', remote: true
 
-.row.js-dashboard-wrapper
+.row.row-holder.align-items-center
+  .col-sm-6.d-flex.align-items-center
+    %form.w-100{action: '#'}
+      .form-control-holder
+        %input{type: 'search', class: 'form-control', placeholder: 'Search by bank name, price or credit limit...'}
+        %i.fa.fa-search
+  .col-sm-6.d-flex.align-items-center.justify-content-end
+    %a.btn.btn-light-tertiary.btn-xxm.btn-reset-filters
+      Remove Filter
+      %i.fa.fa-times
+    %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#filters-modal'}
+      Filter
+      %i.icon.icon-filter
 
-  / .col-md-4.apps-pipeline-wrapper
-  /   .panel.panel-default
-  /     .panel-heading.col-md-12
-  /       .text-left.col-md-6
-  /         .panel-title Orders Pipeline 
-  /       .text-right.col-md-6
-  /         - if @orders.any?
-  /           = link_to 'View all', purchases_path, class: 'new-trade-line'
-  /     #user-change-status
-  /     .panel-body.apps-pipeline#panel-body
-  /       - if @orders.any?
-  /         = render 'orders'
-  /       - else
-  /         .no-data-div
-  /           %div
-  /             = image_tag('no-data-img.png')
-  /             %p.dashb Nothing here 😔
-  /             %p.dashb There is nothing here, please come back later.
+.content-holder
+  - if TradeLine.accessible_by(current_ability).count.zero?
+    = render 'shared/no_data'
+  - else
+    = render 'trade_lines/index'
 
-  / .col-md-4.users-wrapper
-  /   .panel.panel-default
-  /     .panel-heading.col-md-12
-  /       .text-left.col-md-6
-  /         .panel-title User Management 
-  /       .text-right.col-md-6
-  /         - if @users.any?
-  /           = link_to 'View all', users_path, class: 'new-trade-line'
-  /     #btn-click-modal
-  /     .panel-body.staff-dashboard-users#panel-body
-  /       - if @users.any?
-  /         = render 'users'
-  /       - else
-  /         .no-data-div
-  /           %div
-  /             = image_tag('no-data-img.png')
-  /             %p.dashb Nothing here 😔
-  /             %p.dashb There is nothing here, please come back later.
+.modal.filters-modal#filters-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#filter-modal-label.title-sub-brand Filter your search result
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
+          .col-50.d-flex.flex-column
+            = label_tag :bank, 'Bank', class: 'control-label'
+            = select_tag :bank, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+            = label_tag :state, 'State', class: 'control-label'
+            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
 
-  / .col-md-4.notifications-wrapper
-  /   .panel.panel-default.staff-dashboard-trans
-  /     .panel-heading.col-md-12
-  /       .text-left.col-md-6
-  /         .panel-title Deposits / Withdrawals Pipeline
-  /       .text-right.col-md-6
-  /         - if @notifications.any?
-  /           = link_to 'View all', deposits_path, class: 'new-trade-line'
-  /     .panel-body#panel-body
-  /       - if @notifications.any?
-  /         = render 'notifications'
-  /       - else
-  /         .no-data-div
-  /           %div
-  /             = image_tag('no-data-img.png')
-  /             %p.dashb Nothing here 😔
-  /             %p.dashb There is nothing here, please come back later.
+          .col-50.d-flex.flex-column
 
-  /   .panel.panel-default.staff-dashboard-refunds
-  /     .panel-heading.col-md-12
-  /       .text-left.col-md-6
-  /         .panel-title Validation Pipeline
-  /       .text-right.col-md-6
-  /         - if @latest_ssn_users.any?
-  /           = link_to 'View all',ssns_path, class: 'new-trade-line'
-  /     .panel-body#panel-body
-  /       - if @latest_ssn_users.any?
-  /         = render 'latest_ssn_users'
-  /       - else
-  /         .no-data-div
-  /           %div
-  /             = image_tag('no-data-img.png')
-  /             %p.dashb Nothing here 😔
-  /             %p.dashb There is nothing here, please come back later.
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+          .col-50.d-flex.flex-column
+
+      .modal-footer
+        %button.btn.btn-cyan.btn-sm{'data-dismiss': 'modal', 'aria-label': 'Close'} Apply Filter

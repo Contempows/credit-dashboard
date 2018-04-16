@@ -10,6 +10,7 @@
         justify-content: flex-start;
         padding-bottom: 30px;
         margin-bottom: 30px;
+        border-bottom: 2px solid $primary-color-light;
     }
     
     .modal-dialog {
@@ -18,10 +19,6 @@
 
     .modal-content {
         padding: 60px;
-    }
-
-    .modal-header {
-        border-bottom: 2px solid $primary-color-light;
     }
 
     .modal-footer {
@@ -46,17 +43,18 @@
         margin-bottom: 50px;
         color: $grey-secondary;
     }
+
+    &.modal-lg {
+        width: auto;
+        max-width: initial;
+
+        .modal-dialog {
+            min-width: 1200px;
+        }
+    }
 }
 
 .filters-modal {
-
-    .modal-title {
-
-    }
-    
-    .modal-body {
-        
-    }
 
     .form-control,
     .select2 {
@@ -84,10 +82,74 @@
     }
 }
 
-.withdrawal-funds-modal {
+.withdrawal-funds-modal,
+.purchase-modal {
 
     .modal-body {
         padding-bottom: 20px;
+    }
+}
+
+.purchase-modal {
+
+    .checkout-holder {
+        
+        .btn {
+            margin: 0;
+        }
+
+        .item {
+            margin-bottom: 15px;
+            color: $brand-text-color;
+            font-size: $default-font-size;
+        }
+
+        .row-top {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #cacaca;
+        }
+    }
+
+    .select2 {
+        
+        .select2-selection--single {
+            background: transparent;
+        }
+
+        .select2-selection__arrow {
+            background: transparent;
+        }
+    }
+}
+
+.confirm-modal {
+
+    .modal-header {
+        padding-bottom: 0;
+        margin-bottom: 50px;
+        border-bottom: 0;
+    }
+
+    .fa,
+    .warn-text {
+        margin-bottom: 50px;
+    }
+
+    .fa {
+        color: $primary-color-light;
+        font-size: em(130);
+    }
+
+    .warn-text {
+        color: $grey-secondary;
+        font-size: em(18);
+        font-weight: 300;
+        line-height: 2;
+
+        strong {
+            padding: 0 3px;
+        }
     }
 }
 

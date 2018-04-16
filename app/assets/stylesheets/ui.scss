@@ -12,7 +12,8 @@ $light-tertiary: #f0f0f0;
 $btn-primary-bg: $theme-color;
 
 $bg-colors: (
-    grey-light: #f0f0f0
+    grey-light: #f0f0f0,
+    grey-dark: #f3f3f3
 );
 
 $ui-colors: (
@@ -27,11 +28,13 @@ $icons-arr: (
     hands: hands,
     cash: cash,
     checked: checked,
-    wallet: wallet
+    wallet: wallet,
+    upload: upload
 );
 
 //Fonts colors
 $default-text-color: $grey-primary;
+$brand-text-color: $grey-secondary;
 
 //Buttons variants
 @each $color, $value in $ui-colors {
@@ -46,6 +49,34 @@ $default-text-color: $grey-primary;
 
     .bg-#{$color} {
         background: $value;
+    }
+}
+
+//Classes of widths
+@for $i from 1 through 100 {
+
+    .w-#{$i} {
+        width: $i * 1%;
+    }
+}
+
+//Classes of widths
+@for $i from 1 through 100 {
+    
+    .m-t-#{$i} {
+        margin-top: $i * 1px;
+    }
+
+    .m-r-#{$i} {
+        margin-right: $i * 1px;
+    }
+
+    .m-b-#{$i} {
+        margin-bottom: $i * 1px;
+    }
+
+    .m-l-#{$i} {
+        margin-left: $i * 1px;
     }
 }
 
@@ -164,5 +195,12 @@ $default-text-color: $grey-primary;
         display: block;
         margin-left: 5px;
         background: url('icon-filter.png');
+    }
+
+    &.icon-upload {
+        width: 34px;
+        height: 26px;
+        display: block;
+        background: url('icon-upload@2x.png') center / cover no-repeat;
     }
 }

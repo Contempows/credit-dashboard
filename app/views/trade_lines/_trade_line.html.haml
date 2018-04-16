@@ -17,7 +17,7 @@
   - if current_user.senior?
     %td= trade_line.is_active? ? 'Active' : 'Inactive'
   %td
-    %button.btn.btn-grey-primary Purchase
+    %button.btn.btn-grey-primary{href: '#', 'data-toggle': 'modal', 'data-target': '#purchase-modal'} Purchase
     - if current_user.staff?
       / = link_to edit_trade_line_path(trade_line), remote: true do
       /   %span.glyphicon.glyphicon-arrow-right

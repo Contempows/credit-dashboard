@@ -4,8 +4,8 @@
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6
     .d-flex.justify-content-end
-      = link_to 'Fund Your Wallet', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true
-      = link_to 'Confirm Your Deposit', new_deposit_path, class: 'btn btn-cyan btn-xl', remote: true, method: :get
+      = link_to 'Fund Your Wallet', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true, href: '#', 'data-toggle': 'modal', 'data-target': '#fund-wallet-modal'
+      = link_to 'Confirm Your Deposit', new_deposit_path, class: 'btn btn-cyan btn-xl', remote: true, method: :get, href: '#', 'data-toggle': 'modal', 'data-target': '#confirm-deposit-modal'
 
 .row.row-holder.align-items-center.bg-grey-light
   .col-sm-6
@@ -18,7 +18,7 @@
         - precision = user_wallet_balance_precision(current_user.wallet_balance)
         %strong
           = number_to_currency(current_user.wallet_balance, precision: 2)
-      = link_to 'Withdraw Funds', new_withdraw_path, class: 'btn btn-secondary btn-xm', remote: true
+      = link_to 'Withdraw Funds', new_withdraw_path, class: 'btn btn-secondary btn-xm', remote: true, href: '#', 'data-toggle': 'modal', 'data-target': '#withdrawal-funds-modal'
 
 .row.row-holder.align-items-center
   .col-sm-6.d-flex.align-items-center
@@ -39,39 +39,3 @@
     = render 'shared/no_data'
   - else
     = render 'trade_lines/index'
-
-.modal.filters-modal#filters-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
-  .modal-dialog{role: 'document'}
-    .modal-content
-      .modal-header
-        %h5.modal-title#filter-modal-label.title-sub-brand Filter your search result
-        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
-          %span{'aria-hidden': 'true'} Close
-      .modal-body
-        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
-          .col-50.d-flex.flex-column
-            = label_tag :bank, 'Bank', class: 'control-label'
-            = select_tag :bank, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
-          .col-50.d-flex.flex-column
-            = label_tag :state, 'State', class: 'control-label'
-            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-          .col-50.d-flex.flex-column
-
-      .modal-footer
-        %button.btn.btn-cyan.btn-sm{'data-dismiss': 'modal', 'aria-label': 'Close'} Apply Filter

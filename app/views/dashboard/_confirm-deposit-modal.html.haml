@@ -1,0 +1,29 @@
+.modal.confirm-deposit-modal#confirm-deposit-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#confirm-deposit-modal-label.title-sub-brand Confirm Deposit
+      .modal-body
+        %span.warn-text As a proof of deposit we would need you to upload the receipt.
+        = form_tag deposits_path, class: 'd-flex flex-wrap justify-content-between dropzone', method: :get do
+          .col-50.d-flex.flex-column
+            = label_tag :min_credit_limit, 'Deposit Amount', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-50.d-flex.flex-column
+            = label_tag :max_price, 'Deposit Date', class: 'control-label'
+            = text_field_tag :max_price, params[:max_price], class: 'form-control datepicker'
+          .d-flex.flex-column.w-100
+            = label_tag :max_price, 'Deposit was made at', class: 'control-label'
+            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder'
+          .fallback
+            %input{name: "file", type: "file", 'multiple': true}
+          .dz-custom.dz-message.d-flex.flex-column.align-items-center.justify-content-center{'data-dz-message': 'true'}
+            .title-holder
+              %p Authentication Code: HIYJHC
+              %p Please write authentication code on the receipt
+            .btn-drop-area Click or drag and drop receipt here to upload
+      .modal-footer.justify-content-center
+        %a.btn.btn-cyan.btn-md
+          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Submit
+        %a.btn.btn-light-primary.btn-md
+          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Close

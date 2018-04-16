@@ -35,6 +35,26 @@
     }
 }
 
+.btn-light-primary,
+.btn-light-tertiary,
+.btn-secondary {
+    
+    &:hover,
+    &:focus,
+    &:active {
+        color: $default-text-color !important;
+    }
+}
+
+.btn-grey-primary {
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff !important;
+    }
+}
+
 .btn-link {
     min-width: auto;
     padding: 0;
@@ -80,11 +100,18 @@
     border: 1px solid $grey-primary;
     min-width: 110px;
     padding: 9px 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff !important;
+    }
 }
 
 .btn-light-primary {
     background: $light-primary;
     border: 1px solid $light-primary;
+    color: #fff !important;
     
     input,
     button {
@@ -126,6 +153,15 @@
     }
 }
 
+.btn-drop-area {
+    min-width: 347px;
+    padding: 15px 0;
+    background: #f3f3f3;
+    color: $grey-secondary;
+    font-size: em(15);
+    border-radius: 2px;
+}
+
 .btn-xl {
     @include button-size(16px 0, 16px 0, em(15), 1, 2px);
     min-width: 200px;
@@ -147,6 +183,16 @@
     }
 }
 
+.btn-md {
+    @include button-size(0, 0, em(16), 1, 2px);
+    min-width: 193px;
+
+    input,
+    button {
+        padding: 15px 0;
+    }
+}
+
 .btn-sm {
     @include button-size(0, 0, em(16), 1, 2px);
     min-width: 193px;
@@ -155,6 +201,12 @@
     button {
         padding: 9px 0;
     }
+}
+
+.btn-xs {
+    @include button-size(0, 0, em(16), 1, 2px);
+    min-width: 113px;
+    padding: 14px 0;
 }
 
 .btn-xm {

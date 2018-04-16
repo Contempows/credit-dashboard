@@ -216,34 +216,6 @@ body {
 }
 }
 
-.dropzone{
-  padding: 0;
-}
-
-.dropzone.dz-clickable .col-md-12{
-  margin-top: 20px;
-}
-
-.dropzone.dz-clickable .modal-body .row:first-child .col-md-12{
-  @media screen and (min-width:768px) {
-  display: flex;
-  justify-content: space-between;
-}
-}
-
-.dropzone.dz-clickable .col-md-12 .col-md-6{
-  padding: 0;
-  width: 100%;
-  @media screen and (min-width:768px) {
-    width: 48%;
-  }
-}
-
-.dropzone.dz-clickable .col-md-12 .form-group, .dropzone.dz-clickable .col-md-12 .form-group .form-control{
-  margin: 0!important;
-  width: 100%;
-}
-
 .modal-open .modal.fade.in .modal-dialog .modal-content #modal-body .modal-footer,
 #form-ssn .modal-footer{
   padding: 0;
@@ -280,11 +252,6 @@ body {
     top: 15px;
     font-size: 16px;
   }
-}
-
-select:-moz-focusring { 
-  color: transparent;
-  text-shadow: 0 0 0 #000; 
 }
 
 #banking_info_modal.modal.fade.in .modal-dialog .modal-content #modal-body .modal-footer{
@@ -426,18 +393,6 @@ select:-moz-focusring {
 #user_modal_body .modal-footer .btn-block + .btn-block
 {
   margin-top: 10px;
-}
-
-.modal-body.purchase-wrapper .dropzone.dz-clickable .col-md-12.dz-message.needsclick{
-    height: 157px;
-    border: none;
-}
-
-.modal-body.purchase-wrapper .dropzone .dz-message p{
-  padding-bottom: 36px;
-  @media screen and (max-width: 767px){
-      font-size: 14px;
-  }
 }
 
 #withdraw-modal #modal-body .modal-body{
@@ -642,137 +597,9 @@ select:-moz-focusring {
   width: 100%;
 }
 
-
-
 .stc-panel {
   background-color: #FFFFFF;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13) !important;
-}
-
-.nav-session {
-  float: right;
-  padding-top: 1em;
-  a {
-    color: $theme-color; 
-  }
-}
-
-.navbar.navbar-default.navbar-fixed-top > .container > .nav-session{
-    padding-top : 0;
-    @media screen and (min-width:768px) and  (max-width: 991px) {
-        margin-right: 2px;   
-    }
-    @media screen and (min-width:992px) {
-       margin-right: 16px;  
-    }
-}
-.display {
-  height: auto;
-  display: flex;
-  .control-label {
-    font-size: 18px;
-    color: #727272;
-    border-bottom: solid 1px #979797;
-    padding: 15px 0;
-    line-height: normal;
-    width: auto;
-    float: none;
-    flex: 1;
-  }
-
-  .value {
-    font-size: 18px;
-    color: $theme-color;
-    border-bottom: solid 1px #979797;
-    padding: 15px 0;
-    line-height: normal;
-    width: auto;
-    float: none;
-    flex: 2;
-    word-wrap: break-word;
-    word-break: break-word;
-    white-space: normal;
-  }
-}
-
-.table > tbody > tr > td > a .glyphicon.glyphicon-arrow-right,
-.table > tbody > tr > td > .glyphicon.glyphicon-arrow-right{
-   background-image: image_url('table-navigate-arrow.png');
-   top: 0;
-   background-size: 100% 100%;
-   width: 18px;
-   height: 14px;
-   @media screen and (min-width: 992px){
-     margin-right: 40px;
-   }
- }
-
-.table > tbody > tr > td > a .glyphicon.glyphicon-arrow-right:before,
-.table > tbody > tr > td > .glyphicon.glyphicon-arrow-right:before{
-  content: '';
-}
-#refund-modal, #deposit-modal, .withdraw-confirmation-modal, .purchase-confirmation-modal{
-  .modal-body{
-    padding: 30px 0 0;
-    @media screen and (max-width: 767px){
-      padding: 15px 0 0;
-    }
-    .col-md-12.display{
-      height: auto;
-      margin-bottom: 25px;
-      @media screen and (max-width: 767px){
-        margin-bottom: 10px;
-      }
-      .col-md-6.text-left.control-label,.col-md-6.text-right.value{
-        padding: 15px 0;
-  width: 50%;
-      }
-    }
-  }
-  .modal-footer{
-    padding: 0;
-    .btn-block + .btn-block{
-      margin-top: 10px;
-    }
-  }
-}
-
-#deposit-modal {
-  .modal-body .col-md-12:nth-last-child(1){
-    margin-bottom: 25px;
-    @media screen and (max-width: 767px){
-      margin-bottom: 10px;
-    }
-  }
-  .modal-footer{
-    padding: 25px 0 0;
-    margin: 0;
-  }
-}
-.withdraw-confirmation-modal{
-  .modal-body{
-    padding: 30px 0 15px;
-    @media screen and (max-width: 767px){
-      padding: 15px 0;
-    }
-    .sub-title{
-      font-size: 18px;
-      color: #727272;
-      @media screen and (max-width: 767px){
-        font-size: 14px;
-      }
-    }
-  }
-  .modal-footer{
-    padding: 25px 0 0;
-    margin: 0;
-    @media screen and (max-width: 767px){
-      padding: 15px 0 0;
-    }
-    .btn-block + .btn-block{
-      margin-top: 10px;
-    }
-  }
 }
 
 .row {
@@ -792,6 +619,10 @@ label.control-label abbr{
 }
 label.control-label + input.form-control{
   padding-top: 0;
+}
+
+.col-100 {
+  width: 100%;
 }
 
 .col-50 {

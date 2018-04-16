@@ -50,7 +50,8 @@
           %span 
             Welcome,
             %strong.user-name Username
-        %i.fa.fa-power-off= link_to 'Logout', destroy_user_session_path, method: :delete
+        %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#logout-modal'}
+          %i.fa.fa-power-off
       .container-content
         #error
           = render partial: 'shared/error' 
@@ -60,3 +61,10 @@
         - if current_user.staff?
           #new-trade-line
         = yield
+    
+    = render "trade_lines/filters-modal"
+    = render "logout-modal"
+    = render "confirm-deposit-modal"
+    = render "fund-wallet-modal"
+    = render "withdraws/withdrawal-funds-modal"
+

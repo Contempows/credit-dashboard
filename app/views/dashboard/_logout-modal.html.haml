@@ -1,0 +1,8 @@
+.modal.logout-modal#logout-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-body.d-flex.flex-column.justify-content-center
+        %h3.title.text-center Are you sure you want to Logout?
+        .d-flex.justify-content-center
+          = link_to 'Yes', destroy_user_session_path, method: :delete, class: 'btn btn-grey-primary btn-xs'
+          %a.btn.btn-light-primary.btn-xs{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel

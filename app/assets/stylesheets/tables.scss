@@ -27,7 +27,7 @@
     display: table;
     margin-bottom: 0;
     font-size: em(15);
-    border-color: $light-secondary !important;
+    border: 0 !important;
 
     > thead,
     > tbody,
@@ -38,6 +38,7 @@
 
             > th,
             > td {
+                padding: 10px 18px;
                 border: 0;
                 line-height: 1.5;
 
@@ -47,6 +48,44 @@
             }
         }
     }
+
+    > thead {
+
+        > tr {
+            border-bottom: 2px solid $light-secondary;
+
+            > th {
+                width: auto !important;
+            }
+        }
+    }
+
+    > tbody {
+        border: 0;
+
+        > tr {
+            border-bottom: 1px solid $light-secondary !important;
+
+            > th,
+            > td {
+                color: $grey-secondary;
+                border: 0;
+                line-height: 1.5;
+                vertical-align: baseline;
+                text-align: left;
+            }
+
+            > td {
+                vertical-align: middle;
+                text-align: left;
+            }
+        }
+    }
+}
+
+
+.dashboard-tradeline-table{ 
+    display: table;
 
     > thead {
         position: relative;
@@ -61,54 +100,51 @@
         > tr {
 
             > th {
-                width: auto !important;
 
                 &:first-child {
                     padding-left: 40px;
                 }
             }
         }
-
-        td {
-
-        }
     }
 
     > tbody {
 
         > tr {
+            position: relative;
+
+            @include pseudo-el(after, auto, 1px) {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: $light-secondary;
+            }
 
             > th,
             > td {
-                padding: 10px 18px;
-                color: $grey-secondary;
-                border: 0;
-                line-height: 1.5;
-                vertical-align: baseline;
-                text-align: left;
 
                 &:first-child {
-                    &:first-child {
-                        padding-left: 40px;
-                    }
+                    padding-left: 40px;
                 }
-            }
-
-            > td {
-                vertical-align: middle;
-                text-align: left;
-            }
-
-            &:last-child {
-
             }
         }
     }
 }
 
+.fund-wallet-table {
 
-.dashboard-tradeline-table{ 
-    display: table;
+    > thead,
+    > tbody,
+    > tfoot {
+
+        > tr {
+
+            > th,
+            > td {
+                padding: 25px 0;
+            }
+        }
+    }
 }
 
 #tradelineDataTable_wrapper {

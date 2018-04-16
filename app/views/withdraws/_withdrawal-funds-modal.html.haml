@@ -1,0 +1,35 @@
+.modal.withdrawal-funds-modal#withdrawal-funds-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'withdrawal-funds-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Withdraw Your Funds
+      .modal-body
+        %span.warn-text Please make sure you write correct payee details in terms to send a check
+        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
+          .col-50.d-flex.flex-column
+            = label_tag :bank, 'Payee full name', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-50.d-flex.flex-column
+            = label_tag :state, 'Withdraw amount', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-100.d-flex.flex-column
+            = label_tag :min_credit_limit, 'Payee address', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-50.d-flex.flex-column
+            = label_tag :max_price, 'City', class: 'control-label'
+            = text_field_tag :max_price, params[:max_price], class: 'form-control search-form '
+          .col-50.d-flex.flex-column
+            = label_tag :max_price, 'State', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-50.d-flex.flex-column
+            = label_tag :special_add, 'Zip code', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+      .modal-footer.d-flex.flex-column.align-items-start
+        .d-flex.row-holder
+          %a.btn.btn-cyan.btn-md
+            %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Submit Details
+          %a.btn.btn-light-primary.btn-md
+            %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
+        .d-flex.row-holder
+          = check_box_tag :confirm, :confirm, false
+          = label_tag :confirm, 'I agree that i provided all correct information. ', class: 'control-label'

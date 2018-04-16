@@ -1,0 +1,34 @@
+.modal.fund-wallet-modal#fund-wallet-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#fund-wallet-modal-label.title-sub-brand Banking Information
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        %span.warn-text 
+          Please make a deposit at any of the banks below, keep the receipt, and then go to “Confirm Your Deposit” page
+        %table.table.table-striped.table-responsive.fund-wallet-table
+          %thead
+            %tr
+              %th Acc. Number
+              %th Routing Info
+              %th Bank Name
+              %th Account Name
+          %tbody#refund-wallet
+            %tr
+              %td 1234567890
+              %td 1234567890
+              %td Bank of America
+              %td Savings
+            %tr
+              %td 1234567890
+              %td 1234567890
+              %td Chase Bank
+              %td Checking
+            %tr
+              %td 1234567890
+              %td 1234567890
+              %td Blackhawks Bank
+              %td Savings
+

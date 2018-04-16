@@ -1,65 +1,159 @@
-#new_banking_information_modal {
-  .modal-dialog {
-    align-items: center;
-    display: flex;
-    margin-bottom: 0;
-    margin-top: 0;
-    min-height: 100%;    
+.modal {
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 0;
+    }
 
     .modal-header {
-      padding-bottom: 20px;
-      padding-left: 45px;
-
-      .modal-header-title {
-        margin-bottom: 0;
-        margin-top: 26px;
-
-        .title {
-          color: #3E24A1;
-        }
-      }
-
-      .success-message  {
-        height: 15px;
-        font-size: 12px;
-      }
-    }
-
-    #banking_information_success h3 {
-      margin-top: 0;
+        justify-content: flex-start;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
     }
     
-    .modal-body {
-      padding: 0 45px;
+    .modal-dialog {
+        min-width: 800px;
+    }
 
-      .form-control {
-        padding: 6px 0;
-      }
+    .modal-content {
+        padding: 60px;
+    }
 
-      .help-block {
-        font-size: 12px;
-        margin-top: -10px;
-      }
+    .modal-header {
+        border-bottom: 2px solid $primary-color-light;
     }
 
     .modal-footer {
-      padding: 0 45px 0 45px;
 
-      #banking-information-save-button {
-        background-color: #3E24A1;
-        font-size: 15px;
-        font-weight: bold;
-        margin-top: 5px;
-      }
+        .row-holder {
+            padding: 0;
 
-      .btn.cancel {
-        border-color: #3E24A1;
-        color: #3E24A1;
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 45px;
-        margin-top: 10px;
-      }
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
     }
-  }
+
+    .close {
+        color: $grey-primary;
+        font-size: em(15);
+        font-weight: 400;
+    }
+
+    .warn-text {
+        display: block;
+        margin-bottom: 50px;
+        color: $grey-secondary;
+    }
+}
+
+.filters-modal {
+
+    .modal-title {
+
+    }
+    
+    .modal-body {
+        
+    }
+
+    .form-control,
+    .select2 {
+        margin-bottom: 25px !important;
+    }
+}
+
+.confirm-deposit-modal {
+
+    .form-control {
+        margin-bottom: 25px;
+    }
+
+    .select2 {
+        margin-bottom: 60px !important;
+    }
+}
+
+.logout-modal {
+
+    .title {
+        margin-bottom: 65px;
+        font-size: em(18);
+        font-weight: 300;
+    }
+}
+
+.withdrawal-funds-modal {
+
+    .modal-body {
+        padding-bottom: 20px;
+    }
+}
+
+#new_banking_information_modal {
+
+    .modal-dialog {
+        align-items: center;
+        display: flex;
+        margin-bottom: 0;
+        margin-top: 0;
+        min-height: 100%;    
+
+        .modal-header {
+            padding-bottom: 20px;
+            padding-left: 45px;
+
+            .modal-header-title {
+                margin-bottom: 0;
+                margin-top: 26px;
+
+                .title {
+                    color: #3E24A1;
+                }
+            }
+
+            .success-message  {
+                height: 15px;
+                font-size: 12px;
+            }
+        }
+
+        #banking_information_success h3 {
+            margin-top: 0;
+        }
+    
+        .modal-body {
+            padding: 0 45px;
+
+            .form-control {
+                padding: 6px 0;
+            }
+
+            .help-block {
+                font-size: 12px;
+                margin-top: -10px;
+            }
+        }
+
+        .modal-footer {
+            padding: 0 45px 0 45px;
+
+            #banking-information-save-button {
+                background-color: #3E24A1;
+                font-size: 15px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+
+            .btn.cancel {
+                border-color: #3E24A1;
+                color: #3E24A1;
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 45px;
+                margin-top: 10px;
+            }
+        }
+    }
 }

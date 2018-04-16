@@ -106,11 +106,15 @@ function changeNote(count) {
 ;(function () {
 
   $(document).ready(function () {
-    
-    $('.date-of-birth').datepicker()
+
+    $('.date-of-birth, .datepicker').datepicker()
 
     $('.select-picker').each(function (i, el) {
       $(this).select2()
+    })
+
+    $('.js-with-placeholder').select2({
+      placeholder: 'Select bank name'
     })
   })
 

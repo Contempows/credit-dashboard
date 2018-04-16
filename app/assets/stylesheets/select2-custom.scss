@@ -1,44 +1,44 @@
 $form-control-height-md: 46px;
 $form-control-height-sm: 42px;
 
-// .select2 {
-//     width: 100% !important;
+.select2 {
+    width: 100% !important;
 
-//     .select2-selection--single {
-//         height: $form-control-height-md;
+    .select2-selection--single {
+        height: $form-control-height-md;
 
-//         .select2-selection__rendered {
-//             // padding-left: 12px;
-//             // padding-right: 12px;
-//             line-height: $form-control-height-md;
-//         }
+        .select2-selection__rendered {
+            padding-left: 12px;
+            padding-right: 12px;
+            line-height: $form-control-height-md;
+        }
 
-    //     .select2-selection__arrow {
-    //         @extend %absCenterY;
-    //         width: 20px;
-    //         height: 26px;
-    //         right: 15px;
-    //         background: #fff;
-    //         border: 0;
+        .select2-selection__arrow {
+            @extend %absCenterY;
+            width: 20px;
+            height: 26px;
+            right: 15px;
+            background: #fff;
+            border: 0;
 
-    //         b {
-    //             border-color: #818181 transparent transparent transparent;
-    //             border-width: 5px 4.5px 0 4.5px;
-    //         }
-    //     }
-    // }
+            b {
+                border-color: #818181 transparent transparent transparent;
+                border-width: 5px 4.5px 0 4.5px;
+            }
+        }
+    }
 
-    // &.select2-container--open {
+    &.select2-container--open {
         
-    //     .select2-selection--single {    
+        .select2-selection--single {    
 
-    //         .select2-selection__arrow { 
+            .select2-selection__arrow { 
 
-    //             b {
-    //                 border-color: transparent transparent #818181 transparent !important;
-    //                 border-width: 0 4.5px 5px 4.5px;
-    //             }
-    //         }
-    //     }
-    // }
-// }
+                b {
+                    border-color: transparent transparent #818181 transparent !important;
+                    border-width: 0 4.5px 5px 4.5px;
+                }
+            }
+        }
+    }
+}

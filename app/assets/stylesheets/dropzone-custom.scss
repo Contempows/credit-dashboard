@@ -1,0 +1,24 @@
+.dropzone {
+    min-height: auto !important;
+    border: 0 !important;
+    background: initial !important;
+    padding: initial !important;
+
+    .dz-message {
+        width: 100%;
+        height: 246px;
+        border: 1px solid $light-secondary;
+        background: #fff !important;
+        border-radius: 2px;
+        margin: 0 0 30px !important;
+
+        .title-holder {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 15px;
+            padding: 0 !important;
+        }
+    }
+}

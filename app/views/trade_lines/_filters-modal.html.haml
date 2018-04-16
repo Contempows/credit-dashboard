@@ -1,0 +1,36 @@
+.modal.filters-modal#filters-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#filter-modal-label.title-sub-brand Filter your search result
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
+          .col-50.d-flex.flex-column
+            = label_tag :bank, 'Bank', class: 'control-label'
+            = select_tag :bank, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+            = label_tag :state, 'State', class: 'control-label'
+            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+            = label_tag :min_credit_limit, 'Credit Limit', class: 'control-label'
+            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
+          .col-50.d-flex.flex-column
+            = label_tag :max_price, 'Price', class: 'control-label'
+            = text_field_tag :max_price, params[:max_price], class: 'form-control search-form '
+          .col-50.d-flex.flex-column
+            = label_tag :max_price, 'Card Age', class: 'control-label'
+            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '
+          .col-50.d-flex.flex-column
+            = label_tag :special_add, 'Special Add Required?', class: 'control-label'
+            = select_tag :special_add, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '
+          .col-50.d-flex.flex-column
+            = label_tag :ssn_req, 'SSN Req?', class: 'control-label'
+            = select_tag :ssn_req, options_for_select([['Yes', true], ['No', false]], params[:ssn_req]), include_blank: true, class: 'form-control select-picker'
+          .col-50.d-flex.flex-column
+            = label_tag :dl_req, 'DL Req?', class: 'control-label'
+            = select_tag :dl_req, options_for_select([['Yes', true], ['No', false]], params[:dl_req]), include_blank: true, class: 'form-control select-picker'
+      .modal-footer.justify-content-start
+        %a.btn.btn-cyan.btn-md
+          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Apply Filter

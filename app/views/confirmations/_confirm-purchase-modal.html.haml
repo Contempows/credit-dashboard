@@ -1,0 +1,16 @@
+.modal.modal-lg.confirm-modal#confirm-purchase-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header.d-flex.justify-content-center
+        %h5.modal-title#filter-modal-label.title-primary Purchase Confirmation
+      .modal-body.d-flex.flex-column.align-items-center.justify-content-center
+        %i.fa.fa-check-circle
+        %span.warn-text.d-flex.flex-column.align-items-center.justify-content-center.text-center
+          %span Your payment has been received successfully. 
+          %span.d-flex 
+            Sit 
+            %strong TIGHT
+            and watch your credit grow.
+      .modal-footer.d-flex.justify-content-center
+        = link_to 'Review Transaction', destroy_user_session_path, method: :delete, class: 'btn btn-grey-primary btn-md'
+        %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Close

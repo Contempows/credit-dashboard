@@ -131,6 +131,30 @@
     }
 }
 
+.purchase-table {
+    margin-bottom: 35px;
+
+    > thead,
+    > tbody,
+    > tfoot {
+
+        > tr {
+
+            > th,
+            > td {
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
 .fund-wallet-table {
 
     > thead,

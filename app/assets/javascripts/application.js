@@ -116,6 +116,10 @@ function changeNote(count) {
     $('.js-with-placeholder').select2({
       placeholder: 'Select bank name'
     })
+
+    $('.purchase-modal .js-with-placeholder').select2({
+      placeholder: '---- Select ----'
+    })
   })
 
 })();

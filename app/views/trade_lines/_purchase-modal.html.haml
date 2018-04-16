@@ -1,0 +1,69 @@
+.modal.modal-lg.purchase-modal#purchase-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title#purchase-modal-label.title-sub-brand Trade Line Details #30
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Cancel Purchase
+      .modal-body
+        .d-flex
+          %table.table.table-responsive.purchase-table
+            %thead
+              %tr
+                %th.no-sort Bank Name
+                %th.no-sort Slot
+                %th.no-sort Credit Limit
+                %th.no-sort Card Age
+                %th.no-sort Statement Date
+                %th.no-sort State
+                %th.no-sort Special Add
+                %th.no-sort SSN req
+                %th.no-sort DL Req
+                %th Price
+            %tbody#trade_lines
+              %tr
+                %td Bank Of America
+                %td 1
+                %td $55,000
+                %td 12 Yrs
+                %td 4th
+                %td FL
+                %td No
+                %td No
+                %td No
+                %td $560
+        .row
+          .col-6
+            .d-flex.align-items-center.bg-grey-dark.inner-gap-sm.m-b-20
+              = label_tag :broker, 'Select Broker / Vendor', class: 'control-label w-70'
+              = select_tag :broker, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder'
+            .d-flex.justify-content-between.align-items-center
+              .col-50
+                = form_tag purchases_path, class: 'd-flex flex-wrap justify-content-between dropzone dropzone-sm', method: :get do
+                  .fallback
+                    %input{name: "file", type: "file", 'multiple': true}
+                  .dz-custom.dz-message.d-flex.align-items-center.justify-content-center{'data-dz-message': 'true'}
+                    .title-holder.d-flex.flex-column.align-items-center.justify-content-center
+                      %i.icon.icon-upload
+                      Upload or Drag & Drop SSN
+              .col-50
+                = form_tag purchases_path, class: 'd-flex flex-wrap justify-content-between dropzone dropzone-sm', method: :get do
+                  .fallback
+                    %input{name: "file", type: "file", 'multiple': true}
+                  .dz-custom.dz-message.d-flex.align-items-center.justify-content-center{'data-dz-message': 'true'}
+                    .title-holder.d-flex.flex-column.align-items-center.justify-content-center
+                      %i.icon.icon-upload
+                      Upload or Drag & Drop Driving License
+
+          .col-6
+            .d-flex.flex-column.bg-grey-dark.inner-gap-md.checkout-holder
+              .d-flex.flex-column.row-top
+                .item.d-flex.justify-content-between.align-items-center
+                  %span Wallet Balance:
+                  %h4.title-sub-brand $580
+                .item.d-flex.justify-content-between.align-items-center
+                  %span Total Payable Amount:
+                  %h4.title-sub-brand $560
+              %a.btn.btn-cyan.btn-md
+                %button{'data-dismiss': 'modal', 'aria-label': 'Complete Purchase', 'data-toggle': 'modal', 'data-target': '#confirm-purchase-modal'} Complete Purchase
+        

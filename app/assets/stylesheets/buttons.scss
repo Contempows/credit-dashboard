@@ -27,9 +27,10 @@
         &:hover,
         &:focus,
         &:active {
-            background: none;
+            background: none !important;
+            color: #fff !important;
             border: 0;
-            outline: 0;
+            outline: 0 !important;
             box-shadow: none;
         }
     }
@@ -42,11 +43,12 @@
     &:hover,
     &:focus,
     &:active {
-        color: $default-text-color !important;
+        color: #fff !important;
     }
 }
 
-.btn-grey-primary {
+.btn-grey-primary,
+.btn-cyan {
 
     &:hover,
     &:focus,
@@ -100,12 +102,6 @@
     border: 1px solid $grey-primary;
     min-width: 110px;
     padding: 9px 0;
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: #fff !important;
-    }
 }
 
 .btn-light-primary {
@@ -142,7 +138,8 @@
     &:hover,
     &:focus,
     &:active {
-        color: #fff;
+        background: #fff;
+        color: $default-text-color !important;
     }
     
     input,
@@ -174,39 +171,23 @@
 }
 
 .btn-lg {
-    @include button-size(0, 0, em(16), 1, 2px);
+    @include button-size(9px, 0, em(16), 1, 2px);
     min-width: 220px;
-
-    input,
-    button {
-        padding: 9px 0;
-    }
 }
 
 .btn-md {
-    @include button-size(0, 0, em(16), 1, 2px);
+    @include button-size(15px, 0, em(16), 1, 2px);
     min-width: 193px;
-
-    input,
-    button {
-        padding: 15px 0;
-    }
 }
 
 .btn-sm {
-    @include button-size(0, 0, em(16), 1, 2px);
+    @include button-size(9px, 0, em(16), 1, 2px);
     min-width: 193px;
-
-    input,
-    button {
-        padding: 9px 0;
-    }
 }
 
 .btn-xs {
-    @include button-size(0, 0, em(16), 1, 2px);
+    @include button-size(14px, 0, em(16), 1, 2px);
     min-width: 113px;
-    padding: 14px 0;
 }
 
 .btn-xm {

@@ -1,3 +1,23 @@
+.row.row-holder.align-items-center
+  .col-sm-6
+    %h2.main-title.title-brand My Profile
+    %span.subtitle Platform to boost your credit scores.
+  .col-sm-6
+    .d-flex.justify-content-end
+      = link_to 'Update Profile', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true
+
+.row-holder.align-items-center.bg-grey-light
+  %h3.title.title-sub-brand Rose Johnson
+
+.content-holder
+  = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal row' } do |f|
+    .col-sm-6
+      
+    .col-sm-6
+      
+
+
+
 #user-render-partial
 .col-sm-12.user-wrapper
   %h2.change-password My Profile.

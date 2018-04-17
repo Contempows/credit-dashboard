@@ -170,6 +170,11 @@
     }
 }
 
+.btn-xl {
+    @include button-size(14px, 0, em(16), 1, 2px);
+    min-width: 100%;
+}
+
 .btn-lg {
     @include button-size(9px, 0, em(16), 1, 2px);
     min-width: 220px;

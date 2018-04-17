@@ -7,6 +7,7 @@ body {
   width: 100%;
   color: $default-text-color;
   font: $default-font-weight normal $default-font-size/$default-line-height $default-font-family;
+  background: #fcfcfc;
 
   @media screen and (min-width:992px) {
     display: flex;
@@ -509,60 +510,10 @@ body {
 }
 }
 
-.col-sm-12.user-wrapper .simple_form.form-horizontal input[type="file"]{
-   width: 100%;
-   margin-bottom: 15px;
-}
-
-.form-group-wrapper, .profile-image-wrapper{
-@media screen and (min-width:768px) {
-  width: 75%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-}
-
-.profile-image-form-group-wrapper{
-  margin: 15px 0 0;
- @media screen and (min-width:768px) { 
- width: 48%;
-}
-  @media screen and (min-width:992px) {
-  width: 58%;
-}
-}
-
 .form-horizontal .form-group-wrapper .form-group{
   @media screen and (min-width:768px) { 
   width: 48%;
 }
-}
-
-.profile-image-wrapper label.profile-image{
-  margin: 0;
-  position: relative;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-image-wrapper label.profile-image #user_profile{
-  position: absolute;
-  top: 0;
-  opacity: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.profile-image-wrapper label.profile-image img{
-  width: auto;
-  max-width: 310px;
-  align-self: center;
 }
 
 .col-sm-12.user-wrapper .simple_form.form-horizontal .form-group:nth-last-child(2){

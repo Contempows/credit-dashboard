@@ -107,6 +107,8 @@ function changeNote(count) {
 
   $(document).ready(function () {
 
+    var editableContainer = $('.js-editable-form');
+
     $('.date-of-birth, .datepicker').datepicker()
 
     $('.select-picker').each(function (i, el) {
@@ -119,6 +121,32 @@ function changeNote(count) {
 
     $('.purchase-modal .js-with-placeholder').select2({
       placeholder: '---- Select ----'
+    })
+
+    $('.btn-edit').on('click', function() {
+
+      $(this).text(function (i, text) {
+        return text === 'Edit Profile' ? 'Update Profile' : 'Edit Profile'
+      })
+
+      editableContainer.each(function (el) {
+        
+        $(this).toggleClass('editable');
+        $(this).find('input:disabled, textarea:disabled').each(function (el) {
+
+          $(this).attr('disabled', false).attr('readonly', false);
+          $(this).focus(function() {
+
+            $(this).closest('.form-group').toggleClass('field-focused')
+            $(this).closest('.profile-image-wrapper').toggleClass('field-focused')
+          })
+          .blur(function() {
+
+            $(this).closest('.form-group').removeClass('field-focused')
+            $(this).closest('.profile-image-wrapper').removeClass('field-focused')
+          })
+        })
+      })
     })
   })
 

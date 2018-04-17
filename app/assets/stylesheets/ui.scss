@@ -32,6 +32,8 @@ $icons-arr: (
     upload: upload
 );
 
+$brand-border-radius: 2px;
+
 //Fonts colors
 $default-text-color: $grey-primary;
 $brand-text-color: $grey-secondary;
@@ -48,7 +50,7 @@ $brand-text-color: $grey-secondary;
 @each $color, $value in $bg-colors {
 
     .bg-#{$color} {
-        background: $value;
+        background: $value !important;
     }
 }
 
@@ -56,28 +58,64 @@ $brand-text-color: $grey-secondary;
 @for $i from 1 through 100 {
 
     .w-#{$i} {
-        width: $i * 1%;
+        width: $i * 1% !important;
     }
 }
 
 //Classes of widths
-@for $i from 1 through 100 {
+@for $i from 1 through 300 {
     
     .m-t-#{$i} {
-        margin-top: $i * 1px;
+        margin-top: $i * 1px !important;
     }
 
     .m-r-#{$i} {
-        margin-right: $i * 1px;
+        margin-right: $i * 1px !important;
     }
 
     .m-b-#{$i} {
-        margin-bottom: $i * 1px;
+        margin-bottom: $i * 1px !important;
     }
 
     .m-l-#{$i} {
-        margin-left: $i * 1px;
+        margin-left: $i * 1px !important;
     }
+
+    .m-#{$i} {
+        margin: $i * 1px !important;
+    }
+
+    .p-t-#{$i} {
+        padding-top: $i * 1px !important;
+    }
+
+    .p-r-#{$i} {
+        padding-right: $i * 1px !important;
+    }
+
+    .p-b-#{$i} {
+        padding-bottom: $i * 1px !important;
+    }
+
+    .p-l-#{$i} {
+        padding-left: $i * 1px !important;
+    }
+
+    .p-#{$i} {
+        padding: $i * 1px !important;
+    }
+}
+
+.brand-radius {
+    border-radius: $brand-border-radius;
+}
+
+.brand-border-l-s {
+    border: 1px solid $light-secondary;
+}
+
+.brand-border-bottom-l-s {
+    border: 2px solid $light-secondary;
 }
 
 .input-labeled {

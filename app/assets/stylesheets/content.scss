@@ -1,0 +1,131 @@
+.content-holder {
+    
+    .js-editable-form {
+
+        .col-holder {
+            min-width: 477px;
+            min-height: 422px;
+            max-height: 422px;
+            margin-right: 30px;
+        }
+
+        .col-holder-left {
+
+            .control-label {
+                width: 28%;
+            }
+
+            .form-control {
+                width: 252px;
+            }
+        }
+
+        .col-holder-right {
+
+            .control-label {
+                width: 17%;
+            }
+            
+            .form-control {
+                width: 292px;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+
+            &:after,
+            &:before {
+                display: none;
+            }
+        }
+
+        .control-label {
+            text-align: right;
+        }
+
+        .form-control {
+            padding: 0 15px 10px;
+            background: transparent;
+            border: 0;
+        }
+
+        &.editable {
+
+            .form-group {
+                position: relative;
+
+                &:after {
+                    bottom: 20px;
+                    right: 0;
+                }
+
+                &.field-focused {
+
+                    &:after {
+                        background: url('pencil-hover@2x.png') center / cover no-repeat;
+                    }
+                }
+            }
+
+            .profile-image-wrapper {
+                
+                &:after {
+                    top: 10px;
+                    right: 10px;
+                }
+
+                &.field-focused {
+
+                    &:after {
+                        background: url('pencil-hover@2x.png') center / cover no-repeat;
+                    }
+                }
+            }
+
+            .profile-image-wrapper,
+            .form-group {
+
+                @include pseudo-el(after, 16px, 16px) {
+                    background: url('pencil@2x.png') center / cover no-repeat;
+                }
+            }
+
+            .form-control {
+                border-bottom: 1px solid $light-secondary;
+
+                &:focus,
+                &:active {
+                    border-color: $primary-color-light;
+                }
+            }
+        }
+    }
+}
+
+.profile-image-wrapper {
+    position: absolute;
+    left: 55px;
+    top: 35px;
+
+    .profile-image {
+        position: relative;
+        width: 200px;
+        height: 200px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    #user_profile {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}

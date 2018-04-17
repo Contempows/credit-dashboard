@@ -4,64 +4,32 @@
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6
     .d-flex.justify-content-end
-      = link_to 'Update Profile', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true
-
-.row-holder.align-items-center.bg-grey-light
-  %h3.title.title-sub-brand Rose Johnson
+      = link_to 'Edit Profile', banking_informations_path, class: 'btn btn-cyan btn-xl btn-edit', method: :get, remote: true
 
 .content-holder
   = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal row' } do |f|
-    .col-sm-6
-      
-    .col-sm-6
-      
+    .row-holder.align-items-center.bg-grey-light.w-100.m-b-145.p-t-55.p-b-55.p-l-280.js-editable-form
+      .d-flex
+        .profile-image-wrapper
+          %label.profile-image{for: 'user_profile'}
+            = f.file_field :profile, 'disabled': true, 'readonly': true
+            %img{src: "#{@user.profile? ? asset_url(@user.profile.url) : image_url('user-placeholder.png')}"}
+        = f.input :username, readonly: true, 'disabled': true, label: false, :input_html => { :value => 'Rose Johnson', :class => 'title-sub-brand' }
 
-
-
-#user-render-partial
-.col-sm-12.user-wrapper
-  %h2.change-password My Profile.
-  %p.welcome You can change your details.
-  = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal' } do |f|
-    .profile-image-wrapper
-      %label.profile-image{for: 'user_profile'}
-        .form-group.user-profile-error
-          = f.file_field :profile
-        / %span.glyphicon.glyphicon-edit.cursor-pointer.edit-button-image
-        %img{src: "#{@user.profile? ? asset_url(@user.profile.url) : image_url('user-placeholder.png')}"}
-      .profile-image-form-group-wrapper
-        = f.input :email, readonly: true, label: 'Email'
+    .row-holder.d-flex.align-items-center.js-editable-form
+      .col-holder.col-holder-left.brand-radius.brand-border-l-s.p-40
+        = f.input :first_name, readonly: true, 'disabled': true, label: 'First name:'
+        = f.input :last_name, readonly: true, 'disabled': true, label: 'Last name:'
+        = f.input :email, readonly: true, 'disabled': true, label: 'Email address:'
+        = f.input :phone, readonly: true, 'disabled': true, label: 'Phone number:', maxlength: 10, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
         - if current_user.au?
-          = f.input :social, label: false, label: 'SSN Number', maxlength: 9,
-            input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-    .form-group-wrapper
-      = f.input :first_name, label: 'First Name'
-      = f.input :last_name, label: 'Last Name'
-      = f.input :address, label: 'Address'
-      .dob_wrapper.form-group{style: 'width: 48%', class: "#{'has-error' if (@user.errors.keys & [:day, :month, :year]).any?}"}
-        %label.control-label.string.optional.dob-label Date of birth
-
-        = f.select :month, Date::MONTHNAMES.reject(&:nil?),
-          prompt: 'Month', include_blank: true, wrapper: :select,
-          selected: "#{Date::MONTHNAMES[@user.date_of_birth.try(:month)] if @user.date_of_birth.present?}"
-
-        %p.dob-slash /
-        = f.select :day, (01..31), label: false, as: :string, prompt: 'Date',
-          include_blank: true, selected:  "#{@user.date_of_birth.try(:day)}"
-
-        %p.dob-slash /
-        = f.select :year, (Time.current.year-60..Time.current.year), label: false,
-          include_blank: true, selected: "#{@user.date_of_birth.try(:year)}", prompt: 'Year'
-        %span.help-block{style: 'display: none'}Please enter all DOB fields
-      = f.input :city, label: 'City'
-      .form-group.string.optional.user_state
-        = f.label 'State', class: 'control-label text optional'
-        = f.select :state, get_states_list, label: 'false'
-      = f.input :mother_maiden_name, label: "Mother's Maiden Name", required: false
-      = f.input :zipcode, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-      = f.input :phone, label: 'Phone', maxlength: 10, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-      = hidden_field_tag :full_page, 'true'
-      = f.button :submit, "Update Details", class: 'btn btn-primary btn-lg btn-block'
+          = f.input :social, readonly: true, 'disabled': true, label: 'SSN number:', maxlength: 9, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+        = f.input :date_of_birth, readonly: true, 'disabled': true, as: :string, label: 'Date of birth:', input_html: { class: 'datepicker date-of-birth' }
+      .col-holder.col-holder-right.brand-radius.brand-border-l-s.p-40
+        = f.input :address, readonly: true, 'disabled': true, label: 'Address:'
+        = f.input :city, readonly: true, 'disabled': true, label: 'City:'
+        = f.input :state, readonly: true, 'disabled': true, label: 'State:'
+        = f.input :zipcode, readonly: true, 'disabled': true, label: 'Zip code:', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
 
 :javascript
   $('select').select2({theme:'bootstrap'});

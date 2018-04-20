@@ -1,20 +1,19 @@
-#new_trade_line
-#btn-click-modal
-.container-content
-  .panel.panel-default
-    .panel-heading.col-md-12
-      .text-left.col-md-6
-        .panel-title Validation Pipeline
+- new_ssns = 1
+/ - charge = Setting.last.ssn_charge
+- wallet_balance = current_user.wallet_balance
 
-    .panel-body#panel-body.deposit-panel
-      - if @users.any?
-        %table.table.table-striped
-          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
-            = render 'user'
-      - else
-        .no-data-div
-          %div
-            = image_tag('no-data-img.png')
-            %p.dashb Nothing here 😔
-            %p.dashb There is nothing here, please come back later
+.row.row-holder.align-items-center.brand-border-bottom-l-s
+  .col-sm-12
+    %h2.main-title.title-brand Request SSN / CPN Validation
+    %span.subtitle Platform to boost your credit scores.
+
+.row.row-holder
+  .col-sm-4
+    #form-ssn
+      %span.subtitle.d-block.p-t-20.p-b-55 Enter details below and proceed to validate
+      = render partial: 'users/form'
+
+:javascript
+  var new_ssns = #{new_ssns};
+  var wallet_balance = #{wallet_balance}
 

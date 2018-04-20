@@ -1,22 +1,30 @@
 - new_ssns = 1
-- charge = Setting.last.ssn_charge
+/ - charge = Setting.last.ssn_charge
 - wallet_balance = current_user.wallet_balance
 
 = simple_nested_form_for current_user, url: update_ssns_user_path(current_user), method: :patch, remote: true do |f|
-  .modal-body.ssn-modal-body#ssn
+  .fields
+    .form-group.user_ssns_ssnorcpn
+      = label_tag :ssnorcpn, 'Enter SSN / CPN number', class: 'control-label'
+      = text_field_tag :ssnorcpn, params[:ssnorcpn], maxlength: 9, class: 'form-control search-form', input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+      = hidden_field_tag :status, value: 'requested'
+  .d-flex.flex-column#ssn
     = f.simple_fields_for :ssns do |ff|
       - if ff.object.new_record?
-        = render partial: 'multiple_ssn', locals: { ff: ff }
+        = render partial: 'users/multiple_ssn', locals: { ff: ff }
     %span.help-block.error{style: 'display: none'} You have insufficient funds in your wallet
     = f.link_to_add '+ Add another', :ssns
 
-  .modal-footer
-    %b.sub-title.text-left.note-label Note:&nbsp;
-    %p.sub-title.note-ssns-charge.text-left.note-msg= "You will be charged $#{charge * new_ssns} ($#{charge}/number) for this validation"
-    = f.button :submit, 'Purchase Validation', class: 'btn btn-primary btn-lg btn-block ssn-submit-button'
+  .d-flex.flex-column
+    = f.button :button, 'Purchase Validation', class: 'btn btn-grey-primary btn-xxl _ssn-submit-button', href: '#', 'data-toggle': 'modal', 'data-target': '#confirm-ssn-modal'
+    %span.subtitle
+      %strong
+        Note:
+      You will be charged $10.00 for this validation. 
 
 :javascript
   wallet_balance = #{wallet_balance}
+  var charge = 1;
   $('.ssn-submit-button').click(function(event){
     event.preventDefault();
     event.stopPropagation();

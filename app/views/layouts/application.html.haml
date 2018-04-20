@@ -20,10 +20,6 @@
             %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'profile'|| controller.controller_name == 'profile' && !params[:user_check_id]}" }
               = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
             %li.icon.icon-locker= link_to 'Change Password', edit_password_user_path(current_user)
-            - if current_user.au?
-              - if current_user.accepted?
-                %li= link_to 'Authorised Users', applications_users_path
-                %li= link_to 'Recent Transactions', ledger_entries_path
             %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
               %a{href: "/brokers"} Brokers / Vendors
             %li.dropdown.icon.icon-cash.open
@@ -31,16 +27,15 @@
                 Recent Transactions
                 %i.fa.fa-chevron-down
               %ul.dropdown-menu
-                %li{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
-                  %a{href: "/brokers"} Ledgers
+                %li= link_to 'Ledgers', ledger_entries_path
                 %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
                   %a{href: "/purchases"} Purchases
                 %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
                   %a{href: "/deposits"} Deposits
                 %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
-                  %a{href: "/purchases"} Refunds
+                  %a{href: "/refunds"} Refunds
                 %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
-                  %a{href: "/deposits"} Withdrawals
+                  %a{href: "/withdraws"} Withdrawals
             %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
               %a{href: "/ssns"} SSN/CPN Validation
     .display-body
@@ -66,10 +61,13 @@
     = render "dashboard/confirm-deposit-modal"
     = render "dashboard/fund-wallet-modal"
     = render "withdraws/withdrawal-funds-modal"
+    / = render "withdraws/withdraw_details"  --undefined variable withdraws
+    / = render "refunds/refund_details"  --undefined variable withdraws
     = render "trade_lines/purchase-modal"
     = render "confirmations/confirm-withdraw-modal"
     = render "confirmations/confirm-purchase-modal"
     = render "confirmations/confirm-deposit-modal"
     = render "confirmations/confirm-change-password-modal"
     = render "confirmations/confirm-logout-modal"
+    = render "confirmations/confirm-ssn-modal"
 

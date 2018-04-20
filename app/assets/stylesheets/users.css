@@ -28,133 +28,12 @@ table#tradelineDataTable thead tr th {
   padding-left: 0px;
 }
 
-.no-pad-right.purchase_conf_col {
-  padding-right: 0px;
-}
-
-.js-dashb-user-status {
-  display: inline-block;
-  padding-left: 35px;
-  font-size: 16px;
-}
-
-.user_status_accepted, .status_accepted, .status_partially_accepted, .status_approved {
-  color: green !important;
-}
-
-.user_status_submitted,  .status_submitted, .status_deposited {
-  color: #efba2c !important;
-}
-
-.user_status_rejected, .status_rejected {
-  color: red !important;
-}
-
-.js-dashb-status-date {
-  display: inline-block;
-}
-
-.devise-change-password {
-  font-size: 32px!important;
-  width: auto!important;
-}
-
-.search-dashboard-btn {
-  height: 42px;
-  padding: 1em !important;
-  font-size: 12px!important;
-}
-
-.withdraw-control-label {
-  flex: 4 !important;
-}
-
-.dz-progress {
-  display: none;
-}
-
-.au-db-button {
-  font-size: 12px!important;
-  padding: 1em!important;
-}
-
-.reset-filters {
-  color: #797979;
-  font-size: 16px;
-}
-
-.dz-preview.dz-image-preview {
-  width: 40%;
-}
-
-.glyphicon.glyphicon-chevron-down, .glyphicon.glyphicon-chevron-up {
-  left: 5px;
-  top: 7px;
-}
-
-.trade-line-search-column {
-  display: flex;
-}
-
-p.dob-slash {
-  width: fit-content;
-  margin-right: 0px;
-  display: inline-block;
-  font-size: 25px;
-  position: relative;
-  top: 10px;
-}
-
-.dob-label {
-  display: -webkit-box;
-}
-
-li.select2-selection__choice {
-  font-size: 16px;
-}
-
 #infinite-scrolling div.pagination ul.pagination {
   display: none;
 }
 
 .dropzone .dz-preview.dz-error .dz-error-mark, .dropzone .dz-preview.dz-error .dz-error-message {
   display: none;
-}
-
-.dashboard-tradeline-table{ 
-  display: table;
-}
-
-#tradelineDataTable_wrapper {
-  display: flex;
-  flex-flow:  column nowrap;
-  align-items: flex-start;
-
-
-}
-
-#tradelineDataTable{
-  display: block;
-  width: 100% !important;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: none;
-  border:none;
-}
-
-.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
-  background-color: #3c1fa8;
-  border-color: #3c1fa8;
-}
-
-.pagination > li > a, .pagination > li > span {
-  color: #3c1fe8;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:active {
-  background: none;
-  box-shadow: none;
 }
 
 .nav-tabs.users-list > li > a:hover{
@@ -193,10 +72,6 @@ li.select2-selection__choice {
 p.dashb.all-users-wallet-balance {
   color: #202020;
   font-weight: bold;
-}
-
-p.dashb {
-  color: #3c1fa8;
 }
 
 .panel-body#panel-body.all-users {

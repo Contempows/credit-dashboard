@@ -1,35 +1,27 @@
-.container-content
-  .panel.panel-default
-    .panel-heading.col-md-12
-      .text-left.col-md-6
-        .panel-title
-          = "Notifications #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
-        #new_trade_line
-        #btn-click-modal
-    .panel-body#panel-body.withdraw-panel
-      %ul.nav.nav-tabs.nav-justified
-        - if params[:user_check_id].present? && current_user.staff?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id]), class: 'active-tab'
-        - elsif current_user.au?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path
-          %li= link_to 'Purchases', purchases_path
-          %li= link_to 'Deposits', deposits_path
-          %li= link_to 'Refunds', refunds_path
-          %li= link_to 'Withdrawals', withdraws_path, class: 'active-tab'
-        - else
-          %li= link_to 'Deposits', deposits_path
-          %li= link_to 'Withdrawals', withdraws_path, class: 'active-tab'
+.row.row-holder.align-items-center.brand-border-bottom-l-s
+  .col-sm-9
+    %h2.main-title.title-brand Withdrawals
+    %span.subtitle Platform to boost your credit scores.
+  .col-sm-3
+    = form_tag withdraws_path, method: :get do
+      .form-control-holder
+        = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'
+        %i.fa.fa-search
 
-      - if @withdraws.any?
-        %table.table.table-striped
-          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
-            = render @withdraws
-      - else
-        = render 'shared/no_data'
+.content-holder.p-t-55
+  - if @withdraws.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th.no-sort Withdrawal ref no
+          %th.no-sort Withdrawal Date
+          %th.no-sort Withdrawal To
+          %th.no-sort Withdrawal Status
+          %th.no-sort Withdrawal Amount
+      %tbody{ data: { 'no-turbolink'=>'true' } }
+        = render @withdraws
+  - else
+    = render 'shared/no_data'
             
 #infinite-scrolling
   = will_paginate @withdraws

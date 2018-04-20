@@ -1,54 +1,28 @@
-.container-content
-  .panel.panel-default.orders-pipeline-wrapper
-    #new_trade_line
-    #btn-click-modal
-    #user-show-info
-    #user-change-status
-    .panel-heading.col-md-12
-      - if current_user.staff? && !params[:user_check_id]
-        #panel-search
-          .text-left.col-md-6
-            .panel-title
-              = "Orders Pipeline #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
-          .text-right.col-md-6#search-users.pull-right
-            %p.search-users-text Search Purchases
-        #search-box
-          = form_tag purchases_path, method: :get do
-            = text_field_tag :term, nil, placeholder: 'Search by Email',
-              value: params[:term]
-          %span.glyphicon.glyphicon-remove.search-box-remove.pull-right
-      - else
-        .text-left.col-md-6
-          .panel-title
-            = "Orders Pipeline #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
+.row.row-holder.align-items-center.brand-border-bottom-l-s
+  .col-sm-9
+    %h2.main-title.title-brand Orders
+    %span.subtitle Platform to boost your credit scores.
+  .col-sm-3
+    = form_tag purchases_path, method: :get do
+      .form-control-holder
+        = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'
+        %i.fa.fa-search
 
-    .panel-body.all-trans-tabs#panel-body.purchase-panel
-      %ul.nav.nav-tabs.nav-justified
-        - if params[:user_check_id].present? && current_user.staff?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id]), class: 'active-tab'
-          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id])
-        - elsif current_user.au?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path
-          %li= link_to 'Purchases', purchases_path, class: 'active-tab'
-          %li= link_to 'Deposits', deposits_path
-          %li= link_to 'Refunds', refunds_path
-          %li= link_to 'Withdrawals', withdraws_path
-        - else
-          %li= link_to 'Purchases', purchases_path, class: 'active-tab'
-          %li= link_to 'Refunds', refunds_path
-      - if @purchases.any?
-        %table.table.table-striped
-          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
-            = render @purchases
-      - else
-        .no-data-div
-          %div
-            = image_tag('no-data-img.png')
-            %p.dashb Nothing here 😔
-            %p.dashb There is nothing here, please come back later
+.content-holder.p-t-55
+  - if @purchases.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th.no-sort Payment ref no
+          %th.no-sort Client Email
+          %th.no-sort Broker Name
+          %th.no-sort Purchase date
+          %th.no-sort Status
+      %tbody{ data: { 'no-turbolink'=>'true' } }
+        = render @purchases
+  - else
+    = render 'shared/no_data'
+            
 #infinite-scrolling
   = will_paginate @purchases
 

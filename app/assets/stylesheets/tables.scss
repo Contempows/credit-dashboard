@@ -29,6 +29,10 @@
     font-size: em(15);
     border: 0 !important;
 
+    a {
+        color: $default-text-color;
+    }
+
     > thead,
     > tbody,
     > tfoot {

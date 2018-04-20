@@ -153,6 +153,20 @@
     }
 }
 
+.withdraw-details-modal {
+
+    .title {
+        margin-bottom: 30px;
+        font-size: $default-font-size;
+    }
+
+    .subtitle {
+        margin-bottom: 40px;
+        color: #9d9d9d;
+        font-size: em(16);
+    }
+}
+
 #new_banking_information_modal {
 
     .modal-dialog {

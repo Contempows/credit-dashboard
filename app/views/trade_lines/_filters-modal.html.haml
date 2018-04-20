@@ -18,7 +18,7 @@
             = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
           .col-50.d-flex.flex-column
             = label_tag :max_price, 'Price', class: 'control-label'
-            = text_field_tag :max_price, params[:max_price], class: 'form-control search-form '
+            = text_field_tag :max_price, params[:max_price], class: 'form-control search-form'
           .col-50.d-flex.flex-column
             = label_tag :max_price, 'Card Age', class: 'control-label'
             = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '

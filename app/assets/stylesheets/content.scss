@@ -129,3 +129,32 @@
         right: 0;
     }
 }
+
+#form-ssn {
+    
+    .fields {
+        position: relative;
+    }
+
+    .remove_nested_fields,
+    .add_nested_fields {
+        color: $grey-secondary;
+        font-size: $default-font-size;
+        font-weight: 400;
+    }
+
+    .remove_nested_fields {
+        position: absolute;
+        top: 60%;
+        transform: translateY(-60%);
+        right: 10px;
+    }
+
+    .add_nested_fields {
+        margin: 0 0 60px;
+    }
+
+    .btn {
+        margin-bottom: 20px;
+    }
+}

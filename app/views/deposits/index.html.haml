@@ -1,39 +1,27 @@
-.container-content
-  .panel.panel-default
-    .panel-heading.col-md-12
-      .text-left.col-md-6
-        .panel-title
-          = "Notifications #{params[:user_check_id].present? && current_user.staff? ? "of #{@user.first_name} #{@user.last_name}" : ''}"
-        #new_trade_line
-        #btn-click-modal
-    .panel-body#panel-body.deposit-panel
-      %ul.nav.nav-tabs.nav-justified
-        - if params[:user_check_id].present? && current_user.staff?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Purchases', purchases_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Deposits', deposits_path(user_check_id: params[:user_check_id]), class: 'active-tab'
-          %li= link_to 'Refunds', refunds_path(user_check_id: params[:user_check_id])
-          %li= link_to 'Withdrawals', withdraws_path(user_check_id: params[:user_check_id])
-        - elsif current_user.au?
-          %li= link_to t('transactions.ledgers'), ledger_entries_path
-          %li= link_to 'Purchases', purchases_path
-          %li= link_to 'Deposits', deposits_path, class: 'active-tab'
-          %li= link_to 'Refunds', refunds_path
-          %li= link_to 'Withdrawals', withdraws_path
-        - else
-          %li= link_to 'Deposits', deposits_path, class: 'active-tab'
-          %li= link_to 'Withdrawals', withdraws_path
+.row.row-holder.align-items-center.brand-border-bottom-l-s
+  .col-sm-9
+    %h2.main-title.title-brand Deposits
+    %span.subtitle Platform to boost your credit scores.
+  .col-sm-3
+    = form_tag deposits_path, method: :get do
+      .form-control-holder
+        = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'
+        %i.fa.fa-search
 
-      - if @deposits.any?
-        %table.table.table-striped
-          %tbody#tbody{ data: { 'no-turbolink'=>'true' } }
-            = render @deposits
-      - else
-        .no-data-div
-          %div
-            = image_tag('no-data-img.png')
-            %p.dashb Nothing here 😔
-            %p.dashb There is nothing here, please come back later
-
+.content-holder.p-t-55
+  - if @deposits.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th.no-sort Deposit ref no
+          %th.no-sort Deposit Date
+          %th.no-sort Broker Name
+          %th.no-sort Deposit Status
+          %th.no-sort Deposit Amount
+      %tbody{ data: { 'no-turbolink'=>'true' } }
+        = render @deposits
+  - else
+    = render 'shared/no_data'
+            
 #infinite-scrolling
   = will_paginate @deposits

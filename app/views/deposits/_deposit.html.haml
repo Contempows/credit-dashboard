@@ -4,15 +4,13 @@
       = link_to "Deposit Ref. ##{deposit.authorization_code}", edit_deposit_path(deposit), remote: true
 
     %p.dashb-small-date
-      Reference #
   %td
     %p.dashb= month_date_and_year(deposit.created_at)
-    %p.dashb-small-date Date
+    %p.dashb-small-date
   - if current_user.staff?
     %td
       %p.dashb= deposit.user.email
-      %p.dashb-small-date Deposited by
   %td
     %p.dashb{class: "status_#{deposit.status}"}= deposit.status.capitalize
-    %p.dashb-small-date Status
+    %p.dashb-small-date
   %td.dashb-app-status= number_to_currency(deposit.amount, precision: 2)

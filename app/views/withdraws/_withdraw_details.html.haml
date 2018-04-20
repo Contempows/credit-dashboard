@@ -1,0 +1,36 @@
+.modal.fade.withdraw-details-modal{id: "withdraw_details_#{withdraw.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %h5.modal-title#withdraw-details-modal-label.title-sub-brand Withdrawl Information
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        %span.warn-text 
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Authorization Code
+            %span.subtitle = withdraw.ref
+            
+          .col-sm-6.d-flex.flex-column
+            %h5.title Amount
+            %span.subtitle = number_to_currency(withdraw.amount, precision: 2)
+
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Payee
+            %span.subtitle = withdraw.payee
+            
+          .col-sm-6.d-flex.flex-column
+            %h5.title Payee address
+            %span.subtitle = withdraw.address
+
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Payee  city
+            %span.subtitle = withdraw.city
+            
+          .col-sm-6.d-flex.flex-column
+            %h5.title Payee state
+            %span.subtitle = withdraw.state

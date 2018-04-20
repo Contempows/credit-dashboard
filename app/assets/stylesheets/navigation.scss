@@ -90,7 +90,6 @@
             min-width: auto;
             padding: 0;
             margin: 0;
-            list-style: circle;
             font-size: inherit;
             text-align: initial;
             background-color: transparent;
@@ -100,9 +99,19 @@
             background-clip: initial;
 
             & > li {
+                list-style: circle;
 
-                &:hover {
+                &:hover,
+                &:focus,
+                &:active {
                     background: $primary-color-dark;
+
+                    a {
+
+                        &:before {
+                            background: #fff;
+                        }
+                    }
                 }
 
                 a {
@@ -121,6 +130,16 @@
                     
                     &:hover {
                         background: transparent;
+                    }
+                }
+
+                &.activated {
+
+                    a {
+
+                        &:before {
+                            background: #fff;
+                        }
                     }
                 }
             }

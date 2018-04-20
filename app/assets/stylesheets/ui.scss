@@ -55,7 +55,7 @@ $brand-text-color: $grey-secondary;
 }
 
 //Classes of widths
-@for $i from 1 through 100 {
+@for $i from 0 through 100 {
 
     .w-#{$i} {
         width: $i * 1% !important;
@@ -63,7 +63,7 @@ $brand-text-color: $grey-secondary;
 }
 
 //Classes of widths
-@for $i from 1 through 300 {
+@for $i from 0 through 300 {
     
     .m-t-#{$i} {
         margin-top: $i * 1px !important;

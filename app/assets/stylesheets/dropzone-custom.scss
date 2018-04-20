@@ -1,4 +1,56 @@
 .dropzone {
+    position: relative;
+    box-sizing: border-box;
+
+    & > * {
+        box-sizing: border-box;
+    }
+
+    .dz-preview {
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        margin: 0.5em;
+    }
+
+    .dz-progress {
+        display: block;
+        height: 15px;
+        border: 1px solid #aaa;
+    }
+
+    .dz-upload {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: green;
+    }
+    
+    .dz-error-message,
+    .dz-error-mark,
+    .dz-success-mark {
+        display: block;
+    }
+
+    .dz-error-mark,
+    .dz-success-mark {
+        position: absolute;
+        display: none;
+        left: 30px;
+        top: 30px;
+        width: 54px;
+        height: 58px;
+        left: 50%;
+        margin-left: -27px
+    }
+
+    .dz-error-message {
+        color: red;
+        display: none;
+    }
+}
+
+.dropzone {
     min-height: auto !important;
     border: 0 !important;
     background: initial !important;

@@ -1,0 +1,23 @@
+.modal.fade.refund-details-modal{id: "refund_details_#{refund.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %h5.modal-title#refund-details-modal-label.title-sub-brand Refund Details
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        %span.warn-text 
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Payment Ref
+            %span.subtitle = @refund.ref
+            
+          .col-sm-6.d-flex.flex-column
+            %h5.title Purchase Amount
+            %span.subtitle #{number_to_currency(@refund.amount_refunded.to_f)}
+
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Reason for Refund
+            %span.subtitle #{@refund.reason}

@@ -1,0 +1,36 @@
+= simple_form_for @deposit, remote: true do |f|
+  = f.hidden_field :status
+
+.modal.fade.refund-details-modal{id: "refund_details_#{refund.id}", 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialog', 'tabindex'=>'-1'}
+  .modal-dialog{'role'=>'document'}
+    .modal-content.show-tl
+      .modal-header
+        %h5.modal-title#refund-details-modal-label.title-sub-brand Deposit Details
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        %span.warn-text 
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Deposit Amount
+            %span.subtitle = number_to_currency(@deposit.amount, precision: 2)
+
+          .col-sm-6.d-flex.flex-column
+            %h5.title Deposit Date 
+            %span.subtitle = @deposit.date_of_deposit.strftime('%m.%d.%y') 
+
+        .row
+          .col-sm-6.d-flex.flex-column
+            %h5.title Deposit was made at
+            %span.subtitle = @deposit.banking_information.bank_name
+
+          .col-sm-6.d-flex.flex-column
+            %h5.title Authorization Code
+            %span.subtitle = @deposit.authorization_code 
+            
+        - if @deposit.attachment.present?
+          .row
+            .col-sm-12
+              .d-flex.align-items-center.justify-content-center.brand-border-l-s
+                %img{src: "#{asset_url(@deposit.attachment.url)}", style: "max-height:500px;max-width:500px;"}

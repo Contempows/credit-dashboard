@@ -1,94 +1,154 @@
-.panel.panel-default.au-tradeline-panel
-  .panel-heading.col-md-12
-    .text-left.col-md-6
-      .panel-title Upcoming Tradelines
-    .text-right.col-md-6.view-all
-      - if @trade_lines.any?
-        = link_to 'View all', trade_lines_path, class: 'new-trade-line', data: { 'no-turbolink' => true }
-  .panel-body.tradeline-panel#panel-body
-    - if @trade_lines.any?
-      = render 'trade_lines/index_dashboard'
-    - else
-      .no-data-div
-        %div
-          = image_tag('no-data-img.png')
-          %p.dashb Nothing here 😔
-          %p.dashb There is nothing here, please come back later.
-#new_trade_line
-#user-show-info
-
-.row.au-ss-bottom-row
-  .col-md-12.au-wallet-balance
-    .col-sm-4.no-pad-left
-      .div#wallet-balance
-        .wallet-balance
-          .div.cash-img
-          .balance-wrapper
-            %p.wallet-bal Current wallet balance
-            %b.wallet-amount
-              %span#wallet-amount
-                - precision = user_wallet_balance_precision(current_user.wallet_balance)
-                = number_to_currency(current_user.wallet_balance, precision: 2)
-
-      #btn-click-modal
-      - if !@can_confirm_deposit
-        %button.data-error{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+.row.au-dashboard-button-wrapper
+  .col-md-12
+    #btn-click-modal
+    - if !@can_confirm_deposit
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
         data: { error: 'Please wait for the Banking information to be updated' } }
           %b CONFIRM YOUR DEPOSIT
-        %button.data-error{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
         data: { error: 'Please wait while the Banking Information is being updated' } }
           %b FUND YOUR WALLET
 
-      - elsif profile_empty?
-        %button.data-error{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+    - elsif profile_empty?
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
         data: { error: "Your profile details are not updated. Please #{link_to 'click here', edit_details_user_path(current_user, profile_details: true)} to update your details." } }
           %b CONFIRM Your DEPOSIT
+      .col-md-3
         = link_to 'FUND YOUR WALLET', banking_informations_path, 
-          class: 'btn btn-primary btn-block btn-lg btn-gap', method: :get, remote: true
-      
-      - else 
+          class: 'btn btn-primary btn-block btn-lg btn-gap au-db-button', method: :get, remote: true
+
+    - else 
+      .col-md-3
         = link_to 'CONFIRM your DEPOSIT', new_deposit_path, 
-          class: 'btn btn-primary btn-block btn-lg btn-gap', remote: true, method: :get
+          class: 'btn btn-primary btn-block btn-lg btn-gap au-db-button', remote: true, method: :get
+      .col-md-3
         = link_to 'FUND YOUR WALLET', banking_informations_path, 
-          class: 'btn btn-primary btn-block btn-lg btn-gap', method: :get, remote: true
+          class: 'btn btn-primary btn-block btn-lg btn-gap au-db-button', method: :get, remote: true
 
-      = link_to 'Request SSN / CPN VALIDATION', edit_ssns_user_path(current_user), 
-        remote: true, class: 'btn btn-primary btn-block btn-lg btn-gap', data: { 'no-turbolink' => true }
+    - if Setting.last.blank?
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+        data: { error: "Please wait while we update the SSN/CPN charge details" } }
+          %b Request SSN / CPN VALIDATION
+    - elsif current_user.wallet_balance.zero?
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+        data: { error: "You have insufficient funds in your wallet" } }
+          %b Request SSN / CPN VALIDATION
+    - else
+      .col-md-3
+        = link_to 'Request SSN / CPN VALIDATION', edit_ssns_user_path(current_user), 
+        remote: true, class: 'btn btn-primary btn-block btn-lg btn-gap au-db-button', data: { 'no-turbolink' => true }
+      
 
-      = link_to 'Withdraw your funds', new_withdraw_path, class: 'btn btn-primary btn-lg btn-block', remote: true
+    - if current_user.wallet_balance.zero?
+      .col-md-3
+        %button.data-error.au-db-button{ class: 'btn btn-primary btn-block btn-lg btn-gap',
+        data: { error: "You have insufficient funds in your wallet" } }
+          %b Withdraw your funds
+    - else
+      .col-md-3
+        = link_to 'Withdraw your funds', new_withdraw_path, class: 'btn btn-primary btn-lg btn-block au-db-button', remote: true
 
-    .col-sm-4.no-pad-right.no-pad-left.au-dashboard-recent
-      .panel.panel-default
-        .panel-heading.col-md-12
-          .text-left.col-md-6
-            .panel-title.dashb Recent Transactions
-          .text-right.col-sm-6
-            - if @recent_transactions.present?
-              = link_to 'View All', deposits_path
-        .panel-body.au-dashboard-trans
-          - if @recent_transactions.present?
-            = render partial: 'all_recent_transactions', locals: { recent_transactions: @recent_transactions }
-          - else
-            .no-data-div
-              %div
-                = image_tag('no-data-img.png')
-                %p.dashb Nothing here 😔
-                %p.dashb There is nothing here, please come back later.
+&nbsp;
 
-    .col-sm-4.no-pad-right.au-dashboard-submitted
-      .panel.panel-default
-        .panel-heading.col-md-12
-          .text-left.col-md-6
-            .panel-title.dashb Order Management
-          .text-right.col-sm-6
-            - if @orders.present?
-              = link_to 'View All', purchases_path 
-        .panel-body.au-dashboard-apps#panel-body
-          - if @orders.empty?
-            .no-data-div
-              %div
-                = image_tag('no-data-img.png')
-                %p.dashb Nothing here 😔
-                %p.dashb There is nothing here, please come back later.
-          - else
-            = render partial: 'all_recent_transactions', locals: { recent_transactions: @orders }
+#new_trade_line
+.panel.panel-default.stc-panel
+  .panel-heading.col-md-12
+    .text-left.col-md-6{style: 'display:flex;'}
+      .panel-title.cursor-pointer.search-tradelines-collapse-button{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", :type => "button"} Search Tradelines
+      %span.glyphicon.glyphicon-chevron-down
+    .text-right.col-md-6
+      = link_to 'Reset Filters', root_path, class: 'reset-filters'
+  .panel-body.collapse#collapseExample
+    &nbsp;
+    .col-md-12
+      = form_tag root_path, method: :get do
+        .col-md-12
+          .row
+            .col-md-12.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :bank, 'Bank', class: 'control-label', style: 'width: 10%'
+              = select_tag :bank, options_for_select(@all_trade_lines.distinct.pluck(:bank), params[:bank]), multiple: true, class: 'form-control search-form'
+          .row
+            .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :state, 'State', class: 'control-label', style: 'width: 50%'
+              = select_tag :state, options_for_select(@states, params[:state]),
+              include_blank: true
+            .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
+              = label_tag :special_add, 'Special Add Required?', class: 'control-label', style: 'width: 50%'
+              = select_tag :special_add, options_for_select([['Yes', true], ['No', false]], params[:special_add]),
+              include_blank: true
+          .row
+            .col-md-6.trade-line-search-column
+              = label_tag :min_credit_limit, 'Min Credit Limit', class: 'control-label', style: 'width: 50%'
+              = text_field_tag :min_credit_limit, params[:min_credit_limit],
+              onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
+              class: 'form-control search-form '
+            .col-md-6.trade-line-search-column
+              = label_tag :ssn_req, 'SSN Req?', class: 'control-label', style: 'width: 50%'
+              = select_tag :ssn_req, options_for_select([['Yes', true], ['No', false]], params[:ssn_req]),
+              include_blank: true
+          .row
+            .col-md-6.trade-line-search-column
+              = label_tag :max_price, 'Max Price', class: 'control-label', style: 'width: 50%'
+              = text_field_tag :max_price, params[:max_price],
+              onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);",
+              class: 'form-control search-form '
+            .col-md-6.trade-line-search-column
+              = label_tag :dl_req, 'DL Req?', class: 'control-label', style: 'width: 50%'
+              = select_tag :dl_req, options_for_select([['Yes', true], ['No', false]], params[:dl_req]),
+              include_blank: true
+        &nbsp;
+        &nbsp;
+        .col-md-12
+          .row
+            .col-md-2.col-md-offset-5
+              %button.btn.btn-primary.btn-block.search-dashboard-btn{type: 'submit'} Search
+              &nbsp;
+
+
+.panel.panel-default.stc-panel
+  .panel-heading.col-md-12{style: 'padding: 5px 30px'}
+    .text-left.col-md-6
+      .panel-title{style: 'padding-top: 24px;'} All Tradelines
+    .text-right.col-md-6
+      .wallet-balance-wrapper
+        %table
+          %tr
+            %td
+              .div.cash-img{style: 'display: inline-block'}
+              &nbsp;
+              &nbsp;
+            %td
+              %p.wallet-bal{style: 'display: inline-block'} Current wallet balance:
+              &nbsp;
+            %td
+              %b.wallet-amount{style: 'display: inline-block;vertical-align: super;line-height: 25px;'}
+                %span#wallet-amount
+                  - precision = user_wallet_balance_precision(current_user.wallet_balance)
+                  = number_to_currency(current_user.wallet_balance, precision: 2)
+
+  .panel-body.all-tradeline#panel-body.au-dashboard-apps
+    - if TradeLine.accessible_by(current_ability).count.zero?
+      = render 'shared/no_data'
+    - else
+      = render 'trade_lines/index'
+
+:javascript
+  $(function(){
+    $('select').select2({theme:'bootstrap'});
+  });
+  document.addEventListener("turbolinks:before-cache", function() {
+    $('select').select2('destroy');
+  });
+  $('#collapseExample').on('show.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-up'></span>")
+  });
+  $('#collapseExample').on('hide.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-down'></span>")
+  });

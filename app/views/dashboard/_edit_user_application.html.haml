@@ -1,11 +1,11 @@
-.modal#new_user_application_modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+.modal#edit_user_application_modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
   .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
-        %h5.modal-title#confirm-deposit-modal-label.title-sub-brand Add New Broker / Vendor
+        %h5.modal-title#confirm-deposit-modal-label.title-sub-brand Edit Broker / Vendor
       .modal-body.m-b-15
         %span.warn-text Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         = render 'dashboard/form'
       .modal-footer.d-flex.justify-content-start.align-items-center
-        %button.btn.btn-cyan.btn-md{type: 'submit', for: 'create_broker'} Create User
+        %button.btn.btn-cyan.btn-md{type: 'submit', for: 'create_broker'} Update Information
         %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Cancel'} Cancel

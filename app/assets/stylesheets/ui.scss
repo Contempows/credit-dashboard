@@ -124,7 +124,7 @@ $brand-text-color: $grey-secondary;
         position: relative;
 
         @include pseudo-el(after, 24px, 24px) {
-            top: 43%;
+            top: 35%;
             right: 10px;
             transform: translateY(-50%);
             background: url('calendar-icon.png') no-repeat;

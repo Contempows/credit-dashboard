@@ -109,7 +109,15 @@ function changeNote(count) {
 
     var editableContainer = $('.js-editable-form');
 
-    $('.date-of-birth, .datepicker').datepicker()
+    $('.date-of-birth').each(function (el) {
+      $(this).datepicker()
+      console.log(el);
+    })
+
+    $('.datepicker').each(function (el) {
+      $(this).datepicker()
+      console.log(el);
+    })
 
     $('.select-picker').each(function (i, el) {
       $(this).select2()

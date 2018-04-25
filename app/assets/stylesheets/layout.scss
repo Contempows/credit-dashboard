@@ -166,31 +166,6 @@ body {
   max-width: 476px;
 }
 
-.simple_form.edit_user {
-  text-align: left;
-
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 10px 10px 10px 0;
-    color: #555555;
-    font-size: 18px;
-    background-color: #fff;
-    box-shadow: none;
-    border: none;
-    border-bottom: 1px solid #a6a6a6;
-    width: 50%;
-    border-radius: 0;
-    margin-bottom: 36px;
-
-    @media screen and (max-width: 767px){
-      margin-bottom: 15px;
-      width: 100%;
-    }
-  }
-}
-
 .modal.fade.in.js-user-detail-wrapper .modal-dialog .modal-content .modal-body{
   .modal-header-title{
     margin: 0 0 10px;
@@ -314,27 +289,6 @@ body {
 @media screen and (max-width: 767px){
   margin-top: 15px;
 }
-}
-
-.modal-body select{
-  -webkit-appearance: none; 
-  -moz-appearance: none;
-  appearance: none;
-  padding: 10px 10px 10px 0;
-  color: #555555;
-  font-size: 20px;
-  background-color: #fff;
-  box-shadow: none;
-  border: none;
-  border-bottom: 1px solid rgb(166, 166, 166);
-  width: 50%;
-  border-radius: 0;
-  margin-bottom: 20px;
-  @media screen and (max-width: 767px){
-     font-size: 14px;
-     width: 100%;
-     margin-bottom: 0;
-   }
 }
 
 .modal-body.purchase-wrapper div#new-purchase-form{

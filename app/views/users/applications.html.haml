@@ -1,41 +1,27 @@
-.panel.panel-default.ss-all-application-wrapper
-  - if current_user.staff? && !params[:junior]
-    #user-change-status
-    #user-show-info
-    .panel-heading.col-md-12
-      #panel-search
-        .text-left.col-md-6
-          .panel-title= link_to 'All Applications', applications_users_path
-        .text-right.col-md-6#search-users.pull-right
-          %p.search-users-text Search Users
-      #search-box
-        = form_tag applications_users_path, method: :get do
-          = text_field_tag :term, nil, placeholder: 'Search Applications',
-            value: params[:term]
-        %span.glyphicon.glyphicon-remove.search-box-remove.pull-right
-  - else
-    .panel-heading.col-md-12
-      .text-left.col-md-6
-        .panel-title= "#{params[:junior]? 'All Junior Staff Users' : 'All Applications'}"
-      .text-right.col-md-6
-        - if current_user.senior? && params[:junior]
-          = link_to '+ Add Junior Staff', new_user_path, remote: true, 
-            class: 'new-trade-line add-trade-line-and-user'
+.row.row-holder.align-items-center.brand-border-bottom-l-s
+  .col-sm-6
+    %h2.main-title.title-brand All Applications
+    %span.subtitle Platform to boost your credit scores.
+  .col-sm-6.d-flex.align-items-center.justify-content-end
+    = form_tag applications_users_path, method: :get do
+      .form-control-holder.m-r-15
+        = text_field_tag :term, nil, placeholder: 'Search Applications', value: params[:term], class: 'form-control form-control-lg form-control-height-lg'
+        %i.fa.fa-search
+    = link_to 'Add New Broker / Vendor', new_user_path, remote: true, class: 'btn btn-cyan btn-xlg new-trade-line add-trade-line-and-user'
 
-        - if current_user.au?
-          = link_to '+ Add New Authorised User', new_user_path, remote: true, 
-            class: 'new-trade-line add-trade-line-and-user'
-
-  .panel-body.all-applications#panel-body.withdraw-panel
-    - if @applications.any?
-      %table.table.table-striped
-        %tbody#applications
-          = render partial: 'application', collection: @applications, as: :app
-    - else 
-      = render 'shared/no_data'
-
-#infinite-scrolling
-  = will_paginate @applications 
+.content-holder.p-t-55
+  - if @applications.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th.no-sort Broker / Vendors Name
+          %th.no-sort Date of birth
+          %th.no-sort State
+          %th.no-sort
+      %tbody#applications
+        = render partial: 'application', collection: @applications, as: :app
+  - else 
+    = render 'shared/no_data'
 
 :javascript
   $('#search-box').hide();

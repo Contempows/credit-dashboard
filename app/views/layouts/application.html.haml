@@ -20,8 +20,7 @@
             %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'profile'|| controller.controller_name == 'profile' && !params[:user_check_id]}" }
               = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
             %li.icon.icon-locker= link_to 'Change Password', edit_password_user_path(current_user)
-            %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'home'|| controller.controller_name == 'home' && !params[:user_check_id]}" }
-              %a{href: "/brokers"} Brokers / Vendors
+            %li.icon.icon-hands= link_to 'Brokers / Vendors', applications_users_path 
             %li.dropdown.icon.icon-cash.open
               %a.dropdown-toggle.d-flex.align-items-center.justify-content-between{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
                 Recent Transactions

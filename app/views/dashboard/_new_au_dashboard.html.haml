@@ -71,7 +71,7 @@
           .row
             .col-md-12.trade-line-search-column{style: 'padding-bottom:15px'}
               = label_tag :bank, 'Bank', class: 'control-label', style: 'width: 10%'
-              = select_tag :bank, options_for_select(@all_trade_lines.distinct.pluck(:bank), params[:bank]), multiple: true, class: 'form-control search-form'
+              = select_tag :bank, options_for_select(@trade_lines.distinct.pluck(:bank), params[:bank]), multiple: true, class: 'form-control search-form'
           .row
             .col-md-6.trade-line-search-column{style: 'padding-bottom:15px'}
               = label_tag :state, 'State', class: 'control-label', style: 'width: 50%'

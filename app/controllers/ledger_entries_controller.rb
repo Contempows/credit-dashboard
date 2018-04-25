@@ -3,7 +3,7 @@ class LedgerEntriesController < ApplicationController
   authorize_resource only: [:index]
 
   def index
-    if current_user.au?
+    if true #current_user.au?
       @ledger_entries = current_user.ledger_entries
                                     .includes(:user, :entry)
                                     .paginate_and_order(params[:page], 8)

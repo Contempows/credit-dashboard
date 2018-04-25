@@ -1,3 +1,4 @@
+$form-control-height-lg: 50px;
 $form-control-height-md: 46px;
 $form-control-height-sm: 42px;
 
@@ -47,6 +48,10 @@ input[type=checkbox] {
     }
 }
 
+.form-group {
+    margin-bottom: 0;
+}
+
 .form-control {
     height: $form-control-height-md;
     padding: 0 15px;
@@ -72,10 +77,26 @@ input[type=checkbox] {
     &.select-picker {
         border: 0
     }
+
+    &.borderless {
+        appearance: none;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid #a6a6a6;
+        border-radius: 0;
+    }
 }
 
 .form-control-sm {
     height: $form-control-height-sm;
+}
+
+.form-control-lg {
+    min-width: 285px;
+}
+
+.form-control-height-lg {
+    height: $form-control-height-lg;
 }
 
 .control-label {

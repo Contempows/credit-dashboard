@@ -175,6 +175,11 @@
     }
 }
 
+.btn-xlg {
+    @include button-size(16px, 0, em(15), 1, 2px);
+    min-width: 240px;
+}
+
 .btn-lg {
     @include button-size(9px, 0, em(16), 1, 2px);
     min-width: 220px;

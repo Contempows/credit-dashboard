@@ -4,7 +4,7 @@
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6
     .d-flex.justify-content-end
-      = link_to 'Edit Profile', banking_informations_path, class: 'btn btn-cyan btn-xl btn-edit', method: :get, remote: true
+      %a.btn.btn-cyan.btn-xl.btn-edit Edit Profile
 
 .content-holder
   = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal row' } do |f|

@@ -1,41 +1,22 @@
-= simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, remote: true do |f|
-  - unless current_user.au?
-    = f.input :email
-  = f.input :first_name, label: 'First Name', required: true
-  = f.input :last_name, label: 'Last Name', required: true
-  - if current_user.au?
-    = f.input :social, label: false, label: 'SSN Number', maxlength: 9,
-      input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  .dob_wrapper{style: 'width: 100%', class: "#{'has-error' if (@user.errors.keys & [:day, :month, :year]).any?}"}
-    %label.control-label.string.optional.dob-label Date of birth
-    = f.select :month, Date::MONTHNAMES.reject(&:nil?),
-      prompt: 'Month', include_blank: true, wrapper: :select,
-      selected: "#{Date::MONTHNAMES[@user.date_of_birth.try(:month)] if @user.date_of_birth.present?}"
-
-    %p.dob-slash /
-    = f.select :day, (01..31), label: false, as: :string, prompt: 'Date',
-      include_blank: true, selected:  "#{@user.date_of_birth.try(:day)}"
-
-    %p.dob-slash /
-    = f.select :year, (Time.current.year-60..Time.current.year), label: false,
-      include_blank: true, selected: "#{@user.date_of_birth.try(:year)}", prompt: 'Year'
-      
-    %span.help-block{style: 'display: none'}Please enter all DOB fields
-  = f.input :address, label: 'Address'
-  = f.input :city, label: 'City'
-  = f.input :state, label: 'State'
-  = f.input :mother_maiden_name, required: false, label: "Mother's Maiden Name", class: 'text-left'
-  = f.input :zipcode, required: false, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  - unless current_user.au?
-    = f.input :phone, required: false, label: 'Phone', maxlength: 10, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  = f.button :submit, class: 'btn btn-primary btn-lg btn-block'
-
-:javascript
-  $('select').select2({
-    theme:'bootstrap',
-    dropdownParent: $('.modal')
-  });
-  if($('.dob_wrapper').hasClass('has-error')) {
-    $($('.dob_wrapper span.help-block')).css('display', 'inherit');
-  }
+= simple_form_for @user, html: { class: 'form-horizontal d-flex flex-row flex-wrap justify-content-between', id: 'create_broker' }, wrapper: :horizontal_form, remote: true do |f|
+  .col-50.d-flex.flex-column
+    = f.input :first_name, label: 'First name', required: false
+  .col-50.d-flex.flex-column
+    = f.input :last_name, label: 'Last name', required: false
+  .col-50.d-flex.flex-column
+    = f.input :email, label: 'Email address'
+  .col-50.d-flex.flex-column
+    = f.input :phone, label: 'Phone number'
+  .col-50.d-flex.flex-column
+    = f.input :social, label: false, label: 'SSN number', maxlength: 9, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+  .col-50.input-labeled
+    = f.input :date_of_birth, as: :string, label: 'Date of birth', input_html: { class: 'datepicker date-of-birth' }
+  .col-50.d-flex.flex-column
+    = f.input :address, label: 'Address'
+  .col-50.d-flex.flex-column
+    = f.input :city, label: 'City'
+  .col-50.d-flex.flex-column
+    = f.input :state, label: 'State'
+  .col-50.d-flex.flex-column
+    = f.input :zipcode, required: false, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
 

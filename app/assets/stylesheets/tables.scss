@@ -87,6 +87,22 @@
     }
 }
 
+.table-ledgers {
+
+    > thead,
+    > tbody,
+    > tfoot {
+
+        > tr {
+            background: transparent !important;
+
+            > th,
+            > td {
+                padding: 15px 40px;
+            }
+        }
+    }
+}
 
 .dashboard-tradeline-table{ 
     display: table;
@@ -95,7 +111,7 @@
         position: relative;
 
         @include pseudo-el(after, auto, 2px) {
-            top: 50px;
+            top: 45px;
             left: 0;
             right: 0;
             background: $light-secondary;

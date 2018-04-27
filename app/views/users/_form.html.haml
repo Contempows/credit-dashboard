@@ -1,5 +1,5 @@
 - new_ssns = 1
-/ - charge = Setting.last.ssn_charge
+- charge = Setting.last.ssn_charge
 - wallet_balance = current_user.wallet_balance
 
 = simple_nested_form_for current_user, url: update_ssns_user_path(current_user), method: :patch, remote: true do |f|

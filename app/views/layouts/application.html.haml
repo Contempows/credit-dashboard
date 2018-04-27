@@ -15,25 +15,28 @@
       .header-body
         %nav
           %ul.navigation
-            %li.activated.icon.icon-home{ class: "#{'activated' if controller.action_name == '/'|| controller.controller_name == '/' && !params[:user_check_id]}" }
+            %li.icon.icon-home{ class: "#{'activated' if controller.controller_name == '/'}" }
               %a{href: "/"} Home
-            %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'profile'|| controller.controller_name == 'profile' && !params[:user_check_id]}" }
+            %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'edit_details'|| controller.controller_name == 'edit_details' && !params[:user_check_id]}" }
               = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
-            %li.icon.icon-locker= link_to 'Change Password', edit_password_user_path(current_user)
-            %li.icon.icon-hands= link_to 'Brokers / Vendors', applications_users_path 
+            %li.icon.icon-locker{ class: "#{'activated' if controller.action_name == 'edit_password'|| controller.controller_name == 'edit_password' && !params[:user_check_id]}" }
+              = link_to 'Change Password', edit_password_user_path(current_user)
+            %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'applications'|| controller.controller_name == 'applications' && !params[:user_check_id]}" }
+              = link_to 'Brokers / Vendors', applications_users_path 
             %li.dropdown.icon.icon-cash.open
               %a.dropdown-toggle.d-flex.align-items-center.justify-content-between{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
                 Recent Transactions
                 %i.fa.fa-chevron-down
               %ul.dropdown-menu
-                %li= link_to 'Ledgers', ledger_entries_path
-                %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
+                %li{ class: "#{'activated' if controller.action_name == 'ledger_entries'|| controller.controller_name == 'ledger_entries' && !params[:user_check_id]}" }
+                  = link_to 'Ledgers', ledger_entries_path
+                %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'purchases' && !params[:user_check_id]}" }
                   %a{href: "/purchases"} Purchases
-                %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
+                %li{ class: "#{'activated' if ['deposits'].include?(controller.controller_name)}" }
                   %a{href: "/deposits"} Deposits
-                %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
+                %li{ class: "#{'activated' if controller.action_name == 'refunds'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
                   %a{href: "/refunds"} Refunds
-                %li{ class: "#{'activated' if ['deposits', 'withdraws'].include?(controller.controller_name)}" }
+                %li{ class: "#{'activated' if ['withdraws'].include?(controller.controller_name)}" }
                   %a{href: "/withdraws"} Withdrawals
             %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
               %a{href: "/ssns"} SSN/CPN Validation
@@ -60,10 +63,10 @@
     = render "dashboard/confirm-deposit-modal"
     = render "dashboard/fund-wallet-modal"
     = render "withdraws/withdrawal-funds-modal"
-    / = render "withdraws/withdraw_details"  --undefined variable withdraws
-    / = render "refunds/refund_details"  --undefined variable withdraws
-    / = render "refunds/deposit_details"  --undefined variable withdraws
-    / = render "refunds/purchase_details"  --undefined variable withdraws
+    / = render "withdraws/withdraw_details"
+    / = render "refunds/refund_details"
+    / = render "refunds/deposit_details"
+    / = render "refunds/purchase_details"
     = render "trade_lines/purchase-modal"
     = render "confirmations/confirm-withdraw-modal"
     = render "confirmations/confirm-purchase-modal"

@@ -20,7 +20,7 @@ class User < ApplicationRecord
                       length: { maximum: 6 },
                       allow_blank: true
   validates :day, :month, :year, presence: { if: :other_fields }
-  validates :first_name, :last_name, presence: { if: :broker? }
+  validates :first_name, :last_name, :phone, presence: true
 
   belongs_to :invited_by, class_name: 'User', optional: true
   has_many :deposits, dependent: :destroy

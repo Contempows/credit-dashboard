@@ -26,7 +26,6 @@
             = hidden_field_tag :step, 1
           .d-flex
             %a{class: 'btn btn-cyan btn-sm'}= f.button :button, 'Sign Up'
-            %a{class: 'btn btn-light-primary btn-sm', href: '/'}= f.button :button, 'Go Back'
         .step.step-2
           .d-flex.flex-wrap.justify-content-between
             .col-50
@@ -39,13 +38,11 @@
               = f.input :state, label: 'State', required: false, placeholder: false
             .col-50
               = f.input :zipcode, label: 'Zip Code', required: false, placeholder: false
-            .col-50
-              = f.input :phone, label: 'Phone Number', required: false, placeholder: false
             .col-50.input-labeled
               = f.input :date_of_birth, as: :string, label: 'Deposit Date', input_html: { class: 'datepicker date-of-birth' }
             .col-50
               = f.input :mother_maiden_name, label: 'Mother’s Maiden Name', required: false, placeholder: false
           .d-flex
-            %a{class: 'btn btn-cyan btn-sm'}= f.button :submit, 'Complete Sign Up'
+            %a{class: 'btn btn-cyan btn-sm'}= f.button :submit, '!Complete Sign Up'
             %a{class: 'btn btn-light-primary btn-sm btn-back', href: ''}= f.button :button, 'Go Back'
               

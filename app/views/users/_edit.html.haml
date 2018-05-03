@@ -1,27 +1,38 @@
+.d-flex.align-items-center.justify-content-between.header-holder
+  .col-left
+    %h4.title-brand Complete Sign Up
+  .col-right.d-flex.align-items-center.justify-content-end
+    %span Already have account?
+    = button_to "Log In", new_user_session_path, method: :get,  class: 'btn-link'
 = simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
-  = f.input :social, label: false, placeholder: 'SSN Number', maxlength: 9,
-    input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  = f.input :address, label: false, required: false, placeholder: 'Address'
-  = f.input :city, label: false, required: false, placeholder: 'City'
-  = f.select :state, get_states_list, label: false, required: false, placeholder: 'State'
-  .dob_wrapper{style: 'width: 100%;padding-bottom: 20px', class: "#{'has-error' if (@user.errors.keys & [:day, :month, :year]).any?}"}
-    = f.select :month, Date::MONTHNAMES.reject(&:nil?),
-        prompt: 'Month', include_blank: true, wrapper: :select,
-        selected: "#{Date::MONTHNAMES[@user.date_of_birth.try(:month)] if @user.date_of_birth.present?}"
+  .step.step-1
+    .d-flex.flex-wrap.justify-content-between
+      .col-50
+        = f.input :social, label: 'SSN Number', required: false, placeholder: false, maxlength: 9
+      .col-50
+        = f.input :address, label: 'Address', required: false, placeholder: false
+      .col-50
+        = f.input :city, label: 'City', required: false, placeholder: false
+      .col-50
+        = f.select :state, get_states_list, label: 'State', required: false, placeholder: false
+      .col-50
+        = f.input :zipcode, label: 'Zip Code', required: false, placeholder: false
+      .col-50
+        .dob_wrapper{style: 'width: 100%;padding-bottom: 20px', class: "#{'has-error' if (@user.errors.keys & [:day, :month, :year]).any?}"}
+          = f.select :month, Date::MONTHNAMES.reject(&:nil?),
+              prompt: 'Month', include_blank: true, wrapper: :select,
+              selected: "#{Date::MONTHNAMES[@user.date_of_birth.try(:month)] if @user.date_of_birth.present?}"
 
-    = f.select :day, (01..31), label: false, as: :string, prompt: 'Date',
-      include_blank: true, selected:  "#{@user.date_of_birth.try(:day)}"
+          = f.select :day, (01..31), label: false, as: :string, prompt: 'Date',
+            include_blank: true, selected:  "#{@user.date_of_birth.try(:day)}"
 
-    = f.select :year, (Time.current.year-60..Time.current.year), label: false,
-      include_blank: true, selected: "#{@user.date_of_birth.try(:year)}", prompt: 'Year'
-      
-    %span.help-block{style: 'display: none'}Please enter all DOB fields
-  = f.input :mother_maiden_name, label: false, required: false, placeholder: "Mother's Maiden Name"
-  = f.input :zipcode, label: false, required: false, placeholder: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  = f.input :phone, label: false, required: false, placeholder: 'Phone', maxlength: 10, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
-  = f.button :submit, 'COMPLETE SIGNUP', class: 'btn btn-primary btn-block btn-lg'
-&nbsp;
-= button_to 'Go Back', new_user_path, method: :get, params: { id: @user.id, step: 2 }, class: 'btn btn-primary btn-block btn-lg'
+          = f.select :year, (Time.current.year-60..Time.current.year), label: false,
+            include_blank: true, selected: "#{@user.date_of_birth.try(:year)}", prompt: 'Year'
+      .col-50
+        = f.input :mother_maiden_name, label: 'Mother\'s Maiden Name', required: false, placeholder: false
+      = hidden_field_tag :step, 1
+    .d-flex
+      %a{class: 'btn btn-cyan btn-sm'}= f.button :submit, 'Complete Sing Up'
 
 :javascript
   $(document).ready(function(){
@@ -31,4 +42,3 @@
   if($('.dob_wrapper').hasClass('has-error')) {
     $($('.dob_wrapper span.help-block')).css('display', 'inherit');
   }
-

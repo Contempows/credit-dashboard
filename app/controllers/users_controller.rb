@@ -53,10 +53,7 @@ class UsersController < ApplicationController
       end
     else
       @user = User.new(user_params.merge(status: 0, role: 0))
-      @result = Users::Update.call(user: @user,
-                                   user_params: user_params,
-                                   params: params)
-      if @result.success?
+      if @user.update(user_params)
         redirect_to edit_user_path(id: @user.id)
       else
         render 'new'
@@ -102,8 +99,7 @@ class UsersController < ApplicationController
         format.js
       end
     else
-      @result = Users::Update.call(params: params, user: @user, user_params: user_params)
-      if @result.success?
+      if @user.update(user_params)
         if params[:step] == '1'
           redirect_to edit_user_path(id: @user.id, step: 2)
         else
@@ -234,7 +230,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :social,
                                  :password_confirmation, :first_name, :last_name,
                                  :address, :phone, :zipcode, :city, :state,
-                                 :day, :month, :year, :mother_maiden_name,
+                                 :day, :month, :year, :mother_maiden_name, :date_of_birth,
                                  :status, :profile, :count, ssns_attributes: %i[id ssnorcpn _destroy status])
     # month, date, year = params[:user][:date_of_birth].split('/')
     # params[:user][:date_of_birth] = Date.new(year.to_i, month.to_i, date.to_i)

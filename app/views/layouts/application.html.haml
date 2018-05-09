@@ -46,7 +46,8 @@
           .user-logo
           %span 
             Welcome,
-            %strong.user-name Username
+            %strong.user-name
+              = current_user.first_name
         %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#logout-modal'}
           %i.fa.fa-power-off
       .container-content

@@ -157,8 +157,8 @@ function changeNote(count) {
       })
     })
 
-    const html = $('html');
-    const hamburger = $('.js-open-btn');
+    var html = $('html');
+    var hamburger = $('.js-open-btn');
 
     hamburger.on('click', function () {
       console.log("hola datevid");

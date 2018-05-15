@@ -38,16 +38,21 @@
                   %a{href: "/refunds"} Refunds
                 %li{ class: "#{'activated' if ['withdraws'].include?(controller.controller_name)}" }
                   %a{href: "/withdraws"} Withdrawals
+            %li.icon.icon-cash.open= link_to 'Banking Information', banking_informations_path
             %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
               %a{href: "/ssns"} SSN/CPN Validation
     .display-body
       .top-bar.d-flex.align-items-center.justify-content-end
+        .fa.fa-bars.open-btn.js-open-btn.d-block.d-xl-none
         .user-holder.d-flex.align-items-center
           .user-logo
           %span 
             Welcome,
             %strong.user-name
-              = current_user.first_name
+              - if current_user.first_name?
+                = current_user.first_name
+              - else
+                Username
         %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#logout-modal'}
           %i.fa.fa-power-off
       .container-content
@@ -62,7 +67,6 @@
     
     = render "trade_lines/filters-modal"
     = render "dashboard/confirm-deposit-modal"
-    = render "dashboard/fund-wallet-modal"
     = render "withdraws/withdrawal-funds-modal"
     / = render "withdraws/withdraw_details"
     / = render "refunds/refund_details"

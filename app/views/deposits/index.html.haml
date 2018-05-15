@@ -1,8 +1,8 @@
 .row.row-holder.align-items-center.brand-border-bottom-l-s
-  .col-sm-9
+  .col-9
     %h2.main-title.title-brand Deposits
     %span.subtitle Platform to boost your credit scores.
-  .col-sm-3
+  .col-3
     = form_tag deposits_path, method: :get do
       .form-control-holder
         = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'

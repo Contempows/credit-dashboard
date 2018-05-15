@@ -156,6 +156,14 @@ function changeNote(count) {
         })
       })
     })
+
+    const html = $('html');
+    const hamburger = $('.js-open-btn');
+
+    hamburger.on('click', function () {
+      console.log("hola datevid");
+      html.toggleClass('js-menu-opened');
+    });
   })
 
 })();

@@ -6,11 +6,11 @@
         .col-left
           %h4.title-brand Sign Up
         .col-right.d-flex.align-items-center.justify-content-end
-          %span Don’t have account yet?
+          %span Already have account?
           = button_to "Log In", new_user_session_path, method: :get,  class: 'btn-link'
       = simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
         .step.step-1
-          .d-flex.flex-wrap.justify-content-between
+          .d-flex.flex-wrap.justify-content-between.m-b-20
             .col-50
               = f.input :first_name, label: 'First Name *', required: true, placeholder: false
             .col-50
@@ -26,23 +26,4 @@
             = hidden_field_tag :step, 1
           .d-flex
             %a{class: 'btn btn-cyan btn-sm'}= f.button :button, 'Sign Up'
-        .step.step-2
-          .d-flex.flex-wrap.justify-content-between
-            .col-50
-              = f.input :social, label: 'SSN Number', required: false, placeholder: false
-            .col-50
-              = f.input :address, label: 'Address', required: false, placeholder: false
-            .col-50
-              = f.input :city, label: 'City', required: false, placeholder: false
-            .col-50
-              = f.input :state, label: 'State', required: false, placeholder: false
-            .col-50
-              = f.input :zipcode, label: 'Zip Code', required: false, placeholder: false
-            .col-50.input-labeled
-              = f.input :date_of_birth, as: :string, label: 'Deposit Date', input_html: { class: 'datepicker date-of-birth' }
-            .col-50
-              = f.input :mother_maiden_name, label: 'Mother’s Maiden Name', required: false, placeholder: false
-          .d-flex
-            %a{class: 'btn btn-cyan btn-sm'}= f.button :submit, '!Complete Sign Up'
-            %a{class: 'btn btn-light-primary btn-sm btn-back', href: ''}= f.button :button, 'Go Back'
               

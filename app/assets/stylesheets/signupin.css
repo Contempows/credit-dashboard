@@ -78,14 +78,6 @@ input.form-control[readonly][type="number"] {
   -moz-appearance: textfield;
 }
 
-textarea.form-control{
-  height: 48.5px;
-  resize: none;
-  @media screen and (min-width:992px) {
-    height: 56.4px;
-  }
-}
-
 .col-sm-12.text-form {
   padding: 0;
 }

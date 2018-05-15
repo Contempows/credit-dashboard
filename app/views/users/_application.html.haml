@@ -1,4 +1,4 @@
-%tr.dashb-small-trow
+%tr
   %td
     - if (current_user.senior? && params[:junior])
       = link_to "#{app.email}", edit_user_path(app), remote: true, class: 'dashb'
@@ -20,8 +20,7 @@
       %p.dashb-small-date DOB
     - if can_delete_au(app)
       %td
-        = link_to user_path(app), method: :delete, 
-          data: { confirm: 'Are you sure that you want to delete user?' } do
+        = link_to user_path(app), method: :delete, data: { confirm: 'Are you sure that you want to delete user?' } do
           %span.glyphicon.glyphicon-trash
     - else
       %td
@@ -29,7 +28,9 @@
   - else
     %td
       = app.created_at.strftime('%b %d, %y')
-      %p.dashb-small-date Date
     %td
       = app.status.humanize
-      %p.dashb-small-date Status
+    %td
+      = link_to "Edit", edit_details_user_path(app), remote: true, class: 'dashb'
+      = link_to user_path(app), method: :delete, data: { confirm: 'Are you sure that you want to delete user?' }, class: '' do
+        %span Remove

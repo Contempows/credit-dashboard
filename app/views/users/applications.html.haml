@@ -1,6 +1,6 @@
 .row.row-holder.align-items-center.brand-border-bottom-l-s
   .col-sm-6
-    %h2.main-title.title-brand All Applications
+    %h2.main-title.title-brand Brokers / Vendors
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6.d-flex.align-items-center.justify-content-end
     = form_tag applications_users_path, method: :get do
@@ -11,14 +11,14 @@
 
 .content-holder.p-t-55
   - if @applications.any?
-    %table.table.table-striped
+    %table.table.table-striped#applications-table
       %thead
         %tr
           %th.no-sort Broker / Vendors Name
           %th.no-sort Date of birth
           %th.no-sort State
           %th.no-sort
-      %tbody#applications
+      %tbody
         = render partial: 'application', collection: @applications, as: :app
   - else 
     = render 'shared/no_data'

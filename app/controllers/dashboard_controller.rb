@@ -19,6 +19,7 @@ class DashboardController < ApplicationController
     @trade_lines = TradeLine.accessible_by(current_ability)
     @can_confirm_deposit = BankingInformation.last.present?
     @latest_ssn_users = Ssn.latest_ssns_group_by_users.keys.first(3)
+    @banking_infos = BankingInformation.all
   end
 
   def purchases

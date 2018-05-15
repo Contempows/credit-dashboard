@@ -16,19 +16,10 @@
               %th Bank Name
               %th Account Name
           %tbody#refund-wallet
-            %tr
-              %td 1234567890
-              %td 1234567890
-              %td Bank of America
-              %td Savings
-            %tr
-              %td 1234567890
-              %td 1234567890
-              %td Chase Bank
-              %td Checking
-            %tr
-              %td 1234567890
-              %td 1234567890
-              %td Blackhawks Bank
-              %td Savings
+            - @banking_infos.each do |info|
+              %tr
+                %td= info.account_number
+                %td= info.routing_info
+                %td= info.bank_name
+                %td= info.account_name
 

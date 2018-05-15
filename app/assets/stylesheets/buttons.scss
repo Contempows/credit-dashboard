@@ -1,7 +1,7 @@
 .btn {
     margin-right: 5px;
     padding: 0;
-    color: #fff;
+    color: #fff !important;
     font-family: $default-font-family;
     font-size: em(16);
     font-weight: 400;
@@ -133,7 +133,7 @@
 .btn-secondary {
     background: #fff;
     border: 1px solid #fff;
-    color: $default-text-color;
+    color: $default-text-color !important;
 
     &:hover,
     &:focus,

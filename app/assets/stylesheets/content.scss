@@ -7,6 +7,10 @@
             min-height: 422px;
             max-height: 422px;
             margin-right: 30px;
+
+            @media (max-width: 1399px) {
+                min-width: 45%;
+            }
         }
 
         .col-holder-left {
@@ -156,5 +160,17 @@
 
     .btn {
         margin-bottom: 20px;
+    }
+}
+
+.dataTables_filter {
+
+    input[type=search] {
+        position: absolute;
+        top: -76px;
+        left: 47px;
+        background: transparent;
+        border: 0;
+        width: 94%;
     }
 }

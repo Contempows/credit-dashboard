@@ -1,18 +1,71 @@
-html{
+html {
   height: 100%;
   width: 100%;
 }
+
 body {
   height: 100%;
   width: 100%;
+  min-width: 1199px;
   color: $default-text-color;
   font: $default-font-weight normal $default-font-size/$default-line-height $default-font-family;
   background: #fcfcfc;
+
+  @media screen and (max-width: 1199px) {
+    overflow-x: auto;
+  }
 
   @media screen and (min-width:992px) {
     display: flex;
     flex-direction: column;
   }
+}
+
+.js-menu-opened {
+
+  .header {
+    left: 0;
+  }
+
+  .display-body {
+    margin-left: 280px;
+  }
+
+  body {
+      
+    @media (max-width: 1199px) {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .open-btn {
+      
+    @media (max-width: 1199px) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 35px;
+      z-index: 999;
+    }
+
+    &:before {
+
+      @media (max-width: 1199px) {
+          content: '\f00d';
+      }
+    }
+  }
+}
+
+.open-btn {
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: em(24);
+  color: #fff;
+  cursor: pointer;
 }
 
 .panel.panel-default .panel-body{
@@ -49,8 +102,6 @@ body {
   box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   max-height: 600px;
-  overflow-x: hidden;
-  overflow-y: auto;
   height: 100%;
   background-color: #fff;
   @media screen and (min-width: 768px){
@@ -111,11 +162,6 @@ body {
   flex-wrap: wrap;
 } 
 
-.modal-open .modal.fade.in .modal-dialog .modal-content #modal-body .modal-body{
-  padding: 0;
-  margin-top: 10px;
-}
-
 .modal-backdrop.fade.in{
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -129,15 +175,6 @@ body {
   margin: 0;
   flex: 1;
 }
-
-.modal-open .modal.fade.in .modal-dialog .modal-content #modal-body .modal-body .col-md-12.display{
-  height: auto;
-  padding-top: 25px;
-  clear: both;
-  display: flex;
-}
-
-
 
 .modal-open .modal.fade.in .modal-dialog .modal-content .modal-header .close{
   margin-top: 0;
@@ -191,59 +228,6 @@ body {
   }
 }
 }
-
-#banking_info_modal.modal.fade.in .modal-dialog .modal-content #modal-body .modal-footer{
-  margin: 30px 0 0;
-}
-
-.modal-open .modal.fade.in .modal-dialog .modal-content #modal-body .modal-footer .btn + .btn{
-  margin-top: 10px;
-}
-
-.modal-body.ssn{
-  padding: 0;
-  margin-top: 10px;
-}
-
-.modal-body.ssn .form-group.string.optional.user_ssns_ssnorcpn,
-#new_user .modal-body, #new_user .modal-footer,
-#user_modal_body .modal-body, #user_modal_body .modal-footer,
-#user-show-info .modal-body, #user-show-info .modal-footer
-{
-  margin: 20px 0 0;
-}
-
-.modal-body.ssn .form-group.string.optional.user_ssns_ssnorcpn .form-control{
-  margin: 0!important;
-}
-
-.modal-body.purchase-wrapper, #new_user .modal-body, #new_user .modal-footer,
-#user_modal_body .modal-body, #user_modal_body .modal-footer,
-#user-show-info .modal-body, #user-show-info .modal-footer,
-.modal.fade.all-js-modal-wrapper.in .modal-dialog .modal-content .modal-body{
-  padding: 0;
-}
-
-.modal-body.purchase-wrapper .container-fluid.no-pad-left.no-pad-right{
-  margin-top: 42px;
-  @media screen and (max-width: 991px){
-      margin-top: 15px;
-  }
-  @media screen and (max-width: 767px){
-     display: flex;
-     flex-wrap: wrap;
-  }
-
-}
-
- #user-show-info .js-user-detail-wrapper .modal-dialog .modal-content .modal-body,
- .js-user-detail-wrapper .modal-dialog .modal-content .modal-body,
- .modal.fade.all-js-modal-wrapper.in .modal-dialog .modal-content .modal-body .js-user-profile-form-field-wrapper{
-    padding: 34px 50px 0;
-    @media screen and (max-width: 767px){
-      padding: 20px 25px 0;
-    }
-  }
 
 .all-js-modal-wrapper .modal-body .js-user-profile-form-field-wrapper{
   .btn.btn-primary.btn-lg.btn-block{
@@ -304,16 +288,6 @@ body {
   @media screen and (max-width: 767px){
       margin-top: 0;
   }
-}
-
-.modal-body.purchase-wrapper div#new-purchase-form input.btn,
-#user_modal_body .modal-footer .btn-block + .btn-block
-{
-  margin-top: 10px;
-}
-
-#withdraw-modal #modal-body .modal-body{
-   margin: 30px 0;
 }
 
 #refund-modal .modal-footer{

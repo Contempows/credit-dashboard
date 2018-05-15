@@ -2,8 +2,8 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h4.modal-header-title 
-          %b.title #{banking_information.new_record? ? 'Add' : 'Update'} Banking Information
-        %div.success-message.text-success   
+        %h5.modal-title#confirm-deposit-modal-label.title-sub-brand #{banking_information.new_record? ? 'Add' : 'Update'} Banking Information
+        %div.success-message.text-success
       #modal-body
         = render 'banking_informations/form'
+

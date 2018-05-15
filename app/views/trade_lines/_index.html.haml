@@ -1,4 +1,4 @@
-%table.table.table-responsive.dashboard-tradeline-table#tradelineDataTable
+%table.table.table-responsive-lg.dashboard-tradeline-table#tradelineDataTable
   %thead
     %tr
       %th.no-sort Card icon
@@ -38,7 +38,7 @@
       info: false,
       'pageLength': 30,
       "bLengthChange": false,
-      searching: false,
+      searching: true,
       filtering: true,
       'ajax': '/trade_lines.json' + params,
       'serverSide': true,
@@ -50,7 +50,7 @@
         var link = '/trade_lines/' + id;
         var before_last_col = $('#tradelineDataTable thead tr th:eq(-2)').html();
         link += before_last_col == 'Status' ? '/edit' : '/purchases/new'
-        $('td:eq(-1)', nRow).html("<a data-remote='true' href = '" + link + "' ><span class = 'glyphicon glyphicon-arrow-right'></span></a>");
+        $('td:eq(-1)', nRow).html("<a class='btn btn-grey-primary' data-remote='true' href = '" + link + "' >Purchase</a>");
         var i, str, start, end;
         start = before_last_col == 'Status' ? 7 : 6
         end = before_last_col == 'Status' ? 9 : 8

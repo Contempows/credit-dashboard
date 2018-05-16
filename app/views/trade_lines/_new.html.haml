@@ -2,10 +2,9 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{data: { dismiss: 'modal' } }
-          %span &times;
-        %h4.modal-header-title 
-          %b.title Add New Tradeline
-        %span.sub-title Please review details below before saving a Tradeline
+        %h5.modal-title.title-sub-brand Add New Tradeline
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+
       #modal-body
         = render 'form'

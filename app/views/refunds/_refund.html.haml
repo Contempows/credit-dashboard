@@ -1,6 +1,6 @@
 %tr
   %td
-    %p.dashb= link_to "Refund Ref. #{refund.ref}", edit_refund_path(refund.id), class: '', remote: true, href: '#', 'data-toggle': 'modal', 'data-target': "refund_details_#{refund.id}"
+    %p.dashb= link_to "Refund Ref. #{refund.ref}", edit_refund_path(refund.id)
   %td
     %p.dashb= month_date_and_year(refund.created_at)
   %td

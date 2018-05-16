@@ -1,34 +1,37 @@
 = simple_form_for @trade_line, remote: true do |f|
-  .modal-body
-    = f.input :slots, label: 'Slots', as: :string,
-      input_html: { type: 'text', onKeyPress: "return isNumber(event);" }
-    = f.input :bank, label: 'Bank'
-    = f.input :credit_limit, label: 'Credit Limit', as: :string,
-      input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
-    = f.input :history, as: :string, label: 'History', 
-      input_html: { value: month_year(@trade_line.history), class: "datepicker" }
-    = f.input :statement_date, collection: 1..31, label: 'Select Statement Date',
-      selected: "#{@trade_line.statement_date}", include_blank: true
-    = f.input :state_id, collection: @states, include_blank: true, label: 'Please select a state'
-    = f.input :special_add, collection: boolean_options, selected: "#{@trade_line.special_add}",
-      label: 'Please select if special address is required', include_blank: true, input_html: { class: 'no-search' }
-    = f.input :ssn_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.ssn_req}", 
-      label: 'Please select if SSN is required', input_html: { class: 'no-search' }
-    = f.input :dl_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.dl_req}", 
-      label: 'Please select if Driving License is required', input_html: { class: 'no-search' }
-    = f.input :price, label: 'Price', as: :string,
-      input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
-    = f.input :expiration_date, as: :string, label: 'Expiration Date', 
-      input_html: { value: month_date_full_year(@trade_line.expiration_date), class: "expiry_date_datepicker" }
+  .modal-body.m-b-20
+    .d-flex.flex-wrap.justify-content-between
+      .col-50.d-flex.flex-column
+        = f.input :slots, label: 'Slots', as: :string, input_html: { type: 'text', onKeyPress: "return isNumber(event);" }
+      .col-50.d-flex.flex-column
+        = f.input :bank, label: 'Bank'
+      .col-50.d-flex.flex-column
+        = f.input :credit_limit, label: 'Credit Limit', as: :string, input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
+      .col-50.d-flex.flex-column.m-b-10
+        = f.input :history, as: :string, label: 'History', input_html: { value: month_year(@trade_line.history), class: "form-control datepicker" }
+      .col-50.d-flex.flex-column.m-b-10
+        = f.input :statement_date, collection: 1..31, label: 'Select Statement Date', selected: "#{@trade_line.statement_date}", include_blank: true
+      .col-50.d-flex.flex-column  
+        = f.input :state_id, collection: @states, include_blank: true, label: 'Please select a state', class: 'form-control'
+      .col-50.d-flex.flex-column.m-b-10
+        = f.input :special_add, collection: boolean_options, selected: "#{@trade_line.special_add}", label: 'Please select if special address is required', include_blank: true, input_html: { class: 'form-control no-search' }
+      .col-50.d-flex.flex-column.m-b-10
+        = f.input :ssn_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.ssn_req}", label: 'Please select if SSN is required', input_html: { class: 'form-control no-search' }
+      .col-50.d-flex.flex-column.m-b-10
+        = f.input :dl_req, collection: boolean_options, include_blank: true, selected: "#{@trade_line.dl_req}", label: 'Please select if Driving License is required', input_html: { class: 'form-control no-search' }
+      .col-50.d-flex.flex-column  
+        = f.input :price, label: 'Price', as: :string, input_html: { type: 'text', onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }
+      .col-50.d-flex.flex-column  
+        = f.input :expiration_date, as: :string, label: 'Expiration Date', input_html: { value: month_date_full_year(@trade_line.expiration_date), class: "expiry_date_datepicker" }
     = f.input :is_active, as: :boolean, label: 'Activate'
-  .modal-footer
+  .modal-footer.justify-content-start
     - if @trade_line.new_record?
-      = f.submit 'Add Tradeline', class: 'btn btn-primary btn-lg btn-block'
+      = f.submit 'Add Tradeline', class: 'btn btn-cyan btn-md'
     - else
-      = f.submit 'Update Tradeline', class: 'btn btn-primary btn-lg btn-block'
+      = f.submit 'Update Tradeline', class: 'btn btn-grey-primary btn-md'
     - unless @trade_line.new_record?
       - unless @trade_line.purchases.any?
-        = f.submit 'Delete Tradeline', class: 'btn btn-default btn-block btn-lg', method: :delete
+        = f.submit 'Delete Tradeline', class: 'btn btn-light-primary btn-md', method: :delete
 
 
 :javascript

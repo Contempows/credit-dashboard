@@ -59,8 +59,7 @@
       .panel-title All Tradelines
     - unless is_au? 
       .text-right.col-md-6
-        = link_to '+ Add New Tradeline', new_trade_line_path, remote: true,
-          class: 'new-trade-line add-trade-line-and-user'
+        = link_to '+ Add New Tradeline', new_trade_line_path, remote: true, class: 'new-trade-line add-trade-line-and-user'
   .panel-body.all-tradeline#panel-body.au-dashboard-apps
     - if TradeLine.accessible_by(current_ability).count.zero?
       = render 'shared/no_data'

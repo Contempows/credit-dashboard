@@ -1,10 +1,12 @@
+#new_trade_line
 .row.row-holder.align-items-center
   .col-sm-6
     %h2.main-title.title-brand Welcome To Our TradeLines
     %span.subtitle Platform to boost your credit scores.
   .col-sm-6
     .d-flex.justify-content-end
-      = link_to 'Add New Tradeline', new_trade_line_path, remote: true, class: 'btn btn-cyan btn-xl new-trade-line add-trade-line-and-user'
+      - unless is_au? 
+        = link_to 'Add New Tradeline', new_trade_line_path, remote: true, class: 'btn btn-cyan btn-xl new-trade-line add-trade-line-and-user'
       = link_to 'Fund Your Wallet', banking_informations_path, class: 'btn btn-cyan btn-xl', method: :get, remote: true, href: '#', 'data-toggle': 'modal', 'data-target': '#fund-wallet-modal'
       = link_to 'Confirm Your Deposit', new_deposit_path, class: 'btn btn-cyan btn-xl', remote: true, method: :get, href: '#', 'data-toggle': 'modal', 'data-target': '#confirm-deposit-modal'
 
@@ -25,7 +27,7 @@
   .col-6.d-flex.align-items-center
     %form.w-100{action: '#'}
       .form-control-holder
-        %input{type: 'search', class: 'form-control search-tradelines', placeholder: ''}
+        %input{type: 'search', class: 'form-control search-tradelines', placeholder: 'Search by bank name, price or credit limit...'}
         %i.fa.fa-search
   .col-6.d-flex.align-items-center.justify-content-end
     %a.btn.btn-light-tertiary.btn-xxm.btn-reset-filters
@@ -35,12 +37,32 @@
       Filter
       %i.icon.icon-filter
 
+.content-holder.d-none
+  - if TradeLine.accessible_by(current_ability).count.zero?
+    = render 'shared/no_data'
+  - else
+    = render 'trade_lines/index'
+
 .content-holder
   - if TradeLine.accessible_by(current_ability).count.zero?
     = render 'shared/no_data'
   - else
     = render 'trade_lines/index'
-  
-  = render 'latest_ssn_users'
 
-  = render "fund-wallet-modal"
+= render "fund-wallet-modal"
+
+:javascript
+  $(function(){
+    $('select').select2({theme:'bootstrap'});
+  });
+  document.addEventListener("turbolinks:before-cache", function() {
+    $('select').select2('destroy');
+  });
+  $('#collapseExample').on('show.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-up'></span>")
+  });
+  $('#collapseExample').on('hide.bs.collapse', function(){
+    $('.text-left span').remove();
+    $('.search-tradelines-collapse-button').after("<span class='glyphicon glyphicon-chevron-down'></span>")
+  });

@@ -7,5 +7,5 @@
         %i.fa.fa-check-circle
         %span.warn-text You'll receive an email as soon as we've sent out your check
       .modal-footer.d-flex.justify-content-center
-        = link_to 'Review Transaction', destroy_user_session_path, method: :delete, class: 'btn btn-grey-primary btn-md'
+        %a.btn.btn-grey-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Review Transaction
         %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Close

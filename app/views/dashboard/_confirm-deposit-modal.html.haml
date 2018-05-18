@@ -5,25 +5,27 @@
         %h5.modal-title#confirm-deposit-modal-label.title-sub-brand Confirm Deposit
       .modal-body
         %span.warn-text As a proof of deposit we would need you to upload the receipt.
-        = form_tag deposits_path, class: 'd-flex flex-wrap justify-content-between dropzone', method: :get do
-          .col-50.d-flex.flex-column
-            = label_tag :min_credit_limit, 'Deposit Amount', class: 'control-label'
-            = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control'
-          .col-50.d-flex.flex-column
-            = label_tag :max_price, 'Deposit Date', class: 'control-label'
-            = text_field_tag :max_price, params[:max_price], class: 'form-control datepicker'
-          .d-flex.flex-column.w-100
-            = label_tag :max_price, 'Deposit was made at', class: 'control-label'
-            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder'
-          .fallback
-            %input{name: "file", type: "file", 'multiple': true}
-          .dz-custom.dz-message.d-flex.flex-column.align-items-center.justify-content-center{'data-dz-message': 'true'}
-            .title-holder
-              %p Authentication Code: HIYJHC
-              %p Please write authentication code on the receipt
-            .btn-drop-area Click or drag and drop receipt here to upload
-      .modal-footer.justify-content-center
-        %a.btn.btn-cyan.btn-md
-          %button{'data-dismiss': 'modal', 'aria-label': 'Submit', 'data-toggle': 'modal', 'data-target': '#confirm-deposit-form-modal'} Submit
-        %a.btn.btn-light-primary.btn-md
-          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Close
+        = form_tag deposits_path, id: 'form-deposit', class: 'form-deposit dropzone', method: :get do
+          .d-flex.flex-wrap.justify-content-between
+            .col-50.d-flex.flex-column
+              = label_tag :min_credit_limit, 'Deposit Amount', class: 'control-label'
+              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+            .col-50.d-flex.flex-column
+              = label_tag :max_price, 'Deposit Date', class: 'control-label'
+              = text_field_tag :max_price, params[:max_price], class: 'form-control datepicker', required: true
+            .d-flex.flex-column.w-100
+              = label_tag :max_price, 'Deposit was made at', class: 'control-label'
+              = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder', required: true
+            .fallback
+              %input{name: "file", type: "file", 'multiple': true}
+            .dz-custom.dz-message.d-flex.flex-column.align-items-center.justify-content-center{'data-dz-message': 'true'}
+              .title-holder
+                %p Authentication Code: HIYJHC
+                %p Please write authentication code on the receipt
+              .btn-drop-area Click or drag and drop receipt here to upload
+            .d-flex.align-items-center.justify-content-center.w-100
+              %a.btn.btn-cyan.btn-md
+                %button{'type': 'submit', 'for': 'form-deposit', class: 'form-deposit js-disabled', 'data-disable-with': 'Save'} Submit
+              %a.btn.btn-light-primary.btn-md
+                %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Close
+        

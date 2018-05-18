@@ -40,12 +40,19 @@
     width: 100%;
     height: 100%;
     background: $primary-color-light;
-    overflow: hidden;
-    overflow-y: auto;
 
     .navigation {
+        width: 110%;
+        height: 85vh;
+        overflow: hidden;
+        overflow-y: auto;
+        padding-right: 5%;
 
         & > li {
+
+            &:last-child {
+                margin-bottom: 100px;
+            }
 
             &:hover {
                 background: $primary-color-dark;

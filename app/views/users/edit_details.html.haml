@@ -1,18 +1,20 @@
-.row.row-holder.align-items-center
-  .col-sm-6
-    %h2.main-title.title-brand My Profile
-    %span.subtitle Platform to boost your credit scores.
-  .col-sm-6
-    .d-flex.justify-content-end
-      %a.btn.btn-cyan.btn-xl.btn-edit Edit Profile
+= simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch } do |f|
 
-.content-holder
-  = simple_form_for @user, url: update_details_user_path(@user), html: { method: :patch, class: 'form-horizontal row' } do |f|
+  .row.row-holder.align-items-center
+    .col-sm-6
+      %h2.main-title.title-brand My Profile
+      %span.subtitle Platform to boost your credit scores.
+    .col-sm-6
+      .d-flex.justify-content-end
+        %a.btn.btn-cyan.btn-xl.btn-edit.btn-edi-profile Edit Profile
+        = f.button :submit, "Update Details", class: 'btn btn-xl btn-cyan btn-update-profile'
+
+  .content-holder
     .row-holder.align-items-center.bg-grey-light.w-100.m-b-145.p-t-55.p-b-55.p-l-280.js-editable-form
       .d-flex
         .profile-image-wrapper
           %label.profile-image{for: 'user_profile'}
-            = f.file_field :profile, 'disabled': true, 'readonly': true
+            = f.file_field :profile
             %img{src: "#{@user.profile? ? asset_url(@user.profile.url) : image_url('user-placeholder.png')}"}
         = f.input :username, readonly: true, 'disabled': true, label: false, :input_html => { :value => 'Rose Johnson', :class => 'title-sub-brand' }
 
@@ -30,6 +32,7 @@
         = f.input :city, readonly: true, 'disabled': true, label: 'City:'
         = f.input :state, readonly: true, 'disabled': true, label: 'State:'
         = f.input :zipcode, readonly: true, 'disabled': true, label: 'Zip code:', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
+        = hidden_field_tag :full_page, 'true'
 
 :javascript
   $('select').select2({theme:'bootstrap'});

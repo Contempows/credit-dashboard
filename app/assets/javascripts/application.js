@@ -131,11 +131,11 @@ function changeNote(count) {
       placeholder: '---- Select ----'
     })
 
-    $('.btn-edit').on('click', function() {
+    $('.btn-edi-profile').on('click', function() {
 
-      $(this).text(function (i, text) {
-        return text === 'Edit Profile' ? 'Update Profile' : 'Edit Profile'
-      })
+      $(this).hide()
+
+      $('.btn-update-profile').show()
 
       editableContainer.each(function (el) {
         

@@ -160,14 +160,10 @@ class UsersController < ApplicationController
   def update_details
     if params[:full_page] == 'true'
       @user = current_user
-      @result = Users::Update.call(user: @user,
-                                   user_params: user_params,
-                                   params: params)
-      if @result.success?
+      if @user.update(user_params)
         flash[:notice] = I18n.t('user.details_updated')
         redirect_to root_path
       else
-        @user = @result['model']
         render 'edit_details'
       end
     else

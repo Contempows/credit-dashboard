@@ -1,7 +1,7 @@
 .modal.fade#new_banking_information_modal
   .modal-dialog
     .modal-content
-      .modal-header
+      .modal-header.d-flex.justify-content-between.align-items-center.w-100
         %h5.modal-title#confirm-deposit-modal-label.title-sub-brand #{banking_information.new_record? ? 'Add' : 'Update'} Banking Information
         %div.success-message.text-success
       #modal-body

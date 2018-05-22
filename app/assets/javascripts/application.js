@@ -103,20 +103,18 @@ function changeNote(count) {
   $('.note-ssns-charge').html(' You will be charged $' + Number(charge) * Number(new_ssns) + ' ($' + charge + '/number) for this purchase')
 }
 
-;(function () {
+$(document).ready(function () {
 
-  $(document).ready(function () {
+  $(document).on('click', '.profile-edit', function() {
 
     var editableContainer = $('.js-editable-form');
 
     $('.date-of-birth').each(function (el) {
       $(this).datepicker()
-      console.log(el);
     })
 
     $('.datepicker').each(function (el) {
       $(this).datepicker()
-      console.log(el);
     })
 
     $('.select-picker').each(function (i, el) {
@@ -131,39 +129,38 @@ function changeNote(count) {
       placeholder: '---- Select ----'
     })
 
-    $('.btn-edi-profile').on('click', function() {
+    $(this).hide()
+    $('.btn-update-profile').show()
 
-      $(this).hide()
+    editableContainer.each(function (el) {
+      
+      $(this).toggleClass('editable');
+      $(this).find('input:disabled, textarea:disabled').each(function (el) {
 
-      $('.btn-update-profile').show()
+        $(this).attr('disabled', false).attr('readonly', false);
+        $(this).focus(function() {
 
-      editableContainer.each(function (el) {
-        
-        $(this).toggleClass('editable');
-        $(this).find('input:disabled, textarea:disabled').each(function (el) {
+          $(this).closest('.form-group').toggleClass('field-focused')
+          $(this).closest('.profile-image-wrapper').toggleClass('field-focused')
+        })
+        .blur(function() {
 
-          $(this).attr('disabled', false).attr('readonly', false);
-          $(this).focus(function() {
-
-            $(this).closest('.form-group').toggleClass('field-focused')
-            $(this).closest('.profile-image-wrapper').toggleClass('field-focused')
-          })
-          .blur(function() {
-
-            $(this).closest('.form-group').removeClass('field-focused')
-            $(this).closest('.profile-image-wrapper').removeClass('field-focused')
-          })
+          $(this).closest('.form-group').removeClass('has-error')
+          $(this).closest('.form-group').removeClass('field-focused')
+          $(this).closest('.profile-image-wrapper').removeClass('field-focused')
         })
       })
     })
-
-    var html = $('html');
-    var hamburger = $('.js-open-btn');
-
-    hamburger.on('click', function () {
-      console.log("hola datevid");
-      html.toggleClass('js-menu-opened');
-    });
   })
 
-})();
+  $(document).on('click', '.btn-fund-modal', function() {
+    $('#fund-wallet-modal').modal('show')
+  })
+
+  const html = $('html');
+  const hamburger = $('.js-open-btn');
+
+  hamburger.on('click', function () {
+    html.toggleClass('js-menu-opened');
+  });
+})

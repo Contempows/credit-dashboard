@@ -1,12 +1,11 @@
 .modal.fade#banking_info_modal{ 'role'=>'dialog', 'tabindex'=>'-1' }
   .modal-dialog
     .modal-content
-      .modal-header
-        %button.close{data: { dismiss: 'modal' } }
-          %span &times;
+      .modal-header.d-flex.justify-content-between.align-items-center.w-100
         %h4.modal-header-title 
           %b.title
             Banking Information
-        %span.sub-title 
+        %button.close{data: { dismiss: 'modal' } }
+          %span Close
       #modal-body
         = render 'form'

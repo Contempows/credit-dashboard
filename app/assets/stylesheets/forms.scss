@@ -111,3 +111,10 @@ input[type=checkbox] {
 .step-2 {
     display: none;
 }
+
+.has-error {
+
+    .form-control {
+        box-shadow: none;
+    }
+}

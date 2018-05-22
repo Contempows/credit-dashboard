@@ -153,11 +153,6 @@ $(document).ready(function () {
     })
   })
 
-  $(document).on('click', '.btn-fund-modal', function() {
-    alert('1')
-    $('#fund-wallet-modal').modal('show')
-  })
-
   var html = $('html');
   var hamburger = $('.js-open-btn');
 

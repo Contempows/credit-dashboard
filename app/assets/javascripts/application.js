@@ -154,6 +154,7 @@ $(document).ready(function () {
   })
 
   $(document).on('click', '.btn-fund-modal', function() {
+    alert('1')
     $('#fund-wallet-modal').modal('show')
   })
 

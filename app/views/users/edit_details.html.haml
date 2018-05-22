@@ -16,7 +16,7 @@
           %label.profile-image{for: 'user_profile'}
             = f.file_field :profile
             %img{src: "#{@user.profile? ? asset_url(@user.profile.url) : image_url('user-placeholder.png')}"}
-        = f.input :username, readonly: true, 'disabled': true, label: false, :input_html => { :value => 'Rose Johnson', :class => 'title-sub-brand' }
+        = f.input :username, readonly: true, 'disabled': true, label: false, :input_html => { :value => @user.first_name + ' ' + @user.last_name, :class => 'title-sub-brand' }
 
     .row-holder.d-flex.align-items-center.js-editable-form
       .col-holder.col-holder-left.brand-radius.brand-border-l-s.p-40

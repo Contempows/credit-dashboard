@@ -157,8 +157,8 @@ $(document).ready(function () {
     $('#fund-wallet-modal').modal('show')
   })
 
-  const html = $('html');
-  const hamburger = $('.js-open-btn');
+  var html = $('html');
+  var hamburger = $('.js-open-btn');
 
   hamburger.on('click', function () {
     html.toggleClass('js-menu-opened');

@@ -2,11 +2,9 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{data: { dismiss: 'modal' } }
-          %span &times;
-        %h4.modal-header-title 
-          %b.title Banking Information
-        %p.sub-title Please make a deposit at any of the banks below, keep the receipt, and then go to “Confirm Your Deposit” page
+        %h5.modal-title#fund-wallet-modal-label.title-sub-brand Banking Information
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
         %div.success-message.text-success   
       .modal-body.banking-information-modal-body
         %table.table.table-striped

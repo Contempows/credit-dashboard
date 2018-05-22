@@ -1,4 +1,4 @@
-= simple_form_for @user_path, html: { class: 'form-horizontal', id: 'create_broker' }, wrapper: :horizontal_form, remote: true do |f|
+= simple_form_for @user, html: { class: 'form-horizontal', id: 'create_broker' }, wrapper: :horizontal_form, remote: true do |f|
   .d-flex.flex-row.flex-wrap.justify-content-between
     .col-50.d-flex.flex-column
       = f.input :first_name, label: 'First name', required: true

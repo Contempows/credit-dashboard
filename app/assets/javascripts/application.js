@@ -105,6 +105,10 @@ function changeNote(count) {
 
 $(document).ready(function () {
 
+  $(document).on('click', '.btn-fund-modal', function() {
+    $('#fund-wallet-modal').modal('show')
+  })
+
   $(document).on('click', '.profile-edit', function() {
 
     var editableContainer = $('.js-editable-form');

@@ -20,8 +20,8 @@
             = label_tag :max_price, 'Price', class: 'control-label'
             = text_field_tag :max_price, params[:max_price], class: 'form-control search-form'
           .col-50.d-flex.flex-column
-            = label_tag :max_price, 'Card Age', class: 'control-label'
-            = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '
+            = label_tag :age, 'Card Age', class: 'control-label'
+            = select_tag :age, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '
           .col-50.d-flex.flex-column
             = label_tag :special_add, 'Special Add Required?', class: 'control-label'
             = select_tag :special_add, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker '

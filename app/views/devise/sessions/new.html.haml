@@ -10,10 +10,12 @@
           - if devise_mapping.registerable? && controller_name != 'registrations'
             = button_to "Sign Up", new_user_path, class: 'btn-link', method: :get
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal'}, wrapper: :horizontal_form) do |f|
-        .row.m-b-20
+        .row.m-b-5
           .col-sm-6
             = f.input :email, autofocus: true, label: 'Email Address *', required: true, placeholder: false
           .col-sm-6
             = f.input :password, required: true, label: 'Password *', placeholder: false, html: {class: 'lash'}
+        - if alert.present?
+          .alert= alert
         .d-flex
           %a{class: 'btn btn-cyan btn-sm'}= f.button :submit, "Log In"

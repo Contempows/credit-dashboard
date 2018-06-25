@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'ajax-datatables-rails'
+gem "parsley-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 4.0.0'

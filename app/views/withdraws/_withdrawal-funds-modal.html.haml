@@ -9,22 +9,22 @@
           .d-flex.flex-wrap.justify-content-between.m-b-10
             .col-50.d-flex.flex-column
               = label_tag :bank, 'Payee full name', class: 'control-label'
-              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+              = text_field_tag :payee, params[:payee], class: 'form-control', required: true
             .col-50.d-flex.flex-column
-              = label_tag :state, 'Withdraw amount', class: 'control-label'
-              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+              = label_tag :amount, 'Withdraw amount', class: 'control-label'
+              = text_field_tag :amount, params[:amount], class: 'form-control', required: true
             .col-100.d-flex.flex-column
-              = label_tag :min_credit_limit, 'Payee address', class: 'control-label'
-              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+              = label_tag :address, 'Payee address', class: 'control-label'
+              = text_field_tag :address, params[:address], class: 'form-control', required: true
             .col-50.d-flex.flex-column
-              = label_tag :max_price, 'City', class: 'control-label'
-              = text_field_tag :max_price, params[:max_price], class: 'form-control search-form', required: true
+              = label_tag :city, 'City', class: 'control-label'
+              = text_field_tag :city, params[:city], class: 'form-control search-form', required: true
             .col-50.d-flex.flex-column
-              = label_tag :max_price, 'State', class: 'control-label'
-              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+              = label_tag :state, 'State', class: 'control-label'
+              = text_field_tag :state, params[:state], class: 'form-control', required: true
             .col-50.d-flex.flex-column
-              = label_tag :special_add, 'Zip code', class: 'control-label'
-              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
+              = label_tag :zipcode, 'Zip code', class: 'control-label'
+              = text_field_tag :zipcode, params[:zipcode], class: 'form-control', required: true
           .d-flex.flex-column
             .d-flex.m-b-10
               %a.btn.btn-cyan.btn-md
@@ -32,6 +32,6 @@
               %a.btn.btn-light-primary.btn-md
                 %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
             .d-flex
-              = check_box_tag :confirm, :confirm, false
+              = check_box_tag :confirm, :confirm, false, required: true
               = label_tag :confirm, 'I agree that i provided all correct information. ', class: 'control-label'
         

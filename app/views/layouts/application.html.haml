@@ -16,14 +16,14 @@
         %nav
           %ul.navigation
             %li.icon.icon-home{ class: "#{'activated' if controller.controller_name == '/'}" }
-              %a{href: "/"} Home
+              %a{href: "/", onclick: "(function() {location.reload()})();"} Home
             %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'edit_details'|| controller.controller_name == 'edit_details' && !params[:user_check_id]}" }
               = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
             %li.icon.icon-locker{ class: "#{'activated' if controller.action_name == 'edit_password'|| controller.controller_name == 'edit_password' && !params[:user_check_id]}" }
               = link_to 'Change Password', edit_password_user_path(current_user)
             %li.icon.icon-hands{ class: "#{'activated' if controller.action_name == 'applications'|| controller.controller_name == 'applications' && !params[:user_check_id]}" }
               = link_to 'Brokers / Vendors', applications_users_path 
-            %li.dropdown.icon.icon-cash.open
+            %li.dropdown.icon.icon-cash
               %a.dropdown-toggle.d-flex.align-items-center.justify-content-between{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
                 Recent Transactions
                 %i.fa.fa-chevron-down
@@ -80,3 +80,17 @@
     = render "confirmations/confirm-logout-modal"
     = render "confirmations/confirm-ssn-modal"
 
+:javascript
+  var navDropdown = $('.navigation .dropdown');
+  var navDropdownList = $('.navigation .dropdown-menu');
+
+  if ($('.navigation .dropdown-menu li').hasClass('activated')) {
+    navDropdown.addClass('open');
+  }
+
+  $(document).on('click', function () {
+    
+    if ($('.navigation .dropdown-menu li').hasClass('activated')) {
+      navDropdown.addClass('open');
+    }
+  })

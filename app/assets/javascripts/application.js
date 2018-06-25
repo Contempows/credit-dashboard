@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require parsley
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
@@ -104,6 +105,22 @@ function changeNote(count) {
 }
 
 $(document).ready(function () {
+
+  $(document).on('click', '.btn', function() {
+    $('.datepicker').each(function (el) {
+      $(this).datepicker()
+    })
+
+    $('.select-picker').each(function (i, el) {
+      $(this).select2()
+    })
+
+    $('.js-with-placeholder').each(function (i, el) {
+      $(this).select2({
+        placeholder: 'Select bank name'
+      })
+    })
+  })
 
   $(document).on('click', '.profile-edit', function() {
 

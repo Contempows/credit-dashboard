@@ -192,6 +192,8 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
+    parsley-rails (2.7.0.0)
+      railties (>= 3.0.0)
     pg (1.0.0)
     popper_js (1.12.9)
     powerpack (0.1.1)
@@ -413,6 +415,7 @@ DEPENDENCIES
   nested_form
   newrelic_rpm
   oj (~> 2.16.1)
+  parsley-rails
   pg
   pry
   pry-nav

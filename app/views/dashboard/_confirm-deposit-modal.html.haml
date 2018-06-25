@@ -8,14 +8,14 @@
         = form_tag deposits_path, id: 'form-deposit', class: 'form-deposit dropzone', method: :get do
           .d-flex.flex-wrap.justify-content-between
             .col-50.d-flex.flex-column
-              = label_tag :amount, 'Deposit Amount', class: 'control-label'
-              = text_field_tag :amount, params[:amount], class: 'form-control', required: true
+              = label_tag :min_credit_limit, 'Deposit Amount', class: 'control-label'
+              = text_field_tag :min_credit_limit, params[:min_credit_limit], class: 'form-control', required: true
             .col-50.d-flex.flex-column
-              = label_tag :date, 'Deposit Date', class: 'control-label'
-              = text_field_tag :date, params[:date], class: 'form-control datepicker', required: true
+              = label_tag :max_price, 'Deposit Date', class: 'control-label'
+              = text_field_tag :max_price, params[:max_price], class: 'form-control datepicker', required: true
             .d-flex.flex-column.w-100
-              = label_tag :deposit, 'Deposit was made at', class: 'control-label'
-              = select_tag :deposit, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder', required: true
+              = label_tag :max_price, 'Deposit was made at', class: 'control-label'
+              = select_tag :state, options_for_select([['Yes', true], ['No', false]], params[:special_add]), include_blank: true, class: 'form-control select-picker js-with-placeholder', required: true
             .fallback
               %input{name: "file", type: "file", 'multiple': true}
             .dz-custom.dz-message.d-flex.flex-column.align-items-center.justify-content-center{'data-dz-message': 'true'}

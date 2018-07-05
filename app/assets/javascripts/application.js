@@ -171,7 +171,7 @@ $(document).ready(function () {
   })
 
   $(document).on('click', '.btn-fund-modal', function() {
-    $('#fund-wallet-modal').modal('show')
+    $('#fund-wallet-modal').modal('show');
   })
 
   var html = $('html');

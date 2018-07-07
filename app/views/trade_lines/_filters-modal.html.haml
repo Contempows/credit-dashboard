@@ -6,7 +6,7 @@
         %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
           %span{'aria-hidden': 'true'} Close
       .modal-body
-        = form_tag trade_lines_path, class: 'd-flex flex-wrap justify-content-between', method: :get do
+        = form_tag "/", class: 'd-flex flex-wrap justify-content-between', method: :get do
           .col-50.d-flex.flex-column
             = label_tag :bank, 'Bank', class: 'control-label'
             = select_tag :bank, options_for_select([['Yes', true], ['No', false]], params[:bank]), multiple: true, class: 'form-control select-picker'
@@ -31,6 +31,6 @@
           .col-50.d-flex.flex-column
             = label_tag :dl_req, 'DL Req?', class: 'control-label'
             = select_tag :dl_req, options_for_select([['Yes', true], ['No', false]], params[:dl_req]), include_blank: true, class: 'form-control select-picker'
-      .modal-footer.justify-content-start
-        %a.btn.btn-cyan.btn-md
-          %button{type: 'submit'} Apply Filter
+          .col-30.d-flex.flex-column
+            %a.btn.btn-cyan.btn-md
+              %button{type: 'submit'} Apply Filter

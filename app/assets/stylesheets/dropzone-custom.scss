@@ -7,10 +7,30 @@
     }
 
     .dz-preview {
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        margin: 0.5em;
+
+        &.dz-image-preview {
+            position: absolute;
+            width: 99%;
+            height: auto;
+            position: absolute;
+            top: 246px;
+            left: 3px;
+            margin: 0;
+            background: #fff;
+
+            .dz-image {
+                border-radius: 0;
+                width: 100%;
+                height: 244px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    width: auto;
+                }
+            }
+        }
     }
 
     .dz-progress {
@@ -91,5 +111,20 @@
                 margin-bottom: 5px;
             }
         }
+    }
+}
+
+.remove-dz-thumbnail {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    color: #999;
+    font-size: 15px;
+    z-index: 999;
+    cursor: pointer;
+    transition: all .15s ease;
+
+    &:hover {
+        color: #000;
     }
 }

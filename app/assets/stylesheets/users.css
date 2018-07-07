@@ -18,7 +18,13 @@
 
 table#tradelineDataTable thead tr th {
   vertical-align: middle;
+  border-bottom: 2px solid #d4d4d4;
 }
+
+table#tradelineDataTable tbody tr td {
+  border-bottom: 1px solid #d4d4d4;
+}
+
 
 .simple_form.new_purchase .select2-selection.select2-selection--single {
   border-bottom: none!important;

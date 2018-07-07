@@ -24,7 +24,7 @@
             .col-50
               = f.input :phone, label: 'Phone Number', required: false, placeholder: false
             .col-50.input-labeled
-              = f.input :date_of_birth, as: :string, label: 'Deposit Date', input_html: { class: 'datepicker date-of-birth' }
+              = f.input :date_of_birth, as: :string, label: 'Date of Birth', input_html: { class: 'datepicker date-of-birth' }
             .col-50
               = f.input :mother_maiden_name, label: 'Mother’s Maiden Name', required: false, placeholder: false
             = hidden_field_tag :step, 2

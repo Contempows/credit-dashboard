@@ -15,7 +15,8 @@
         %tr
           %th.no-sort Deposit ref no
           %th.no-sort Deposit Date
-          %th.no-sort Broker Name
+          - if current_user.staff?
+            %th.no-sort Broker Name
           %th.no-sort Deposit Status
           %th.no-sort Deposit Amount
       %tbody{ data: { 'no-turbolink'=>'true' } }

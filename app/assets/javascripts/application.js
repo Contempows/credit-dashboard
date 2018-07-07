@@ -29,6 +29,20 @@
 $(document).ready(function(){
   // $('select').select2({theme: 'bootstrap'});
   hideAlert();
+  
+  var myDropzone = new Dropzone('.dropzone');
+
+  myDropzone.on("addedfile", function(file) {
+    var remove = Dropzone.createElement('<i class="fa fa-times remove-dz-thumbnail"></i>');
+    var _this = this;
+    remove.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      _this.removeFile(file);
+      });
+    file.previewElement.append(remove);
+  });
 });
 
 $(document).on('ready turbolinks:load', function(){

@@ -38,7 +38,6 @@
                   %a{href: "/refunds"} Refunds
                 %li{ class: "#{'activated' if ['withdraws'].include?(controller.controller_name)}" }
                   %a{href: "/withdraws"} Withdrawals
-            %li.icon.icon-cash.open= link_to 'Banking Information', banking_informations_path
             %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
               %a{href: "/ssns"} SSN/CPN Validation
     .display-body

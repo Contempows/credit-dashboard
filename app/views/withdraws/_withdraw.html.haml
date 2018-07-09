@@ -1,6 +1,6 @@
 %tr
   %td
-    %p.dashb= link_to "Withdrawal Ref. #{withdraw.ref}", edit_withdraw_path(withdraw), class: '', remote: true, href: '#', 'data-toggle': 'modal', 'data-target': "withdraw_details_#{withdraw.id}"
+    %p.dashb= link_to "##{withdraw.ref}", edit_withdraw_path(withdraw), remote: true
   %td
     %p.dashb= month_date_and_year(withdraw.created_at)
   %td

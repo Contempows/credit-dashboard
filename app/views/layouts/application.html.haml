@@ -1,4 +1,3 @@
-!!!
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
@@ -16,7 +15,7 @@
         %nav
           %ul.navigation
             %li.icon.icon-home{ class: "#{'activated' if controller.controller_name == '/'}" }
-              %a{href: "/", onclick: "(function() {location.reload()})();"} Home
+              %a{href: "/"} Home
             %li.icon.icon-user{ class: "#{'activated' if controller.action_name == 'edit_details'|| controller.controller_name == 'edit_details' && !params[:user_check_id]}" }
               = link_to 'My Profile', edit_details_user_path(current_user, profile_details: true)
             %li.icon.icon-locker{ class: "#{'activated' if controller.action_name == 'edit_password'|| controller.controller_name == 'edit_password' && !params[:user_check_id]}" }

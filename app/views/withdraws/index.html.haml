@@ -3,6 +3,7 @@
     %h2.main-title.title-brand Withdrawals
     %span.subtitle Platform to boost your credit scores.
   .col-3
+    #btn-click-modal
     = form_tag withdraws_path, method: :get do
       .form-control-holder
         = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'

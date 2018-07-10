@@ -31,7 +31,7 @@
                 - else 
                   = number_to_currency(trade_line.credit_limit, precision: 2)
             %td
-              %p.dashb 
+              %p.dashb= date_to_years(trade_line.history)
             %td
               %p.dashb= trade_line.statement_date.ordinalize
             %td

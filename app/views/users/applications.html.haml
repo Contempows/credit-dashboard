@@ -15,8 +15,15 @@
       %thead
         %tr
           %th.no-sort Broker / Vendors Name
-          %th.no-sort Date of birth
-          %th.no-sort State
+          - if params[:junior]
+            %th.no-sort Stuff Since
+            %th.no-sort State
+          - elsif current_user.au?
+            %th.no-sort Date of birth
+            %th.no-sort State
+          - else
+            %th.no-sort Created At
+            %th.no-sort Status
           %th.no-sort
       %tbody
         = render partial: 'application', collection: @applications, as: :app

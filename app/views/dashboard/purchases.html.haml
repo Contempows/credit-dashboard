@@ -8,6 +8,8 @@
         = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'
         %i.fa.fa-search
 
+#new_trade_line
+
 .content-holder.p-t-55
   - if @purchases.any?
     %table.table.table-striped

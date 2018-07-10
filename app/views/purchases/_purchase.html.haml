@@ -2,21 +2,21 @@
 
 %tr
   %td
-    = link_to "Payment Ref. ##{purchase.ref}", edit_trade_line_purchase_path(purchase.trade_line_id, purchase), remote: true, class: 'dashb'
+    = link_to "##{purchase.ref}", edit_trade_line_purchase_path(purchase.trade_line_id, purchase), remote: true, class: 'dashb'
     %p.dashb-small-date
       - if current_user.au? && purchase.approved? && !cannot_refund(purchase)
         = link_to 'Request Refund', new_refund_path(purchase_id: purchase.id), remote: true
       - elsif refund_initiated
         %span.glyphicon.glyphicon-warning-sign{'data-toggle'=>'tooltip', 'data-placement'=>'right', 'title'=>"This purchase has initiated refund request(Reference: ##{refund_initiated.ref})"}
   %td
-    %p.dashb= "#{purchase.purchased_by.first_name} #{purchase.purchased_by.last_name}"
+    %p.dashb= purchase.user.email
   %td
     %p.dashb= "#{purchase.user.first_name} #{purchase.user.last_name}"
   %td
     - if current_user.au?
-      %p.dashb= purchase.created_at.strftime("%m/%d/%y")
+      %p.dashb= month_date_and_year(purchase.created_at)
     - else
-      %p.dashb= purchase.updated_at.strftime("%m/%d/%y")
+      %p.dashb= month_date_and_year(purchase.updated_at)
   %td
     %p.dashb{class: "status_#{purchase.status}"}= purchase.status.humanize
 

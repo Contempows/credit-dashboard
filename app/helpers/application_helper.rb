@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def month_date_and_year(date)
-    date.strftime('%b %d/%y')
+    date.strftime('%b %d, %Y')
   end
 
   def date_to_years(date)

@@ -2,19 +2,25 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{data: { dismiss: 'modal' } }
-          %span &times;
-        %h4.modal-header-title 
-          %b.title Deposit Confirmation 
-        %span.sub-title Please review details before confirming a deposit 
-      = render 'edit_form'
-
-
-:javascript
-  $('.modal-footer input').on('click', function(event){
-    event.stopPropagation();
-    event.preventDefault();
-    var data = $(this).data('commit');
-    $('#deposit_status').val(data);
-    $('form').submit();
-  });
+        %h5.modal-title.title-sub-brand Deposit Details
+        %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+          %span{'aria-hidden': 'true'} Close
+      .modal-body
+        %span.warn-text Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        .d-flex.flex-wrap.justify-content-between
+          .col-50.d-flex.flex-column
+            %label.control-label Deposit Amount
+            %div.data-value= number_to_currency(@deposit.amount, precision: 2)
+          .col-50.d-flex.flex-column
+            %label.control-label Deposit Date
+            %div.data-value= @deposit.date_of_deposit.strftime('%m.%d.%y')
+          .col-50.d-flex.flex-column
+            %label.control-label Deposit was made at
+            %div.data-value= @deposit.banking_information.bank_name
+          .col-50.d-flex.flex-column
+            %label.control-label Authorization Code
+            %div.data-value= @deposit.authorization_code
+          - if @deposit.attachment.present?
+            .col-100.d-flex.flex-column
+              .document-holder
+                %img{src: "#{asset_url(@deposit.attachment.url)}", style: "max-height:300px;max-width:300px;"}

@@ -12,6 +12,10 @@
         padding-bottom: 30px;
         margin-bottom: 30px;
         border-bottom: 2px solid $primary-color-light;
+
+        &.short {
+            margin-bottom: 0;
+        }
     }
     
     .modal-dialog {
@@ -235,6 +239,34 @@
     }
 }
 
-.withdraw-confirmation-modal .flex-column {
+.withdraw-confirmation-modal .flex-column, .modal-content .flex-column {
     margin: 20px 0;
+}
+
+.withdraw-confirmation-modal .flex-column.short, .modal-content .flex-column.short {
+    margin: 0;
+}
+
+.flex-column.grey-block {
+    background-color: #f3f3f3;
+    padding: 20px;
+}
+
+.document-holder {
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    padding: 15px;
+    text-align: center;
+}
+
+.purchase-confirmation-modal {
+    .modal-dialog {
+        min-width: 1000px;
+    }
+    .table > thead > tr > th:first-child, .table > tbody > tr > td:first-child {
+        padding-left: 5px;
+    }
+    .table > thead > tr > th:last-child, .table > tbody > tr > td:last-child {
+        padding-right: 5px;
+    }
 }

@@ -8,6 +8,8 @@
         = text_field_tag :term, nil, placeholder: 'Search with ref number...', value: params[:term], class: 'form-control'
         %i.fa.fa-search
 
+#btn-click-modal
+
 .content-holder.p-t-55
   - if @deposits.any?
     %table.table.table-striped

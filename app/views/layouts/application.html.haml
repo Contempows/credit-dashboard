@@ -63,20 +63,20 @@
           #new-trade-line
         = yield
     
-    = render "trade_lines/filters-modal"
-    = render "dashboard/confirm-deposit-modal"
-    = render "withdraws/withdrawal-funds-modal"
+    /= render "trade_lines/filters-modal"
+    /= render "dashboard/confirm-deposit-modal"
+    /= render "withdraws/withdrawal-funds-modal"
     / = render "withdraws/withdraw_details"
     / = render "refunds/refund_details"
     / = render "refunds/deposit_details"
     / = render "refunds/purchase_details"
-    = render "trade_lines/purchase-modal"
-    = render "confirmations/confirm-withdraw-modal"
-    = render "confirmations/confirm-purchase-modal"
-    = render "confirmations/confirm-deposit-modal"
-    = render "confirmations/confirm-change-password-modal"
-    = render "confirmations/confirm-logout-modal"
-    = render "confirmations/confirm-ssn-modal"
+    /= render "trade_lines/purchase-modal"
+    /= render "confirmations/confirm-withdraw-modal"
+    /= render "confirmations/confirm-purchase-modal"
+    /= render "confirmations/confirm-deposit-modal"
+    /= render "confirmations/confirm-change-password-modal"
+    /= render "confirmations/confirm-logout-modal"
+    /= render "confirmations/confirm-ssn-modal"
 
 :javascript
   var navDropdown = $('.navigation .dropdown');

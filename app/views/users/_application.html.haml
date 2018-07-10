@@ -4,20 +4,20 @@
       = link_to "#{app.email}", edit_user_path(app), remote: true, class: 'dashb'
     - elsif current_user.au?
       = link_to "#{app.first_name} #{app.last_name}", edit_user_path(app), remote: true, class: 'dashb'
-      %p.dashb-small-date Name
     - else
       = link_to "#{app.email}", edit_details_user_path(app), remote: :true
   - if params[:junior]
     %td
       = app.created_at.strftime('%b %d, %y') 
-      %p.dashb-small-date Staff since
+    %td
+      = app.state
     %td
       = link_to user_path(app), method: :delete, data: { confirm: 'Are you sure that you want to delete this user?' } do
         %span.glyphicon.glyphicon-trash
   - elsif current_user.au?
+    %td= app.date_of_birth
     %td
-      = app.date_of_birth
-      %p.dashb-small-date DOB
+      = app.state
     - if can_delete_au(app)
       %td
         = link_to user_path(app), method: :delete, data: { confirm: 'Are you sure that you want to delete user?' } do

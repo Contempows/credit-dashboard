@@ -1,19 +1,20 @@
 %tr
   %td
     = image_tag('bank-of-america.png')
-  %td= trade_line.slots
   %td#bank-name= trade_line.bank.capitalize
+  %td= trade_line.slots
   %td
     - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
       = number_to_currency(trade_line.credit_limit, precision: 2)
     - else 
       = number_to_currency(trade_line.credit_limit, precision: 2)
   %td= date_to_years(trade_line.history)
+  %td= trade_line.statement_date.ordinalize
   %td= trade_line.state.short_code
   %td.tdcolor= parse_booleans(trade_line.special_add)
   %td.tdcolor= parse_booleans(trade_line.ssn_req)
   %td.tdcolor= parse_booleans(trade_line.dl_req)
-  %td= trade_line.price
+  %td= number_to_currency(trade_line.price, precision: 2)
   - if current_user.senior?
     %td= trade_line.is_active? ? 'Active' : 'Inactive'
   %td

@@ -1,0 +1,8 @@
+.modal.confirm-modal#dialog-confirm{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'change-password-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-body.d-flex.justify-content-center
+        %h3.title.text-center Are you sure you want to do it?
+      .modal-footer.d-flex.justify-content-center
+        %button.btn.btn-grey-primary.btn-xs.submit-change-pass{type: 'submit'} Yes
+        %a.btn.btn-light-primary.btn-xs{'data-dismiss': 'modal', 'aria-label': 'Cancel'} Cancel

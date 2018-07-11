@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails', '~> 3.5'
+  gem 'byebug'
 end
 
 group :staging, :production do

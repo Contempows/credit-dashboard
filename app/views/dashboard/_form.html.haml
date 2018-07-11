@@ -21,6 +21,5 @@
     .col-50.d-flex.flex-column
       = f.input :zipcode, required: false, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
   .d-flex.justify-content-start.align-items-center
-    %button.btn.btn-cyan.btn-md{type: 'submit', for: 'create_broker'} Create User
+    %button.btn.btn-cyan.btn-md{type: 'submit', for: 'create_broker'} Save
     %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Cancel'} Cancel
-

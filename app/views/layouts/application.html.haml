@@ -51,7 +51,7 @@
                 = current_user.first_name
               - else
                 Username
-        %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#logout-modal'}
+        = link_to destroy_user_session_path, method: :delete, class: 'btn-link d-flex align-items-center btn-filters', data: { confirm: 'Are you sure you want to Logout?' } do
           %i.fa.fa-power-off
       .container-content
         #error
@@ -75,8 +75,9 @@
     /= render "confirmations/confirm-purchase-modal"
     /= render "confirmations/confirm-deposit-modal"
     /= render "confirmations/confirm-change-password-modal"
-    /= render "confirmations/confirm-logout-modal"
     /= render "confirmations/confirm-ssn-modal"
+
+    = render "confirmations/dialog-confirm"
 
 :javascript
   var navDropdown = $('.navigation .dropdown');

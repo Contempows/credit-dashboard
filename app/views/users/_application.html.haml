@@ -20,8 +20,9 @@
       = app.state
     - if can_delete_au(app)
       %td
-        = link_to user_path(app), method: :delete, data: { confirm: 'Are you sure that you want to delete user?' } do
-          %span.glyphicon.glyphicon-trash
+        = link_to "Edit", edit_user_path(app), remote: true, class: 'dashb'
+        = link_to "Remove", user_path(app), method: :delete, 
+          data: { confirm: 'Are you sure that you want to delete user?' }
     - else
       %td
         %span.glyphicon.glyphicon-trash.cursor-pointer.data-error{ data: { error: 'Cannot delete this user.' } }

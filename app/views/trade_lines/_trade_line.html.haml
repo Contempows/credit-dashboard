@@ -18,13 +18,10 @@
   - if current_user.senior?
     %td= trade_line.is_active? ? 'Active' : 'Inactive'
   %td
-    %button.btn.btn-grey-primary{href: '#', 'data-toggle': 'modal', 'data-target': '#purchase-modal'} Purchase
     - if current_user.staff?
-      / = link_to edit_trade_line_path(trade_line), remote: true do
-      /   %span.glyphicon.glyphicon-arrow-right
+      = button_to "Purchase", edit_trade_line_path(trade_line), class: 'btn btn-grey-primary', method: 'get', remote: true
     - elsif current_user.accepted? && !trade_line.slots.zero? && !current_user.wallet_balance.zero? && !profile_empty?
-      = link_to new_trade_line_purchase_path(trade_line), remote: true do
-        %span.glyphicon.glyphicon-arrow-right
+      = button_to "Purchase", new_trade_line_purchase_path(trade_line), class: 'btn btn-grey-primary', method: 'get', remote: true
     - else
       - @errors = "#{'<li>This profile is not yet approved.</li>' unless current_user.accepted?}#{"<li>Current wallet balance is zero.</li>" if current_user.wallet_balance.zero?}#{'<li>Number of slots for this tradeline is zero.</li>' if trade_line.slots.zero?}#{"<li>Your profile details are not updated. Please #{link_to 'click here', edit_details_user_path(current_user, profile_details: true)} to update your details</li>" if profile_empty?}"
       %a

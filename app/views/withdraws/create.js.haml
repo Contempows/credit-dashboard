@@ -2,5 +2,5 @@
   $('#modal-body').html("#{escape_javascript(render 'form')}");
 - else
   $('#withdraw-modal').modal('hide');
-  hideAlert();
-  location.reload();
+  $('#btn-click-modal').html("#{escape_javascript(render 'withdraw_confirm')}");
+  $('#confirm-withdraw-modal').modal('show');

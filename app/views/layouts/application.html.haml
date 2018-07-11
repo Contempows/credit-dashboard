@@ -30,13 +30,13 @@
                 %li{ class: "#{'activated' if controller.action_name == 'ledger_entries'|| controller.controller_name == 'ledger_entries' && !params[:user_check_id]}" }
                   = link_to 'Ledgers', ledger_entries_path
                 %li{ class: "#{'activated' if controller.action_name == 'purchases'|| controller.controller_name == 'purchases' && !params[:user_check_id]}" }
-                  %a{href: "/purchases"} Purchases
+                  %a{href: purchases_path} Purchases
                 %li{ class: "#{'activated' if ['deposits'].include?(controller.controller_name)}" }
-                  %a{href: "/deposits"} Deposits
+                  %a{href: deposits_path} Deposits
                 %li{ class: "#{'activated' if controller.action_name == 'refunds'|| controller.controller_name == 'refunds' && !params[:user_check_id]}" }
-                  %a{href: "/refunds"} Refunds
+                  %a{href: refunds_path} Refunds
                 %li{ class: "#{'activated' if ['withdraws'].include?(controller.controller_name)}" }
-                  %a{href: "/withdraws"} Withdrawals
+                  %a{href: withdraws_path} Withdrawals
             %li.icon.icon-checked{ class: "#{'activated' if controller.controller_name == 'ssns'}" }
               %a{href: "/ssns"} SSN/CPN Validation
     .display-body

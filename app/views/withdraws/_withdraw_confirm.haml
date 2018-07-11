@@ -1,0 +1,14 @@
+.modal.confirm-modal#confirm-withdraw-modal{tabindex: '-1', role: 'dialog', 'aria-labelledby': 'filter-modal-label', 'aria-hidden': 'true'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header.d-flex.justify-content-center
+        %h5.modal-title#filter-modal-label.title-primary Thanks For Your Submission
+      .modal-body.d-flex.flex-column.align-items-center.justify-content-center
+        %i.fa.fa-check-circle
+        %span.warn-text.d-flex.align-items-center-justify-content-center.text-center
+          You'll receive an email as soon as we've confirmed your deposit
+          %br
+          (usually within 24 hours)
+      .modal-footer.d-flex.justify-content-center
+        = link_to 'Review Transaction', ledger_entries_path, method: :get, class: 'btn btn-grey-primary btn-md'
+        %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Close

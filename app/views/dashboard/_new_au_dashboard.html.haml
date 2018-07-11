@@ -18,7 +18,7 @@
         - precision = user_wallet_balance_precision(current_user.wallet_balance)
         %strong
           = number_to_currency(current_user.wallet_balance, precision: 2)
-      = link_to 'Withdraw Funds', new_withdraw_path, class: 'btn btn-secondary btn-xm', remote: true, href: '#', 'data-toggle': 'modal', 'data-target': '#withdrawal-funds-modal'
+      = link_to 'Withdraw Funds', new_withdraw_path, class: 'btn btn-secondary btn-xm', remote: true
 
 .row.row-holder.align-items-center
   .col-sm-6.d-flex.align-items-center
@@ -33,6 +33,10 @@
     %a.btn-link.d-flex.align-items-center.btn-filters{href: '#', 'data-toggle': 'modal', 'data-target': '#filters-modal'}
       Filter
       %i.icon.icon-filter
+
+#new_trade_line
+
+#btn-click-modal
 
 .content-holder
   - if TradeLine.accessible_by(current_ability).count.zero?

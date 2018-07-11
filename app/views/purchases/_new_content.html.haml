@@ -1,48 +1,40 @@
 - if trade_line.is_active?
   .modal-header
-    %button.close{'data-dismiss'=>'modal'}
-      %span.span-close &times;
-    %h4.modal-title.title= "Tradeline Details"
-    %p.sub-title Last step before you complete the purchase.
+    %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Trade Line Details ##{trade_line.id}
+    %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+      %span{'aria-hidden': 'true'} Cancel Purchase
   .modal-body.purchase-wrapper
-    .container-fluid.no-pad-left.no-pad-right
-      .col-sm-4.no-pad-left
-        %p.body-sub-title Slots
-        %p.each-title= trade_line.slots
-      .col-sm-4
-        %p.body-sub-title Bank
-        %p.each-title#bank-name= trade_line.bank.capitalize
-      .col-sm-4.no-pad-right
-        %p.body-sub-title Credit Limit
-        %p.each-title
-          - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
-            = number_to_currency(trade_line.credit_limit, precision: 2)
-          - else 
-            = number_to_currency(trade_line.credit_limit, precision: 2)
-    .container-fluid.no-pad-left.no-pad-right
-      .col-sm-4.no-pad-left
-        %p.body-sub-title History
-        %p.each-title= "#{date_to_years(trade_line.history)} yrs"
-      .col-sm-4
-        %p.body-sub-title Statement Date
-        %p.each-title= trade_line.statement_date.ordinalize
-      .col-sm-4.no-pad-right
-        %p.body-sub-title State
-        %p.each-title= trade_line.state.short_code
-    .container-fluid.no-pad-left.no-pad-right
-      .col-sm-4.no-pad-left
-        %p.body-sub-title Special Add.?
-        %p.each-title= parse_booleans(trade_line.special_add)
-      .col-sm-4
-        %p.body-sub-title SSN req.?
-        %p.each-title= parse_booleans(trade_line.ssn_req)
-      .col-sm-4.no-pad-right
-        %p.body-sub-title DL Req.?
-        %p.each-title= parse_booleans(trade_line.dl_req)
-    .container-fluid.no-pad-left.no-pad-right
-      .col-sm-4.no-pad-left
-        %p.body-sub-title Price
-        %p.each-title= number_to_currency(trade_line.price, precision: 2)
+    .d-flex
+      %table.table.table-responsive.purchase-table
+        %thead
+          %tr
+            %th.no-sort Bank Name
+            %th.no-sort Slot
+            %th.no-sort Credit Limit
+            %th.no-sort Card Age
+            %th.no-sort Statement Date
+            %th.no-sort State
+            %th.no-sort Special Add
+            %th.no-sort SSN req
+            %th.no-sort DL Req
+            %th Price
+        %tbody#trade_lines
+          %tr
+            %td= trade_line.bank.capitalize
+            %td= trade_line.slots
+            %td
+              - if trade_line.credit_limit - trade_line.credit_limit.to_i == 0 
+                = number_to_currency(trade_line.credit_limit, precision: 2)
+              - else 
+                = number_to_currency(trade_line.credit_limit, precision: 2)
+            %td= "#{date_to_years(trade_line.history)} yrs"
+            %td= trade_line.statement_date.ordinalize
+            %td= trade_line.state.short_code
+            %td= parse_booleans(trade_line.special_add)
+            %td= parse_booleans(trade_line.ssn_req)
+            %td= parse_booleans(trade_line.dl_req)
+            %td= number_to_currency(trade_line.price, precision: 2)
+
     #new-purchase-form
       = render 'form_new'
 - else

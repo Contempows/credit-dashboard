@@ -1,14 +1,18 @@
 = simple_form_for @deposit, html: { id: "my-awesome-dropzone", class: "dropzone", multipart: true, remote: true } do |f|
   .modal-body
     - if current_user.au?
-      .row
-        .col-md-12
-          .col-md-6= f.input :amount, label: 'Deposit Amount', input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string
-          .col-md-6
-            = f.input :date_of_deposit, as: :string, label: 'Deposit Date', 
-              input_html: { class: 'datepicker' }
-        .col-md-12
-          = f.input :banking_information_id, collection: @banking_infos, include_blank: true, label: 'Deposit was made at'
+      %span.warn-text As a proof of deposit we would need you to upload the receipt.
+      .d-flex.flex-wrap.justify-content-between.m-b-10
+        .col-50.d-flex.flex-column.short
+          = f.label :amount, 'Deposit Amount', class: 'control-label'
+          = f.input :amount, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string
+        .col-50.d-flex.flex-column.short
+          = f.label :date_of_deposit, 'Deposit Date', class: 'control-label'
+          = f.input :date_of_deposit, as: :string, label: false, input_html: { class: 'datepicker' }
+        .col-100.d-flex.flex-column.short
+          = f.label :banking_information_id, 'Deposit was made at', class: 'control-label'
+          = f.input :banking_information_id, collection: @banking_infos, include_blank: true, class: 'form-control', label: false
+
       .dz-max-files-reached
       .dropzone-previews
       .row#drag-area
@@ -22,17 +26,23 @@
             %p Click or drag and drop files here to upload 
           %span.help-block#drag-area-help-block
           %span.image-add-remove-msg
+
     - else
       = hidden_field_tag :broker_id, params[:broker_id]
       = f.hidden_field :status, value: 'accepted'
-      .row
-        .col-md-12
-          = f.input :amount, label: 'Deposit Amount', input_html: { onKeyPress: "return isRealPress(event);", onKeyUp: "return isRealUp(event);" }, as: :string
+      .d-flex.flex-wrap.justify-content-between.m-b-10
+        .col-100.d-flex.flex-column.short
+          = f.label :amount, 'Deposit Amount', class: 'control-label'
+          = f.input :amount, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string
+
+    .d-flex.flex-column
+      .d-flex.m-b-10
+        %a.btn.btn-cyan.btn-md
+          %button{type: 'submit'} Submit
+        %a.btn.btn-light-primary.btn-md
+          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
 
     = f.hidden_field :authorization_code
-  .modal-footer
-    = f.submit :submit, class: 'btn btn-primary btn-block btn-lg submit-deposit-form'
-    = link_to 'cancel', '#', class: 'btn btn-default btn-block btn-lg', data: { dismiss: 'modal' }
 
 :javascript
   $(document).ready(function(){

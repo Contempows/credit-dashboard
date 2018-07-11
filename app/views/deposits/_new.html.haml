@@ -1,16 +1,11 @@
 .modal.fade#new_deposit_modal{ 'aria-hidden'=>'true', 'aria-labelledby'=>'proceedModalLabel', 'role'=>'dialo    g', 'tabindex'=>'-1' }
-  .modal-dialog
+  .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
-        %button.close{data: { dismiss: 'modal' } }
-          %span &times;
         - if current_user.au?
-          %h4.modal-header-title
-            %b.title Upload Receipt 
-          %span.sub-title As a proof of deposit we would need you to upload the receipt 
+          %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Confirm Deposit
         - else
-          %h4.modal-header-title
-            %b.title Add Money 
+          %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Add Money 
       #modal-body
         = render 'form'
 

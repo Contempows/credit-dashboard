@@ -4,6 +4,10 @@ $form-control-height-sm: 42px;
 
 $rounded-sm: 2px;
 
+form {
+    margin: 0;
+}
+
 input:focus,
 .form-control:focus {
     outline: none;

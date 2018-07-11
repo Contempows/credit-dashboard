@@ -75,8 +75,10 @@
     /= render "confirmations/confirm-purchase-modal"
     /= render "confirmations/confirm-deposit-modal"
     /= render "confirmations/confirm-change-password-modal"
-    /= render "confirmations/confirm-logout-modal"
     /= render "confirmations/confirm-ssn-modal"
+
+    = render "confirmations/confirm-logout-modal"
+    = render "confirmations/dialog-confirm"
 
 :javascript
   var navDropdown = $('.navigation .dropdown');

@@ -38,9 +38,7 @@ class UsersController < ApplicationController
       role = current_user.au? ? 'au' : 'junior'
       @user = User.new(user_params.merge(status: 'accepted', password: '123456',
                                          invited_by: current_user, role: role))
-      @result = Users::Update.call(user: @user,
-                                   user_params: user_params,
-                                   params: params)
+      @result = @user.update(user_params)
       if @result.success?
         flash[:notice] = if current_user.au?
           I18n.t('user.au_user_added')
@@ -89,10 +87,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     flash[:notice] = I18n.t('user.sign_up_message') if @user
     if user_signed_in? && @user.invited_by_id == current_user.id
-      @result = Users::Update.call(user: @user,
-                                   user_params: user_params,
-                                   params: params)
-      if @result.success?
+      @result = false
+      if @user.update(user_params)
+        @result = true
         flash[:notice] = @user.au? ? I18n.t('user.au_user_updated') : I18n.t('user.ss_js_updated')
       end
       respond_to do |format|

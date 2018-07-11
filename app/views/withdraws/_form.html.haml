@@ -3,17 +3,36 @@
 - else
   = simple_form_for @withdraw, html: { remote: true } do |f|
     .modal-body
-      = f.input :payee, label: 'Who should we write the check to?',
-        placeholder: 'Enter payee here'
-      = f.input :address, label: 'Tell us where we should send the check?',
-        placeholder: 'Enter your address here'
-      = f.label 'How much do you want to withdraw?', class: 'control-label string required'
-      .row
-      %span.col-xs-1.currency_wrapper.currency_wrapper_for_form.currency_wrapper_withdraw.hidden $
-      .col-xs-5.col-md-11.currency_form_block
-        = f.input :amount, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string, placeholder: 'Enter amount here'
-    .modal-footer
-      = f.submit :submit, class: 'btn btn-primary btn-block btn-lg'
+      %span.warn-text Please make sure you write correct payee details in terms to send a check
+      = simple_form_for @withdraw, html: { remote: true } do |f|
+        .d-flex.flex-wrap.justify-content-between.m-b-10
+          .col-50.d-flex.flex-column.short
+            = f.label :payee, 'Payee full name', class: 'control-label'
+            = f.input :payee, class: 'form-control', required: true, placeholder: 'Enter payee here', label: false
+          .col-50.d-flex.flex-column.short
+            = f.label :amount, 'Withdraw amount', class: 'control-label'
+            = f.input :amount, class: 'form-control', required: true, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string, label: false
+          .col-100.d-flex.flex-column.short
+            = f.label :address, 'Payee address', class: 'control-label'
+            = f.input :address, class: 'form-control', required: true, label: false
+          .col-50.d-flex.flex-column.short
+            = label_tag :city, 'City', class: 'control-label'
+            = text_field_tag :city, params[:city], class: 'form-control search-form', required: true
+          .col-50.d-flex.flex-column.short
+            = label_tag :state, 'State', class: 'control-label'
+            = text_field_tag :state, params[:state], class: 'form-control', required: true
+          .col-50.d-flex.flex-column.short
+            = label_tag :zipcode, 'Zip code', class: 'control-label'
+            = text_field_tag :zipcode, params[:zipcode], class: 'form-control', required: true
+        .d-flex.flex-column
+          .d-flex.m-b-10
+            %a.btn.btn-cyan.btn-md
+              %button{type: 'submit'} Submit Details
+            %a.btn.btn-light-primary.btn-md
+              %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
+          .d-flex
+            = check_box_tag :confirm, :confirm, false, required: true
+            = label_tag :confirm, 'I agree that i provided all correct information. ', class: 'control-label'
 
 :javascript
   $('#withdraw_amount').focus(function(){

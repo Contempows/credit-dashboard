@@ -3,7 +3,7 @@
     .col-6
       .d-flex.align-items-center.bg-grey-dark.inner-gap-sm.m-b-20
         = label_tag :user_id, 'Select Broker / Vendor', class: 'control-label w-70'
-        = f.select :user_id, @users.map {|m| ["#{m.first_name} #{m.last_name}", m.id]}, class: 'form-control select-picker js-with-placeholder'
+        = f.select :user_id, @users.map {|m| ["#{m.first_name} #{m.last_name}", m.id]}, class: 'form-control select-picker js-with-placeholder', prompt: "----Select----"
       .d-flex.justify-content-between.align-items-center
         .col-50
           = form_tag purchases_path, class: 'd-flex flex-wrap justify-content-between dropzone dropzone-sm', method: :get do
@@ -20,13 +20,13 @@
 
     .col-6
       .d-flex.flex-column.bg-grey-dark.inner-gap-md.checkout-holder.short
-        .d-flex.flex-column.row-top
+        .d-flex.flex-column.row-top.purchase-summary
           .item.d-flex.justify-content-between.align-items-center
             %span Wallet Balance:
-            %h4.title-sub-brand $580
+            %h4.title-sub-brand=number_to_currency(current_user.wallet_balance)
           .item.d-flex.justify-content-between.align-items-center
             %span Total Payable Amount:
-            %h4.title-sub-brand $560
+            %h4.title-sub-brand=number_to_currency(trade_line.price, precision: 2)
         %a.btn.btn-cyan.btn-md
           %button{'data-dismiss': 'modal', 'aria-label': 'Complete Purchase', 'data-toggle': 'modal', 'data-target': '#confirm-purchase-modal'} Complete Purchase
 

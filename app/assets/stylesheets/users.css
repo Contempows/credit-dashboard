@@ -27,7 +27,10 @@ table#tradelineDataTable tbody tr td {
 
 
 .simple_form.new_purchase .select2-selection.select2-selection--single {
-  border-bottom: none!important;
+  background-color: #f3f3f3;
+  .select2-selection__arrow {
+    background-color: #f3f3f3;
+  }
 }
 
 .purchase_conf_col.no-pad-left {

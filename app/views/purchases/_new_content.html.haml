@@ -1,5 +1,5 @@
 - if trade_line.is_active?
-  .modal-header
+  .modal-header.short
     %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Trade Line Details ##{trade_line.id}
     %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
       %span{'aria-hidden': 'true'} Cancel Purchase
@@ -36,7 +36,7 @@
             %td= number_to_currency(trade_line.price, precision: 2)
 
     #new-purchase-form
-      = render 'form_new'
+      = render 'form_new', trade_line: trade_line
 - else
   .alert.alert-warning
     You cant purchase a tradeline since it is in-active.

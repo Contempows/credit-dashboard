@@ -1,24 +1,24 @@
 = simple_form_for @user, html: { class: 'form-horizontal', id: 'create_broker' }, wrapper: :horizontal_form, remote: true do |f|
   .d-flex.flex-row.flex-wrap.justify-content-between
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :first_name, label: 'First name', required: true
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :last_name, label: 'Last name', required: true
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :email, label: 'Email address'
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :phone, label: 'Phone number'
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :social, label: false, label: 'SSN number', maxlength: 9, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
     .col-50.input-labeled
       = f.input :date_of_birth, as: :string, label: 'Date of birth', input_html: { class: 'datepicker date-of-birth' }
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :address, label: 'Address'
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :city, label: 'City'
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :state, label: 'State'
-    .col-50.d-flex.flex-column
+    .col-50.d-flex.flex-column.short
       = f.input :zipcode, required: false, label: 'Zipcode', maxlength: 6, input_html: { type: 'text', onKeyPress: "return isNumber(event);"}
   .d-flex.justify-content-start.align-items-center
     %button.btn.btn-cyan.btn-md{type: 'submit', for: 'create_broker'} Save

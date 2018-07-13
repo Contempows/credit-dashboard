@@ -283,3 +283,11 @@
 #dialog-confirm .modal-body {
     padding-bottom: 40px;
 }
+
+.modal-content .flex-column.purchase-summary {
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #dedede;
+    .align-items-center {
+        margin-bottom: 20px;
+    }
+}

@@ -38,8 +38,7 @@ class UsersController < ApplicationController
       role = current_user.au? ? 'au' : 'junior'
       @user = User.new(user_params.merge(status: 'accepted', password: '123456',
                                          invited_by: current_user, role: role))
-      @result = @user.update(user_params)
-      if @result.success?
+      if @user.update(user_params)
         flash[:notice] = if current_user.au?
           I18n.t('user.au_user_added')
         else

@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       role = current_user.au? ? 'au' : 'junior'
       @user = User.new(user_params.merge(status: 'accepted', password: '123456',
                                          invited_by: current_user, role: role))
-      if @user.update(user_params)
+      if @user.save
         flash[:notice] = if current_user.au?
           I18n.t('user.au_user_added')
         else
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       end
     else
       @user = User.new(user_params.merge(status: 0, role: 0))
-      if @user.update(user_params)
+      if @user.save
         redirect_to edit_user_path(id: @user.id)
       else
         render 'new'

@@ -9,3 +9,8 @@
       .modal-footer.d-flex.justify-content-center
         %a.btn.btn-grey-primary.btn-md{'href': '/deposits'} Review Transaction
         %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Close
+
+:javascript
+  $('#new_deposit_modal').on('shown.bs.modal', function () {
+    $('body').addClass('modal-open');
+  });

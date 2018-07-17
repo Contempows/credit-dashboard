@@ -36,34 +36,34 @@ class DepositsController < ApplicationController
     end
   end
 
-  def create
+def create
     deposit_user = if params[:broker_id]
       User.find(params[:broker_id])
     else
       current_user
     end
-    @result = Deposit::Create.call(deposit_params, user: deposit_user, current_user: current_user)
-    @deposit = @result['model']
-    if @result.success?
+    @deposit = Deposit.new(deposit_params)
+    @deposit.user = deposit_user
+    @result = @deposit.save
+    if @result
       if current_user.junior?
-        @result['model'].add_to_wallet
-        @result['model'].add_ledger
+        @deposit.add_to_wallet
+        @deposit.add_ledger
         flash[:notice] = if params.dig(:deposit, :amount).to_i.negative?
           I18n.t('deposit.debited')
         else
           I18n.t('deposit.accepted')
         end
-        respond_to do |format|
-          format.html { redirect_to root_path }
-          format.js
-        end
       else
         flash[:notice] = I18n.t('deposit.added')
-        DepositMailer.au_deposit_added_mail(@result['model']).deliver_later
-        render json: {}, status: :ok
+        DepositMailer.au_deposit_added_mail(@deposit).deliver_later
+      end
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
       end
     elsif current_user.au?
-      render json: { errors: @result['model'].errors }, status: :unprocessable_entity
+      render json: { errors: @deposit.errors }, status: :unprocessable_entity
     else
       render 'deposits/create.js'
     end

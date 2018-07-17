@@ -9,8 +9,8 @@
 
     .modal-header {
         justify-content: flex-start;
-        padding-bottom: 30px;
-        margin-bottom: 30px;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
         border-bottom: 2px solid $primary-color-light;
 
         &.short {
@@ -23,7 +23,7 @@
     }
 
     .modal-content {
-        padding: 60px;
+        padding: 55px 60px;
     }
 
     .modal-footer {

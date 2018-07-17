@@ -1,6 +1,6 @@
-- if current_user.junior? 
-  - if @result.success?
-    location.reload();
-  - else
-    $('#new_deposit_modal').modal('show');
-    $('#modal-body').html("#{escape_javascript(render 'form')}");
+- if @result
+  $('#new_deposit_modal').hide();
+  $('#confirm-deposit-form-modal').modal('show');
+- else
+  $('#new_deposit_modal').modal('show');
+  $('#my-awesome-dropzone .modal-body').html("#{escape_javascript(render 'form')}");

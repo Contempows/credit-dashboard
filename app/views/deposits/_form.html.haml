@@ -11,19 +11,18 @@
           = f.input :date_of_deposit, as: :string, label: false, input_html: { class: 'datepicker' }
         .col-100.d-flex.flex-column.short
           = f.label :banking_information_id, 'Deposit was made at', class: 'control-label'
-          = f.input :banking_information_id, collection: @banking_infos, include_blank: true, class: 'form-control', label: false
+          = f.input :banking_information_id, collection: @banking_infos, include_blank: true, class: 'form-control js-select2', label: false
 
       .dz-max-files-reached
       .dropzone-previews
-      .row#drag-area
-        .col-md-12
-          .col-md-12.auth-code
-            %center.text
-              %p.code Authentication Code: #{@deposit.authorization_code}
-              %span Please write authentication code on the receipt
-
-          .col-md-12.dz-message.needsclick
-            %p Click or drag and drop files here to upload 
+      #drag-area.drag-area
+        .d-flex.flex-column
+          .dz-message.needsclick.d-flex.flex-column.align-items-center.justify-content-center
+            .auth-code
+              %center.text
+                %p.code Authentication Code: #{@deposit.authorization_code}
+                %span Please write authentication code on the receipt
+            %button.btn-dropzone Click or drag and drop files here to upload 
           %span.help-block#drag-area-help-block
           %span.image-add-remove-msg
 
@@ -35,18 +34,16 @@
           = f.label :amount, 'Deposit Amount', class: 'control-label'
           = f.input :amount, label: false, input_html: { onKeyPress: "return isFloatPress(event);", onKeyUp: "return isFloatUp(event);" }, as: :string
 
-    .d-flex.flex-column
-      .d-flex.m-b-10
-        %a.btn.btn-cyan.btn-md
-          %button{type: 'submit'} Submit
-        %a.btn.btn-light-primary.btn-md
-          %button{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
+    .d-flex.flex-column.align-items-center.m-0
+      .d-flex
+        %button.btn.btn-cyan.btn-md.btn-submit-deposit{type: 'submit'} Submit
+        %button.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Cancel
 
     = f.hidden_field :authorization_code
 
 :javascript
   $(document).ready(function(){
-    $('select').select2({theme: 'bootstrap', dropdownParent: $('.modal')});
+    $('select').select2();
     $('input.datepicker').data({behaviour: "datepicker"}).datepicker({
       format: 'mm/dd/yy', 
       endDate: '+0d',

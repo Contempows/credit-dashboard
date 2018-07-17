@@ -30,19 +30,43 @@ $(document).ready(function(){
   // $('select').select2({theme: 'bootstrap'});
   hideAlert();
   
-  var myDropzone = new Dropzone('.dropzone');
+  if (document.querySelector('.dropzone')) {
+    var myDropzone = new Dropzone('.dropzone');
 
-  myDropzone.on("addedfile", function(file) {
-    var remove = Dropzone.createElement('<i class="fa fa-times remove-dz-thumbnail"></i>');
-    var _this = this;
-    remove.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+    Dropzone.options.myDropzone = {
 
-      _this.removeFile(file);
-      });
-    file.previewElement.append(remove);
-  });
+      // Prevents Dropzone from uploading dropped files immediately
+      autoProcessQueue: false,
+
+      init: function() {
+        myDropzone = this;
+
+        $('.btn-submit-deposit').addEventListener('click', function() {
+          myDropzone.processQueue();
+        });
+
+        myDropzone
+          .on('removedfile', function(file) {
+            myDropzone.removeAllFiles(true); 
+          })
+          .on('error', function(file) {
+            myDropzone.removeAllFiles(true); 
+          });
+      }
+    };
+
+    myDropzone.on('addedfile', function(file) {
+      var remove = Dropzone.createElement('<i class="fa fa-times remove-dz-thumbnail"></i>');
+      var _this = this;
+      remove.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        _this.removeFile(file);
+        });
+      file.previewElement.append(remove);
+    });
+  }
 });
 
 $(document).on('ready turbolinks:load', function(){

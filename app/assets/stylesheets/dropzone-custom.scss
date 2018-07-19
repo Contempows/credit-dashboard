@@ -96,23 +96,23 @@
             padding: 0 !important;
         }
     }
+}
 
-    &.dropzone-sm {
+.dropzone-area-sm {
+    
+    .dz-message {
+        height: 92px;
+        border: 2px dashed $light-secondary;
+        margin: 0 !important;
 
-        .dz-message {
-            height: 92px;
-            border: 2px dashed $light-secondary;
-            margin: 0 !important;
+        .title-holder {
+            margin-bottom: 0;
+            color: #949494;
+            font-size: em(14);
+        }
 
-            .title-holder {
-                margin-bottom: 0;
-                color: #949494;
-                font-size: em(14);
-            }
-
-            .icon {
-                margin-bottom: 5px;
-            }
+        .icon {
+            margin-bottom: 5px;
         }
     }
 }

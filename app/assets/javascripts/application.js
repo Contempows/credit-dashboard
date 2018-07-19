@@ -31,6 +31,7 @@ $(document).ready(function(){
   hideAlert();
   
   if (document.querySelector('.dropzone')) {
+    
     var myDropzone = new Dropzone('.dropzone');
 
     Dropzone.options.myDropzone = {

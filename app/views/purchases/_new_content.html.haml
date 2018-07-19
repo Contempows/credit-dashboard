@@ -1,9 +1,9 @@
 - if trade_line.is_active?
   .modal-header.short
     %h5.modal-title#withdrawal-funds-modal-label.title-sub-brand Trade Line Details ##{trade_line.id}
-    %button.close{'data-dismiss': 'modal', 'aria-label': 'Close'}
+    %button.close.close-purchase-modal{'data-dismiss': 'modal', 'aria-label': 'Close'}
       %span{'aria-hidden': 'true'} Cancel Purchase
-  .modal-body.purchase-wrapper
+  .modal-body.purchase-wrapper.purchase-tradeline-detail-modal-body
     .d-flex
       %table.table.table-responsive.purchase-table
         %thead

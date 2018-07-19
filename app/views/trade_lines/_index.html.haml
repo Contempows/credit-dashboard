@@ -44,7 +44,7 @@
       'serverSide': true,
       'pagingType': 'full_numbers',
       "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-        var id = $('td:eq(-1)', nRow).html();
+        var id = $('td:eq(-2)', nRow).html();
         var red = "<span style='color:red'>No</span>"
         var green = "<span style='color:green'>Yes</span>"
         var link = '/trade_lines/' + id;

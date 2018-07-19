@@ -174,14 +174,26 @@
 
             > th,
             > td {
+                padding: 20px 18px;
 
                 &:first-child {
-                    padding-left: 0;
+                    padding-left: 5px;
                 }
 
                 &:last-child {
-                    padding-right: 0;
+                    text-align: right;
+                    padding-right: 5px;
                 }
+            }
+        }
+    }
+
+    > tbody {
+
+        > tr {
+
+            &:last-child {
+                border-bottom-color: transparent !important;
             }
         }
     }

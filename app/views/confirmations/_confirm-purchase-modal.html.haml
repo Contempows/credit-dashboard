@@ -12,5 +12,12 @@
             %strong TIGHT
             and watch your credit grow.
       .modal-footer.d-flex.justify-content-center
-        = link_to 'Review Transaction', destroy_user_session_path, method: :delete, class: 'btn btn-grey-primary btn-md'
+        %a.btn.btn-grey-primary.btn-md{'href': '/purchases'} Review Transaction
         %a.btn.btn-light-primary.btn-md{'data-dismiss': 'modal', 'aria-label': 'Close'} Close
+
+:javascript
+  $('#confirm-purchase-modal').on('show.bs.modal', function () {
+    setTimeout(function () {
+      $('body').addClass('modal-open');
+    }, 500);
+  });

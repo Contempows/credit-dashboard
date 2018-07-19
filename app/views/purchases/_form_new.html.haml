@@ -6,17 +6,19 @@
         = f.select :user_id, @users.map {|m| ["#{m.first_name} #{m.last_name}", m.id]}, class: 'form-control select-picker js-with-placeholder', prompt: "----Select----"
       .d-flex.justify-content-between.align-items-center
         .col-50
-          = form_tag purchases_path, class: 'd-flex flex-wrap justify-content-between dropzone dropzone-sm', method: :get do
-            .dz-custom.dz-message.d-flex.align-items-center.justify-content-center{'data-dz-message': 'true'}
-              .title-holder.d-flex.flex-column.align-items-center.justify-content-center
-                %i.icon.icon-upload
-                Upload or Drag & Drop SSN
+          .d-flex.align-items-center.justify-content-center.purchase-file-uploader-cont
+            %input.purchase-uploader{:type => "file"}
+            .title-holder.d-flex.flex-column.align-items-center.justify-content-center
+              %i.icon.icon-upload
+              %span Upload or Drag & Drop SSN
+            .purchase-uploader-preview
         .col-50
-          = form_tag purchases_path, class: 'd-flex flex-wrap justify-content-between dropzone dropzone-sm', method: :get do
-            .dz-custom.dz-message.d-flex.align-items-center.justify-content-center{'data-dz-message': 'true'}
-              .title-holder.d-flex.flex-column.align-items-center.justify-content-center
-                %i.icon.icon-upload
-                Upload or Drag & Drop Driving License
+          .d-flex.align-items-center.justify-content-center.purchase-file-uploader-cont
+            %input.purchase-uploader{:type => "file"}
+            .title-holder.d-flex.flex-column.align-items-center.justify-content-center
+              %i.icon.icon-upload
+              %span Upload or Drag & Drop Driving License
+            .purchase-uploader-preview
 
     .col-6
       .d-flex.flex-column.bg-grey-dark.inner-gap-md.checkout-holder.short
@@ -26,11 +28,41 @@
             %h4.title-sub-brand=number_to_currency(current_user.wallet_balance)
           .item.d-flex.justify-content-between.align-items-center
             %span Total Payable Amount:
-            %h4.title-sub-brand=number_to_currency(trade_line.price, precision: 2)
-        %a.btn.btn-cyan.btn-md
-          %button{'data-dismiss': 'modal', 'aria-label': 'Complete Purchase', 'data-toggle': 'modal', 'data-target': '#confirm-purchase-modal'} Complete Purchase
+            %h4.title-sub-brand=number_to_currency(@trade_line.price, precision: 2)
+        = f.button :submit, "Proceed", class: '.btn btn-cyan btn-md submit-purchase-form', data: {tid: "#{@trade_line.id}"}
 
 :javascript
+  (function() {
+    if (!Element.prototype.closestNode) {
+      Element.prototype.closestNode = function(css) {
+        var node = this;
+
+        while (node) {
+          if (node.matches(css)) return node;
+          else node = node.parentElement;
+        }
+        return null;
+      };
+    }
+  })();
+  function readURL(input) {
+    if (input.files[0]) {
+      var reader = new FileReader();
+      var previewCont = input.closestNode('.purchase-file-uploader-cont').querySelector('.purchase-uploader-preview');
+
+      reader.onload = function(e) {
+        previewCont.style.background = 'url(' + e.target.result + ') center center / cover no-repeat'; 
+        previewCont.style.display = 'block';
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $('.purchase-uploader').each(function (el) {
+    $(this).change(function () {
+      readURL(this)
+    });
+  });
   $('#purchase_user_id').change(function(){
     var id = $(this).val();
     $.get({
